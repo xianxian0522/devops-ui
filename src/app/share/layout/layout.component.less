@@ -1,6 +1,7 @@
 .layout-contain {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 .logo {
   width: 120px;
@@ -11,9 +12,15 @@
   color: #fff;
   margin-right: 30px;
 }
+.select-menu-contain {
+  display: flex;
+  justify-content: center;
+  height: 53px;
+  align-items: center;
+  border-bottom: 1px solid #DCDEE5;
+}
 .select-menu {
-  width: 200px;
-  margin-bottom: 10px;
+  width: 180px;
 }
 
 .header-menu {
@@ -34,8 +41,11 @@
 
 nz-content {
   background: #fff;
-  padding: 24px;
+  //padding: 24px;
   height: 100%;
   border-left: 1px solid #DCDEE5;
 }
-
+// 侧边栏滚动
+.ant-layout-sider {
+  overflow: auto;
+}

@@ -9,23 +9,29 @@
   </nz-header>
   <nz-layout>
     <nz-sider nzCollapsible nzWidth="200px" nzTheme="light">
-      <nz-select class="select-menu" nzShowSearch nzAllowClear nzPlaceHolder="Select" [formControl]="selectedValue">
-        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
-      </nz-select>
+      <div class="select-menu-contain">
+        <nz-select class="select-menu" nzShowSearch nzAllowClear nzPlaceHolder="Select" [formControl]="selectedValue">
+          <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+          <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+          <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+        </nz-select>
+      </div>
       <ul nz-menu nzMode="inline" class="sider-menu">
-        <li nz-menu-item >
+        <li nz-menu-item nzMatchRouter>
           <i nz-icon nzType="user" nzTheme="outline"></i>
-          <span>业务</span>
+          <span>
+            <a routerLink="/business">业务</a>
+          </span>
         </li>
-        <li nz-menu-item >
+        <li nz-menu-item nzMatchRouter>
           <i nz-icon nzType="database" nzTheme="outline"></i>
-          <span>模块</span>
+          <span>
+            <a routerLink="/model">模型</a>
+          </span>
         </li>
         <li nz-submenu nzOpen nzIcon="user" nzTitle="subnav 1">
           <ul>
-            <li nz-menu-item nzSelected>option1</li>
+            <li nz-menu-item>option1</li>
             <li nz-menu-item>option2</li>
             <li nz-menu-item>option3</li>
             <li nz-menu-item>option4</li>
