@@ -2,9 +2,15 @@
   <nz-header>
     <div class="logo">logo</div>
     <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-      <li nz-menu-item nzSelected>nav 1</li>
-      <li nz-menu-item>nav 2</li>
-      <li nz-menu-item>nav 3</li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/business">nav 1</a>
+      </li>
+      <li nz-menu-item>
+        <a href="http://www.baidu.com">nav 2</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/model">nav 3</a>
+      </li>
     </ul>
   </nz-header>
   <nz-layout>
