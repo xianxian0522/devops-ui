@@ -85,4 +85,7 @@ export class BusinessComponent implements OnInit {
     console.log(event);
   }
 
+  showListData(event: NzFormatEmitEvent): void {
+    console.log(event, 'event');
+  }
 }

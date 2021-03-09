@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/business/index', pathMatch: 'full'},
   {
     path: '', loadChildren: () => import('./share/layout/layout.module').then(m => m.LayoutModule)
   }

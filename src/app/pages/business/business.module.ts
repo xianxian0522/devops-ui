@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzTreeModule} from 'ng-zorro-antd/tree';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzTableModule} from 'ng-zorro-antd/table';
+import {NzButtonModule} from 'ng-zorro-antd/button';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {NzTableModule} from 'ng-zorro-antd/table';
     NzTreeModule,
     NzInputModule,
     NzTableModule,
+    NzButtonModule,
   ]
 })
 export class BusinessModule { }

@@ -1,4 +1,9 @@
-<div class="common-header">index</div>
+<div class="common-header">
+  <button nz-button nzType="default">添加集群</button>
+  <button nz-button nzType="default">删除集群</button>
+  <button nz-button nzType="default">添加实例</button>
+  <button nz-button nzType="default">删除实例</button>
+</div>
 <nz-layout class="layout-contain-com">
   <nz-sider nzWidth="200px" nzTheme="light">
     <div class="select-menu-contain">
@@ -18,7 +23,7 @@
       <nz-tree
           [nzData]="nodes"
           [nzSearchValue]="searchValue"
-          (nzClick)="nzEvent($event)"
+          (nzClick)="showListData($event)"
           (nzExpandChange)="nzEvent($event)"
           (nzSearchValueChange)="nzEvent($event)">
       </nz-tree>
@@ -64,7 +69,7 @@
 <!--      </li>-->
 <!--    </ul>-->
   </nz-sider>
-  <nz-layout class="inner-layout">
+  <nz-layout>
     <nz-content>
       <nz-table #basicTable [nzData]="listOfData"
                 [nzScroll]="{x: '1100px'}"
