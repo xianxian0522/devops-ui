@@ -8,6 +8,9 @@ import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NzTreeModule} from 'ng-zorro-antd/tree';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import {NzTableModule} from 'ng-zorro-antd/table';
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NzMenuModule,
     FormsModule,
     ReactiveFormsModule,
+    NzTreeModule,
+    NzInputModule,
+    NzTableModule,
   ]
 })
 export class BusinessModule { }
