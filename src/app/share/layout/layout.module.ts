@@ -8,6 +8,7 @@ import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NzNoAnimationModule} from 'ng-zorro-antd/core/no-animation';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NzSelectModule,
     ReactiveFormsModule,
     FormsModule,
+    NzNoAnimationModule,
   ]
 })
 export class LayoutModule { }
