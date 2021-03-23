@@ -4,6 +4,7 @@ export interface MenuItem {
   id: string;
   name: string;
   icon: string;
+  level?: number;
   subMenu?: MenuItem[];
 }
 
@@ -13,33 +14,39 @@ const ALL_BIZ_MENUS: MenuItem[] = [
       id: 'index',
       name: '业务总览',
       icon: 'read',
+      level: 1,
     },
     {
       id: 'members',
       name: '成员',
       icon: 'team',
+      level: 1,
     },
     {
       id: 'setup',
       name: '设置',
       icon: 'setting',
+      level: 1,
       subMenu: [
         {
           id: 'set-information',
           name: '基本信息',
           icon: 'form',
+          level: 2,
         },
         {
           id: 'app-settings',
           name: '应用设置',
           icon: 'appstore',
+          level: 2,
         },
       ],
     },
     {
       id: 'host-details',
       name: '机器详情',
-      icon: '',
+      icon: 'desktop',
+      level: 1,
     },
   ];
 
