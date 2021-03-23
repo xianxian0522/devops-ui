@@ -2,13 +2,17 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-const AIP = '/api/v1';
+const AIP = '/api/v1/my';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseRepository<MODEl extends {id?: number}> {
   constructor(protected httpClient: HttpClient) {}
+
+  queryAll(): Observable<any> {
+    return this.httpClient.get(`${AIP}/biz`);
+  }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);

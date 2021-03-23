@@ -1,13 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {BaseRepository} from '../../share/services/base.repository';
 
 @Component({
   selector: 'app-business',
   templateUrl: './biz.component.html',
   styleUrls: ['./biz.component.less']
 })
-export class BizComponent implements OnInit {
+export class BizComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(
+    private baseRepository: BaseRepository<any>,
+  ) { }
 
   listOfData = [
     {
@@ -21,6 +24,12 @@ export class BizComponent implements OnInit {
   pageIndex = 1;
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.baseRepository.queryAll().subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

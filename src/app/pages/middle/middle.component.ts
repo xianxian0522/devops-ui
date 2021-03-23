@@ -20,7 +20,7 @@ export class MiddleComponent implements OnInit {
       this.router.navigateByUrl('/biz/index');
     } else {
       this.loginServices.login().subscribe(res => {
-        if (res && res.token) {
+        if (res.token) {
           localStorage.setItem('token', res.token);
           this.router.navigateByUrl('biz/index');
         }
