@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-biz-set-information',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BizSetInformationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+  ) { }
+
+  editForm = this.fb.group({
+    username: [],
+    realName: [],
+    comment: [],
+    userId: [],
+  });
 
   ngOnInit(): void {
   }
