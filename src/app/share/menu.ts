@@ -10,12 +10,12 @@ export interface MenuItem {
 const BIZ = 'biz';
 const ALL_BIZ_MENUS: MenuItem[] = [
     {
-      id: 'biz',
+      id: 'index',
       name: '业务总览',
       icon: 'read',
     },
     {
-      id: 'member',
+      id: 'members',
       name: '成员',
       icon: 'team',
     },
@@ -25,7 +25,7 @@ const ALL_BIZ_MENUS: MenuItem[] = [
       icon: 'setting',
       subMenu: [
         {
-          id: 'information',
+          id: 'set-information',
           name: '基本信息',
           icon: 'form',
         },

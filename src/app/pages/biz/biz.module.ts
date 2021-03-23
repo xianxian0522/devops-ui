@@ -12,10 +12,14 @@ import {NzTreeModule} from 'ng-zorro-antd/tree';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzTableModule} from 'ng-zorro-antd/table';
 import {NzButtonModule} from 'ng-zorro-antd/button';
+import { BizMembersComponent } from './biz-members/biz-members.component';
+import { BizSetInformationComponent } from './biz-set-information/biz-set-information.component';
+import { BizSetAppComponent } from './biz-set-app/biz-set-app.component';
+import { BizHostDetailsComponent } from './biz-host-details/biz-host-details.component';
 
 
 @NgModule({
-  declarations: [BizComponent],
+  declarations: [BizComponent, BizMembersComponent, BizSetInformationComponent, BizSetAppComponent, BizHostDetailsComponent],
   imports: [
     CommonModule,
     BizRoutingModule,
