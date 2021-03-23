@@ -1,1 +1,57 @@
-<p>biz-members works!</p>
+<div>
+  <div class="biz-members-content-header">
+    <div>
+      <button nz-button>添加</button>
+    </div>
+    <div nz-form nzLayout="inline" [formGroup]="searchForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>用户名</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="username" placeholder="用户名" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>角色</nz-form-label>
+        <nz-form-control>
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a role" formControlName="role" nzSize="small">
+            <nz-option nzLabel="maintainer" nzValue="maintainer"></nz-option>
+            <nz-option nzLabel="developer" nzValue="developer"></nz-option>
+            <nz-option nzLabel="reporter" nzValue="reporter"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <nz-table #basicTable
+              [nzData]="listOfData"
+              nzShowPagination
+              nzShowSizeChanger
+              [nzFrontPagination]="false"
+              [nzTotal]="total"
+              [nzPageIndex]="pageIndex"
+              [nzPageSize]="pageSize"
+    >
+      <thead>
+      <tr>
+        <th>用户名</th>
+        <th>角色</th>
+        <th nzWidth="120px" nzRight>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.username }}</td>
+        <td>{{ data.role }}</td>
+        <td nzRight>
+          <div>
+            <button nz-button nzType="text" *ngIf="data.role !== 'owner'">
+              <i nz-icon nzType="delete" nzTheme="outline"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

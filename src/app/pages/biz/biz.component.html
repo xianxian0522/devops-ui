@@ -1,1 +1,42 @@
-<div>业务总览</div>
+<div class="biz-content">
+  <div class="biz-content-heade">
+    <p>QB</p>
+    <p>行情系统</p>
+  </div>
+  <div class="biz-content-search">
+    <div nz-form nzLayout="inline">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" placeholder="输入名字" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <nz-table #basicTable
+              [nzData]="listOfData"
+              nzShowPagination
+              nzShowSizeChanger
+              [nzFrontPagination]="false"
+              [nzTotal]="total"
+              [nzPageIndex]="pageIndex"
+              [nzPageSize]="pageSize"
+    >
+      <thead>
+      <tr>
+        <th>名字</th>
+        <th>显示名</th>
+        <th>级别</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.displayName }}</td>
+        <td>{{ data.level }}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

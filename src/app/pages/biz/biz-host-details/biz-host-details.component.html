@@ -1,1 +1,48 @@
-<p>biz-host-details works!</p>
+<div>
+  <div class="biz-host-content-header">
+    <div nz-form nzLayout="inline" [formGroup]="searchForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="name" placeholder="输入名字" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>显示名</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="displayName" placeholder="显示名" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <nz-table #basicTable
+              [nzData]="listOfData"
+              nzShowPagination
+              nzShowSizeChanger
+              [nzFrontPagination]="false"
+              [nzTotal]="total"
+              [nzPageIndex]="pageIndex"
+              [nzPageSize]="pageSize"
+    >
+      <thead>
+      <tr>
+        <th>名字</th>
+        <th>显示名</th>
+        <th nzWidth="120px" nzRight>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.displayName }}</td>
+        <td nzRight>
+          <div>
+            <a nz-button nzType="text">分配</a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

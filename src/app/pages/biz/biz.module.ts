@@ -16,10 +16,17 @@ import { BizMembersComponent } from './biz-members/biz-members.component';
 import { BizSetInformationComponent } from './biz-set-information/biz-set-information.component';
 import { BizSetAppComponent } from './biz-set-app/biz-set-app.component';
 import { BizHostDetailsComponent } from './biz-host-details/biz-host-details.component';
+import {NzFormModule} from 'ng-zorro-antd/form';
 
 
 @NgModule({
-  declarations: [BizComponent, BizMembersComponent, BizSetInformationComponent, BizSetAppComponent, BizHostDetailsComponent],
+  declarations: [
+    BizComponent,
+    BizMembersComponent,
+    BizSetInformationComponent,
+    BizSetAppComponent,
+    BizHostDetailsComponent
+  ],
   imports: [
     CommonModule,
     BizRoutingModule,
@@ -33,6 +40,7 @@ import { BizHostDetailsComponent } from './biz-host-details/biz-host-details.com
     NzInputModule,
     NzTableModule,
     NzButtonModule,
+    NzFormModule,
   ]
 })
 export class BizModule { }

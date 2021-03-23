@@ -1,1 +1,45 @@
-<p>biz-set-app works!</p>
+<div >
+  <div class="biz-set-content-search">
+    <div nz-form nzLayout="inline">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" placeholder="输入名字" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <nz-table #basicTable
+              [nzData]="listOfData"
+              nzShowPagination
+              nzShowSizeChanger
+              [nzFrontPagination]="false"
+              [nzTotal]="total"
+              [nzPageIndex]="pageIndex"
+              [nzPageSize]="pageSize"
+    >
+      <thead>
+      <tr>
+        <th>名字</th>
+        <th>显示名</th>
+        <th>级别</th>
+        <th nzRight nzWidth="120px" style="text-align: center">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.displayName }}</td>
+        <td>{{ data.level }}</td>
+        <td nzRight>
+          <div style="display: flex">
+            <a nz-button nzType="text">成员</a>
+            <a nz-button nzType="text">编辑</a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

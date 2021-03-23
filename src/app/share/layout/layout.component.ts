@@ -13,7 +13,7 @@ export class LayoutComponent implements OnInit {
     private menu: Menu,
   ) { }
   
-  selectedValue = new FormControl('');
+  selectedValue = new FormControl('QB');
   sectionItem: MenuItem[] = [];
 
   ngOnInit(): void {
