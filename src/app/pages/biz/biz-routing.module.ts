@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {BusinessComponent} from './business.component';
+import {BizComponent} from './biz.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'index', pathMatch: 'full'},
-  {path: 'index', component: BusinessComponent},
+  {path: 'index', component: BizComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BusinessRoutingModule { }
+export class BizRoutingModule { }

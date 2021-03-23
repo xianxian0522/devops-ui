@@ -4,9 +4,9 @@ import {LayoutComponent} from './layout.component';
 
 const routes: Routes = [
   {
-    path: 'business',
+    path: 'biz',
     component: LayoutComponent,
-    loadChildren: () => import('../../pages/business/business.module').then(m => m.BusinessModule)
+    loadChildren: () => import('../../pages/biz/biz.module').then(m => m.BizModule)
   },
   {
     path: 'model',

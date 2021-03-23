@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BusinessRoutingModule } from './business-routing.module';
-import { BusinessComponent } from './business.component';
+import { BizRoutingModule } from './biz-routing.module';
+import { BizComponent } from './biz.component';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzIconModule} from 'ng-zorro-antd/icon';
@@ -15,10 +15,10 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
 
 
 @NgModule({
-  declarations: [BusinessComponent],
+  declarations: [BizComponent],
   imports: [
     CommonModule,
-    BusinessRoutingModule,
+    BizRoutingModule,
     NzLayoutModule,
     NzSelectModule,
     NzIconModule,
@@ -31,4 +31,4 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
     NzButtonModule,
   ]
 })
-export class BusinessModule { }
+export class BizModule { }

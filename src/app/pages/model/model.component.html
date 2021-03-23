@@ -1,1 +1,99 @@
-<p>model works!</p>
+<div class="common-header">
+  <button nz-button nzType="default">添加集群</button>
+  <button nz-button nzType="default">删除集群</button>
+  <button nz-button nzType="default">添加实例</button>
+  <button nz-button nzType="default">删除实例</button>
+</div>
+<nz-layout class="layout-contain-com">
+  <nz-sider nzWidth="200px" nzTheme="light">
+    <div class="select-menu-contain">
+      <nz-select class="select-menu" nzShowSearch nzAllowClear nzPlaceHolder="Select">
+        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      </nz-select>
+    </div>
+    <div class="business-tree">
+      <nz-input-group [nzSuffix]="suffixIcon">
+        <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <nz-tree
+          [nzData]="nodes"
+          [nzSearchValue]="searchValue"
+          (nzClick)="showListData($event)"
+          (nzExpandChange)="nzEvent($event)"
+          (nzSearchValueChange)="nzEvent($event)">
+      </nz-tree>
+    </div>
+    <!--    <ul nz-menu nzMode="inline" class="sider-menu">-->
+    <!--      <li nz-menu-item >-->
+    <!--        <i nz-icon nzType="user" nzTheme="outline"></i>-->
+    <!--        <span>-->
+    <!--          nav1-->
+    <!--&lt;!&ndash;          <a routerLink="/biz">业务</a>&ndash;&gt;-->
+    <!--        </span>-->
+    <!--      </li>-->
+    <!--      <li nz-menu-item >-->
+    <!--        <i nz-icon nzType="database" nzTheme="outline"></i>-->
+    <!--        <span>-->
+    <!--          nav2-->
+    <!--&lt;!&ndash;          <a routerLink="/model">模型</a>&ndash;&gt;-->
+    <!--        </span>-->
+    <!--      </li>-->
+    <!--      <li nz-submenu nzOpen nzIcon="user" nzTitle="subnav 1">-->
+    <!--        <ul>-->
+    <!--          <li nz-menu-item>option1</li>-->
+    <!--          <li nz-menu-item>option2</li>-->
+    <!--          <li nz-menu-item>option3</li>-->
+    <!--          <li nz-menu-item>option4</li>-->
+    <!--        </ul>-->
+    <!--      </li>-->
+    <!--      <li nz-submenu nzTitle="subnav 2" nzIcon="laptop">-->
+    <!--        <ul>-->
+    <!--          <li nz-menu-item>option5</li>-->
+    <!--          <li nz-menu-item>option6</li>-->
+    <!--          <li nz-menu-item>option7</li>-->
+    <!--          <li nz-menu-item>option8</li>-->
+    <!--        </ul>-->
+    <!--      </li>-->
+    <!--      <li nz-submenu nzTitle="subnav 3" nzIcon="notification">-->
+    <!--        <ul>-->
+    <!--          <li nz-menu-item>option9</li>-->
+    <!--          <li nz-menu-item>option10</li>-->
+    <!--          <li nz-menu-item>option11</li>-->
+    <!--          <li nz-menu-item>option12</li>-->
+    <!--        </ul>-->
+    <!--      </li>-->
+    <!--    </ul>-->
+  </nz-sider>
+  <nz-layout>
+    <nz-content>
+      <nz-table #basicTable [nzData]="listOfData"
+                [nzScroll]="{x: '1100px'}"
+                nzShowPagination
+                nzShowSizeChanger>
+        <thead>
+        <tr>
+          <th nzWidth="120px" nzLeft>ID</th>
+          <th>内网IP</th>
+          <th>应用名</th>
+          <th>机房</th>
+          <th>环境</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td nzLeft>{{ data.id }}</td>
+          <td>{{ data.innerIp }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.house }}</td>
+          <td>{{ data.dev }}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
