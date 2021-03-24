@@ -1,17 +1,40 @@
 <nz-layout class="layout-contain">
   <nz-header>
     <div class="logo">logo</div>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-      <li nz-menu-item nzMatchRouter>
-        <a routerLink="/biz">业务拓扑</a>
-      </li>
-      <li nz-menu-item>
-        <a href="http://www.baidu.com">运维工具箱</a>
-      </li>
-      <li nz-menu-item nzMatchRouter>
-        <a routerLink="/x">CI</a>
-      </li>
-    </ul>
+    <div class="layout-header-menu">
+      <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/biz">业务拓扑</a>
+        </li>
+        <li nz-menu-item>
+          <a href="http://www.baidu.com">运维工具箱</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/x">CI</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/x">CD</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/x">监控中心</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/x">日志中心</a>
+        </li>
+      </ul>
+      <div>
+        <nz-avatar nzIcon="user" class="user-avatar"></nz-avatar>
+        <a nz-dropdown [nzDropdownMenu]="menu">
+          {{ username }}
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="logout()">退出</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
   </nz-header>
   <nz-layout>
     <nz-sider nzCollapsible nzWidth="200px" nzTheme="light">

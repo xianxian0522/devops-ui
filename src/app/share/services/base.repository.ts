@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-const AIP = '/api/v1/my';
+const API = '/api/v1/my';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,16 @@ export class BaseRepository<MODEl extends {id?: number}> {
   constructor(protected httpClient: HttpClient) {}
 
   queryAll(): Observable<any> {
-    return this.httpClient.get(`${AIP}/biz`);
+    return this.httpClient.get(`${API}/biz`);
   }
   queryBizAllApp(bizId?: number): Observable<any> {
-    return this.httpClient.patch(`${AIP}/biz/{biz-id}/app`, null);
+    const url = `${API}/biz/${encodeURIComponent('{biz-id}')}/app`;
+    return this.httpClient.patch(url, null);
   }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);
-    const requestUrl = `${AIP}?size=${size}&page=${page}&${params.toString()}`;
+    const requestUrl = `${API}?size=${size}&page=${page}&${params.toString()}`;
     return this.httpClient.get(requestUrl);
   }
 
