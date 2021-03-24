@@ -1,5 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {BaseRepository} from '../../share/services/base.repository';
+import {merge} from 'rxjs';
+import {FormBuilder} from '@angular/forms';
+import {debounceTime, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-business',
@@ -10,6 +13,7 @@ export class BizComponent implements OnInit, AfterViewInit {
 
   constructor(
     private baseRepository: BaseRepository<any>,
+    private fb: FormBuilder,
   ) { }
 
   listOfData = [
@@ -22,14 +26,28 @@ export class BizComponent implements OnInit, AfterViewInit {
   total = 1;
   pageSize = 10;
   pageIndex = 1;
+  isResultLoading = false;
+  @Output() refresh = new EventEmitter();
+  searchForm = this.fb.group({
+    name: [],
+  });
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.baseRepository.queryAll().subscribe(res => {
-      console.log(res);
+    merge(this.refresh, this.searchForm.valueChanges).pipe(
+      debounceTime(200),
+      switchMap(_ => {
+        this.isResultLoading = true;
+        return this.baseRepository.queryAll();
+      })
+    ).subscribe(res => {
+      this.isResultLoading = false;
+      // this.listOfData = res;
     });
+
+    this.refresh.emit();
   }
 
 }

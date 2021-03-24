@@ -4,11 +4,11 @@
     <p>行情系统</p>
   </div>
   <div class="biz-content-search">
-    <div nz-form nzLayout="inline">
+    <div nz-form nzLayout="inline" [formGroup]="searchForm">
       <nz-form-item>
         <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" placeholder="输入名字" />
+          <input nz-input nzSize="small" formControlName="name" placeholder="输入名字" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -22,6 +22,7 @@
               [nzTotal]="total"
               [nzPageIndex]="pageIndex"
               [nzPageSize]="pageSize"
+              [nzLoading]="isResultLoading"
     >
       <thead>
       <tr>

@@ -13,6 +13,9 @@ export class BaseRepository<MODEl extends {id?: number}> {
   queryAll(): Observable<any> {
     return this.httpClient.get(`${AIP}/biz`);
   }
+  queryBizAllApp(bizId?: number): Observable<any> {
+    return this.httpClient.patch(`${AIP}/biz/{biz-id}/app`, null);
+  }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);
