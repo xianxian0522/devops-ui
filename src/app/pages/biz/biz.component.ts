@@ -31,7 +31,7 @@ export class BizComponent implements OnInit, AfterViewInit, OnDestroy {
     Name: [],
   });
   bizId: number = this.bizService.selectedValue.value;
-  private refreshSubscription!: Subscription;
+  refreshSubscription!: Subscription;
   unSubscribe!: Subscription;
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class BizComponent implements OnInit, AfterViewInit, OnDestroy {
       switchMap(_ => {
         this.isResultLoading = true;
         const value = {...this.searchForm.value};
-        return this.baseRepository.queryAllAppByBizId(this.bizId, value);
+        return this.baseRepository.queryAllListByBizId('app', this.bizId, value);
       })
     ).subscribe(res => {
       this.isResultLoading = false;

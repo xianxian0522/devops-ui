@@ -13,7 +13,7 @@ export class BizService {
 
   public refresh = new EventEmitter();
 
-  public selectedValue = new FormControl(null);
+  public selectedValue = new FormControl(0);
   selectBizList: Biz[] = [];
 
   getSelectBizList(): void {

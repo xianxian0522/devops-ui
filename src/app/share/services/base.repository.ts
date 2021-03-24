@@ -16,9 +16,9 @@ export class BaseRepository<MODEl extends {id?: number}> {
   queryBizById(bizId: number): Observable<any> {
     return this.httpClient.get(`${API}/biz/${bizId}`);
   }
-  queryAllAppByBizId(bizId: number, model: MODEl): Observable<any> {
+  queryAllListByBizId(mode: string, bizId: number, model: MODEl): Observable<any> {
     // const params = this.genParams(model);
-    const url = `${API}/biz/${bizId}/app`;
+    const url = `${API}/biz/${bizId}/${mode}`;
     return this.httpClient.patch(url, model);
   }
   queryBizMembers(bizId: number): Observable<any>{
