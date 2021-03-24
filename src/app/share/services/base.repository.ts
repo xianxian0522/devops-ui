@@ -13,9 +13,18 @@ export class BaseRepository<MODEl extends {id?: number}> {
   queryAll(): Observable<any> {
     return this.httpClient.get(`${API}/biz`);
   }
-  queryBizAllApp(bizId?: number): Observable<any> {
-    const url = `${API}/biz/${encodeURIComponent('{biz-id}')}/app`;
-    return this.httpClient.patch(url, null);
+  queryBizById(bizId: number): Observable<any> {
+    return this.httpClient.get(`${API}/biz/${bizId}`);
+  }
+  queryAllAppByBizId(bizId: number, model: MODEl): Observable<any> {
+    // const params = this.genParams(model);
+    const url = `${API}/biz/${bizId}/app`;
+    return this.httpClient.patch(url, model);
+  }
+  queryBizMembers(bizId: number): Observable<any>{
+    const url = `${API}/biz/${encodeURIComponent('{biz-id}')}/member`;
+    const u = `${API}/biz/${decodeURIComponent('{biz-id}')}/member`;
+    return this.httpClient.get(`${API}/biz/${bizId}/member`);
   }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {

@@ -39,10 +39,10 @@
   <nz-layout>
     <nz-sider nzCollapsible nzWidth="200px" nzTheme="light">
       <div class="select-menu-contain">
-        <nz-select class="select-menu" nzShowSearch nzAllowClear nzPlaceHolder="Select" [formControl]="selectedValue">
-          <nz-option nzLabel="业务监控" nzValue="业务监控"></nz-option>
-          <nz-option nzLabel="CMDB" nzValue="CMDB"></nz-option>
-          <nz-option nzLabel="QB" nzValue="QB"></nz-option>
+        <nz-select class="select-menu" nzShowSearch nzPlaceHolder="Select" [formControl]="bizService.selectedValue">
+          <nz-option *ngFor="let biz of bizService.selectBizList" [nzLabel]="biz.Name" [nzValue]="biz.ID"></nz-option>
+<!--          <nz-option nzLabel="CMDB" nzValue="CMDB"></nz-option>-->
+<!--          <nz-option nzLabel="QB" nzValue="QB"></nz-option>-->
         </nz-select>
       </div>
       <ul nz-menu nzMode="inline" class="sider-menu">

@@ -8,7 +8,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" formControlName="name" placeholder="输入名字" />
+          <input nz-input nzSize="small" formControlName="Name" placeholder="输入名字" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -33,9 +33,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td>{{ data.name }}</td>
-        <td>{{ data.displayName }}</td>
-        <td>{{ data.level }}</td>
+        <td>{{ data.Name }}</td>
+        <td>{{ data.DisplayName }}</td>
+        <td>{{ data.Level }}</td>
       </tr>
       </tbody>
     </nz-table>

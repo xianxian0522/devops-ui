@@ -16,6 +16,7 @@ import { MiddleComponent } from './pages/middle/middle.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import {AuthInterceptor} from './share/services/http-interceptors';
 import {NzMessageModule} from 'ng-zorro-antd/message';
+import {RoutesGuardService} from './share/services/routesGuardService';
 
 registerLocaleData(zh);
 
@@ -36,6 +37,7 @@ registerLocaleData(zh);
     NzMessageModule,
   ],
   providers: [
+    RoutesGuardService,
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
