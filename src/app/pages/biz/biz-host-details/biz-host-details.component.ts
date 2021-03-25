@@ -25,8 +25,8 @@ export class BizHostDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   pageSize = 10;
   isResultLoading = false;
   searchForm = this.fb.group({
-    name: [],
-    displayName: [],
+    Hostname: [],
+    InnerIP: [],
   });
   bizId: number = this.bizService.selectedValue.value;
   unSubscribe!: Subscription;
