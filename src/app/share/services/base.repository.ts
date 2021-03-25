@@ -16,15 +16,15 @@ export class BaseRepository<MODEl extends {id?: number}> {
   queryBizById(bizId: number): Observable<any> {
     return this.httpClient.get(`${API}/biz/${bizId}`);
   }
-  queryAllListByBizId(mode: string, bizId: number, model: MODEl): Observable<any> {
+  queryAllListByBizId(resourceUrl: string, bizId: number, model: MODEl): Observable<any> {
     // const params = this.genParams(model);
-    const url = `${API}/biz/${bizId}/${mode}`;
+    const url = `${API}/biz/${bizId}/${resourceUrl}`;
     return this.httpClient.patch(url, model);
   }
-  queryBizMembers(bizId: number): Observable<any>{
-    const url = `${API}/biz/${encodeURIComponent('{biz-id}')}/member`;
-    const u = `${API}/biz/${decodeURIComponent('{biz-id}')}/member`;
-    return this.httpClient.get(`${API}/biz/${bizId}/member`);
+  queryAllMembersByBizId(bizId: number, q?: {[key: string]: any}): Observable<any>{
+    const params = this.genParams(q);
+    const url = `${API}/biz/${bizId}/member?${params.toString()}`;
+    return this.httpClient.get(url);
   }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
