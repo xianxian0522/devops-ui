@@ -6,7 +6,7 @@ import {debounceTime, switchMap} from 'rxjs/operators';
 import {Biz} from '../../share/mode/biz';
 import {BizService} from '../../share/services/biz.service';
 import {LayoutComponent} from '../../share/layout/layout.component';
-import {BizApp} from '../../share/mode/bizApp';
+import {BizApp} from '../../share/mode/biz';
 
 @Component({
   selector: 'app-business',
