@@ -25,18 +25,33 @@
               [nzPageIndex]="pageIndex"
               [nzPageSize]="pageSize"
               [nzLoading]="isResultLoading"
+              [nzScroll]="{x: '1600px'}"
     >
       <thead>
       <tr>
+        <th nzWidth="180px" nzLeft>主机IP</th>
         <th>CPU</th>
         <th>主机名</th>
+        <th>存储</th>
+        <th>操作系统名</th>
+        <th>操作系统类型</th>
+        <th>操作系统版本</th>
+        <th>状态</th>
+        <th>备注</th>
         <th nzWidth="120px" nzRight>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of basicTable.data">
+        <td nzLeft>{{ data.InnerIP }}</td>
         <td>{{ data.CPU }}</td>
         <td>{{ data.Hostname }}</td>
+        <td>{{ data.Memory }}</td>
+        <td>{{ data.OsName }}</td>
+        <td>{{ data.OsType }}</td>
+        <td>{{ data.OsVersion }}</td>
+        <td>{{ data.State }}</td>
+        <td>{{ data.Comment }}</td>
         <td nzRight>
           <div>
             <a nz-button nzType="text">分配</a>
