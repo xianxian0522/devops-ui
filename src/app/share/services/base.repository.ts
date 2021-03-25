@@ -7,7 +7,7 @@ const API = '/api/v1/my';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseRepository<MODEl extends {id?: number}> {
+export class BaseRepository<MODEl extends {ID?: number}> {
   constructor(protected httpClient: HttpClient) {}
 
   queryAll(): Observable<any> {
@@ -16,15 +16,15 @@ export class BaseRepository<MODEl extends {id?: number}> {
   queryBizById(bizId: number): Observable<any> {
     return this.httpClient.get(`${API}/biz/${bizId}`);
   }
-  queryAllListByBizId(resourceUrl: string, bizId: number, model: MODEl): Observable<any> {
+  queryAllListByBizId(resourceUrl: string, bizId: number, model: MODEl): Observable<MODEl[]> {
     // const params = this.genParams(model);
     const url = `${API}/biz/${bizId}/${resourceUrl}`;
-    return this.httpClient.patch(url, model);
+    return this.httpClient.patch<MODEl[]>(url, model);
   }
-  queryAllMembersByBizId(bizId: number, q?: {[key: string]: any}): Observable<any>{
+  queryAllMembersByBizId(bizId: number, q?: {[key: string]: any}): Observable<MODEl[]>{
     const params = this.genParams(q);
     const url = `${API}/biz/${bizId}/member?${params.toString()}`;
-    return this.httpClient.get(url);
+    return this.httpClient.get<MODEl[]>(url);
   }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {

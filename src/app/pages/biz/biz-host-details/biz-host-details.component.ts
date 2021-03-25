@@ -16,7 +16,7 @@ export class BizHostDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(
     private fb: FormBuilder,
     private bizService: BizService,
-    private baseRepository: BaseRepository<any>,
+    private baseRepository: BaseRepository<BizHost>,
   ) { }
 
   listOfData: BizHost[] = [];
