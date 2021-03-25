@@ -8,7 +8,7 @@ import {BaseRepository} from './base.repository';
 })
 export class BizService {
   constructor(
-    private baseRepository: BaseRepository<any>,
+    private baseRepository: BaseRepository<Biz>,
   ) {}
 
   public refresh = new EventEmitter();

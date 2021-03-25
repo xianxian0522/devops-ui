@@ -16,7 +16,7 @@ import {BizApp} from '../../share/mode/biz';
 export class BizComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
-    private baseRepository: BaseRepository<any>,
+    private baseRepository: BaseRepository<BizApp>,
     private fb: FormBuilder,
     private bizService: BizService,
   ) { }

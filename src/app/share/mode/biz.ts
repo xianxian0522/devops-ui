@@ -40,3 +40,7 @@ export interface BizHost {
   State: string;
   UpdatedAt: string;
 }
+
+export interface BizMember {
+  ID: number;
+}

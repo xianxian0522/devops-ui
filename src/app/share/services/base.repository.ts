@@ -10,8 +10,8 @@ const API = '/api/v1/my';
 export class BaseRepository<MODEl extends {ID?: number}> {
   constructor(protected httpClient: HttpClient) {}
 
-  queryAll(): Observable<any> {
-    return this.httpClient.get(`${API}/biz`);
+  queryAll(): Observable<MODEl[]> {
+    return this.httpClient.get<MODEl[]>(`${API}/biz`);
   }
   queryBizById(bizId: number): Observable<any> {
     return this.httpClient.get(`${API}/biz/${bizId}`);
