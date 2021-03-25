@@ -43,4 +43,34 @@ export interface BizHost {
 
 export interface BizMember {
   ID: number;
+  CreatedAt: string;
+  Role: string;
+  UpdatedAt: string;
+  UserID: number;
+  UserRealName: string;
+  Username: string;
+}
+
+export interface User {
+  CreatedAt: string;
+  DingTalkUserID: string;
+  ID: number;
+  Mail: string;
+  Password: string;
+  RealName: string;
+  State: string;
+  UpdatedAt: string;
+  Username: string;
+}
+
+export interface BizDetails {
+  Apps: BizApp[];
+  Comment: string;
+  CreatedAt: string;
+  DisplayName: string;
+  Hosts: BizHost[];
+  ID: number;
+  Name: string;
+  Owner: User;
+  UpdatedAt: string;
 }

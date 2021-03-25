@@ -17,7 +17,7 @@ export class BizService {
   selectBizList: Biz[] = [];
 
   getSelectBizList(): void {
-    this.baseRepository.queryAll().subscribe(res => {
+    this.baseRepository.queryAll('biz').subscribe(res => {
       this.selectedValue.setValue(res[0].ID);
       this.selectBizList = res;
       // localStorage.setItem('bizID', this.selectedValue.value);

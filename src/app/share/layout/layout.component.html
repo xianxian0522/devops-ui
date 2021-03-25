@@ -81,7 +81,7 @@
               <a [routerLink]="'/biz/' + menu.id">{{ menu.name }}</a>
             </span>
           </li>
-          <li *ngIf="menu.subMenu" nz-submenu [nzTitle]="menu.name" [nzIcon]="menu.icon">
+          <li *ngIf="menu.subMenu" nz-submenu nzOpen [nzTitle]="menu.name" [nzIcon]="menu.icon">
             <ul>
               <li *ngFor="let item of menu.subMenu" nz-menu-item nzMatchRouter>
                 <i nz-icon [nzType]="item.icon" *ngIf="item.icon"></i>

@@ -1,0 +1,29 @@
+<div>
+  <h2>{{ mode === 'edit' ? '修改业务成员' : '新增业务成员'}}</h2>
+  <div>
+    <div nz-form [formGroup]="editForm">
+      <nz-form-item>
+        <nz-form-label nzSpan="6" nzNoColon>角色</nz-form-label>
+        <nz-form-control nzSpan="14">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a role" formControlName="Role" nzSize="small" >
+            <nz-option nzLabel="maintainer" nzValue="maintainer"></nz-option>
+            <nz-option nzLabel="developer" nzValue="developer"></nz-option>
+            <nz-option nzLabel="reporter" nzValue="reporter"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzSpan="6" nzNoColon>用户名</nz-form-label>
+        <nz-form-control nzSpan="14">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a user" formControlName="UserID" nzSize="small" >
+            <nz-option *ngFor="let user of userList" [nzLabel]="user.Username" [nzValue]="user.ID"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div class="btnz">
+    <button nz-button (click)="onCancel()">取消</button>
+    <button nzType="primary" nz-button (click)="onSubmit()" [disabled]="!editForm.valid">确定</button>
+  </div>
+</div>

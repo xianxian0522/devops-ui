@@ -17,6 +17,9 @@ import { BizSetInformationComponent } from './biz-set-information/biz-set-inform
 import { BizSetAppComponent } from './biz-set-app/biz-set-app.component';
 import { BizHostDetailsComponent } from './biz-host-details/biz-host-details.component';
 import {NzFormModule} from 'ng-zorro-antd/form';
+import {NzMessageModule} from 'ng-zorro-antd/message';
+import { BizMemberEditComponent } from './biz-member-edit/biz-member-edit.component';
+import {NzModalModule} from 'ng-zorro-antd/modal';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import {NzFormModule} from 'ng-zorro-antd/form';
     BizMembersComponent,
     BizSetInformationComponent,
     BizSetAppComponent,
-    BizHostDetailsComponent
+    BizHostDetailsComponent,
+    BizMemberEditComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import {NzFormModule} from 'ng-zorro-antd/form';
     NzTableModule,
     NzButtonModule,
     NzFormModule,
+    NzMessageModule,
+    NzModalModule,
   ]
 })
 export class BizModule { }

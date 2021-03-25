@@ -4,6 +4,9 @@ import {BaseRepository} from '../../../share/services/base.repository';
 import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BizService} from '../../../share/services/biz.service';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {BizMemberEditComponent} from '../biz-member-edit/biz-member-edit.component';
+import {BizMember, User} from '../../../share/mode/biz';
 
 @Component({
   selector: 'app-biz-members',
@@ -16,22 +19,14 @@ export class BizMembersComponent implements OnInit, AfterViewInit, OnDestroy {
     private fb: FormBuilder,
     private baseRepository: BaseRepository<any>,
     private bizService: BizService,
+    private modalService: NzModalService,
   ) { }
 
   searchForm = this.fb.group({
     username: [],
     role: [],
   });
-  listOfData = [
-    {
-      username: 'sheng.xu',
-      role: 'owner'
-    },
-    {
-      username: 'san.zhang',
-      role: 'test',
-    }
-  ];
+  listOfData: BizMember[] = [];
   total = 1;
   pageIndex = 1;
   pageSize = 10;
@@ -52,10 +47,10 @@ export class BizMembersComponent implements OnInit, AfterViewInit, OnDestroy {
       debounceTime(200),
       switchMap(_ => {
         const value = {...this.searchForm.value};
-        return this.baseRepository.queryAllMembersByBizId(this.bizId, value);
+        return this.baseRepository.queryAllListByBizId('member', this.bizId, value);
       })
     ).subscribe(res => {
-
+      this.listOfData = res;
     });
 
     this.bizService.refresh.emit();
@@ -65,4 +60,26 @@ export class BizMembersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.onSubscribe.unsubscribe();
   }
 
+  showCreateDialog(): void {
+    this.modalService.create({
+      nzFooter: null,
+      nzContent: BizMemberEditComponent,
+      nzComponentParams: {data: {}, bizId: this.bizId, mode: 'created'},
+    }).afterClose.subscribe(_ => {
+      if (_) {
+        this.bizService.refresh.emit();
+      }
+    });
+  }
+  showEditDialog(ele: BizMember): void {
+    this.modalService.create({
+      nzFooter: null,
+      nzContent: BizMemberEditComponent,
+      nzComponentParams: {data: ele, bizId: this.bizId, mode: 'edit'},
+    }).afterClose.subscribe(_ => {
+      if (_) {
+        this.bizService.refresh.emit();
+      }
+    });
+  }
 }

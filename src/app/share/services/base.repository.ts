@@ -10,22 +10,32 @@ const API = '/api/v1/my';
 export class BaseRepository<MODEl extends {ID?: number}> {
   constructor(protected httpClient: HttpClient) {}
 
-  queryAll(): Observable<MODEl[]> {
-    return this.httpClient.get<MODEl[]>(`${API}/biz`);
+  queryAll(url: string): Observable<MODEl[]> {
+    return this.httpClient.get<MODEl[]>(`${API}/${url}`);
   }
-  queryBizById(bizId: number): Observable<any> {
-    return this.httpClient.get(`${API}/biz/${bizId}`);
+  queryBizDetailsById(bizId: number): Observable<MODEl> {
+    return this.httpClient.get<MODEl>(`${API}/biz/${bizId}`);
   }
-  queryAllListByBizId(resourceUrl: string, bizId: number, model: MODEl): Observable<MODEl[]> {
-    // const params = this.genParams(model);
-    const url = `${API}/biz/${bizId}/${resourceUrl}`;
-    return this.httpClient.patch<MODEl[]>(url, model);
+  updateBizDetailsById(bizId: number, model: MODEl): Observable<MODEl> {
+    return this.httpClient.patch<MODEl>(`${API}/biz/${bizId}`, model);
+  }
+  queryAllListByBizId(resourceUrl: string, bizId: number, q?: {[key: string]: any}): Observable<MODEl[]> {
+    const params = this.genParams(q);
+    const url = `${API}/biz/${bizId}/${resourceUrl}?${params.toString()}`;
+    return this.httpClient.get<MODEl[]>(url);
   }
   queryAllMembersByBizId(bizId: number, q?: {[key: string]: any}): Observable<MODEl[]>{
     const params = this.genParams(q);
     const url = `${API}/biz/${bizId}/member?${params.toString()}`;
     return this.httpClient.get<MODEl[]>(url);
   }
+  transferUserByBizId(bizId: number, OwnerID: number): Observable<any> {
+    return this.httpClient.patch(`${API}/biz/${bizId}/transfer`, {OwnerID});
+  }
+  updateOrAdd(bizId: number, model: MODEl): Observable<any> {
+    return this.httpClient.post(`${API}/biz/${bizId}/member`, model);
+  }
+
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);

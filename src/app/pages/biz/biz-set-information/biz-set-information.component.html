@@ -4,7 +4,7 @@
       <nz-form-item>
         <nz-form-label nzNoColon>名字</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" formControlName="username" placeholder="名字" readonly />
+          <input nz-input nzSize="small" formControlName="Name" placeholder="名字" readonly />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -12,7 +12,7 @@
       <nz-form-item>
         <nz-form-label nzNoColon>中文名</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" formControlName="realName" placeholder="中文名" />
+          <input nz-input nzSize="small" formControlName="DisplayName" placeholder="中文名" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -21,20 +21,25 @@
     <nz-form-item>
       <nz-form-label nzNoColon>描述</nz-form-label>
       <nz-form-control>
-        <textarea rows="5" nz-input formControlName="comment"></textarea>
+        <textarea rows="5" nz-input formControlName="Comment"></textarea>
       </nz-form-control>
     </nz-form-item>
   </div>
-  <div nz-form nzLayout="vertical" [formGroup]="editForm" style="width: 200px">
-    <nz-form-item>
-      <nz-form-label nzNoColon>转交给</nz-form-label>
-      <nz-form-control>
-        <nz-select nzShowSearch nzAllowClear formControlName="userId" nzPlaceHolder="Select a person" nzSize="small">
-          <nz-option nzLabel="sheng.xu" nzValue="sheng.xu"></nz-option>
-          <nz-option nzLabel="zixuan.wang" nzValue="zixuan.wang"></nz-option>
-          <nz-option nzLabel="siyi.wang" nzValue="siyi.wang"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
+  <div>
+    <button style="margin-right: 20px;" nz-button (click)="onSubmit()">修改</button>
+    <button nz-button (click)="advancedSetting()">高级设置</button>
+  </div>
+  <div class="biz-information-footer" *ngIf="isTransferShow">
+    <div nz-form nzLayout="vertical" style="width: 200px">
+      <nz-form-item>
+        <nz-form-label nzNoColon>转交给</nz-form-label>
+        <nz-form-control>
+          <nz-select nzShowSearch nzAllowClear [formControl]="OwnerID" nzPlaceHolder="Select a person" nzSize="small">
+            <nz-option *ngFor="let user of userList" [nzLabel]="user.Username" [nzValue]="user.UserID"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <button nz-button (click)="onSubmitTransfer()">确定</button>
   </div>
 </div>

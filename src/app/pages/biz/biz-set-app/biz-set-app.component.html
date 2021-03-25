@@ -18,6 +18,7 @@
               [nzTotal]="total"
               [nzPageIndex]="pageIndex"
               [nzPageSize]="pageSize"
+              [nzLoading]="isResultLoading"
     >
       <thead>
       <tr>
@@ -29,9 +30,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td>{{ data.name }}</td>
-        <td>{{ data.displayName }}</td>
-        <td>{{ data.level }}</td>
+        <td>{{ data.Name }}</td>
+        <td>{{ data.DisplayName }}</td>
+        <td>{{ data.Level }}</td>
         <td nzRight>
           <div style="display: flex">
             <a nz-button nzType="text">成员</a>
