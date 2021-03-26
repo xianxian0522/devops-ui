@@ -82,6 +82,12 @@ const ALL_APP_MENUS: MenuItem[] = [
         level: 2,
       },
       {
+        id: 'cluster-edit',
+        name: '集群编辑',
+        icon: 'edit',
+        level: 2,
+      },
+      {
         id: 'cluster-instance',
         name: '实例配置',
         icon: 'highlight',
