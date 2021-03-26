@@ -30,7 +30,10 @@
 <!--    <button nz-button (click)="advancedSetting()">高级设置</button>-->
   </div>
   <div>
-    <nz-divider style="font-size: 14px; color: #1890ff; cursor: pointer" (click)="advancedSetting()" nzText="高级设置" nzOrientation="left"></nz-divider>
+    <div class="biz-information-divider" (click)="advancedSetting()">
+      <span >高级设置</span>
+    </div>
+<!--    <nz-divider style="font-size: 14px; color: #1890ff; cursor: pointer" (click)="advancedSetting()" nzText="高级设置" nzOrientation="left"></nz-divider>-->
   </div>
   <div class="biz-information-footer" *ngIf="isTransferShow">
     <div nz-form nzLayout="vertical" style="width: 200px">

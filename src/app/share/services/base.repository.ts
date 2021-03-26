@@ -24,16 +24,14 @@ export class BaseRepository<MODEl extends {ID?: number}> {
     const url = `${API}/biz/${bizId}/${resourceUrl}?${params.toString()}`;
     return this.httpClient.get<MODEl[]>(url);
   }
-  queryAllMembersByBizId(bizId: number, q?: {[key: string]: any}): Observable<MODEl[]>{
-    const params = this.genParams(q);
-    const url = `${API}/biz/${bizId}/member?${params.toString()}`;
-    return this.httpClient.get<MODEl[]>(url);
-  }
   transferUserByBizId(bizId: number, OwnerID: number): Observable<any> {
     return this.httpClient.patch(`${API}/biz/${bizId}/transfer`, {OwnerID});
   }
   updateOrAdd(bizId: number, model: MODEl): Observable<any> {
     return this.httpClient.post(`${API}/biz/${bizId}/member`, model);
+  }
+  deleteBizMemberById(id: number): Observable<any> {
+    return this.httpClient.delete(`${API}/bizmember/${id}`);
   }
 
 

@@ -8,19 +8,21 @@ import {NzModalService} from 'ng-zorro-antd/modal';
 import {BizMemberEditComponent} from '../biz-member-edit/biz-member-edit.component';
 import {BizMember, User} from '../../../share/mode/biz';
 import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-biz-members',
   templateUrl: './biz-members.component.html',
   styleUrls: ['./biz-members.component.less']
 })
-export class BizMembersComponent extends BaseCommonComponent<BizMember> implements OnInit, AfterViewInit, OnDestroy {
+export class BizMembersComponent extends BaseCommonComponent<BizMember> implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
     protected baseRepository: BaseRepository<BizMember>,
     protected bizService: BizService,
     private modalService: NzModalService,
+    private messageService: NzMessageService,
   ) {
     super(bizService, baseRepository);
   }
@@ -62,10 +64,6 @@ export class BizMembersComponent extends BaseCommonComponent<BizMember> implemen
     // this.bizService.refresh.emit();
   }
 
-  // ngOnDestroy(): void {
-  //   this.onSubscribe.unsubscribe();
-  // }
-
   showCreateDialog(): void {
     this.modalService.create({
       nzFooter: null,
@@ -87,5 +85,14 @@ export class BizMembersComponent extends BaseCommonComponent<BizMember> implemen
         this.bizService.refresh.emit();
       }
     });
+  }
+  deleteMember(id: number): void {
+    this.baseRepository.deleteBizMemberById(id).subscribe(_ => {
+      this.bizService.refresh.emit();
+      this.messageService.success('删除成功');
+    });
+  }
+  onCancel(): void {
+    this.messageService.info('取消删除');
   }
 }
