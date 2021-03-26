@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Menu, MenuItem} from '../menu';
 
 @Component({
   selector: 'app-app-layout',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menu: Menu,
+  ) { }
+
+  sectionItem: MenuItem[] = [];
 
   ngOnInit(): void {
+    this.sectionItem = this.menu.getItems('app');
   }
 
 }

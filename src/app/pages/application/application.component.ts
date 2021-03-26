@@ -3,10 +3,10 @@ import {NzFormatEmitEvent} from 'ng-zorro-antd/tree';
 
 @Component({
   selector: 'app-model',
-  templateUrl: './model.component.html',
-  styleUrls: ['./model.component.less']
+  templateUrl: './application.component.html',
+  styleUrls: ['./application.component.less']
 })
-export class ModelComponent implements OnInit {
+export class ApplicationComponent implements OnInit {
 
   constructor() { }
 
@@ -74,7 +74,11 @@ export class ModelComponent implements OnInit {
     {
       title: '0-2',
       key: '0-2',
-      isLeaf: true
+      children: [
+        { title: '空闲', key: 'QB-2-1', isLeaf: true },
+        { title: '生产环境', key: 'QB-2-2', isLeaf: true },
+        { title: '预发布环境', key: 'Qb-2-3', isLeaf: true }
+      ]
     }
   ];
 

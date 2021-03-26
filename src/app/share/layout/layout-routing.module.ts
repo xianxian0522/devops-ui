@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LayoutComponent} from './layout.component';
 import {NotfoundComponent} from '../../pages/notfound/notfound.component';
 import {RoutesGuardService} from '../services/routesGuardService';
+import {ApplicationComponent} from '../../pages/application/application.component';
 
 const routes: Routes = [
   {
@@ -10,13 +11,14 @@ const routes: Routes = [
     component: LayoutComponent,
     // canActivateChild: [RoutesGuardService],
     // canActivate: [RoutesGuardService],
-    loadChildren: () => import('../../pages/biz/biz.module').then(m => m.BizModule)
-    // loadChildren: () => import('../biz-layout/biz-layout.module').then(m => m.BizLayoutModule)
+    // loadChildren: () => import('../../pages/biz/biz.module').then(m => m.BizModule)
+    loadChildren: () => import('../biz-layout/biz-layout.module').then(m => m.BizLayoutModule)
   },
   {
-    path: 'model',
+    path: 'app',
     component: LayoutComponent,
-    loadChildren: () => import('../../pages/model/model.module').then(m => m.ModelModule)
+    // loadChildren: () => import('../../pages/application/application.module').then(m => m.ApplicationModule)
+    loadChildren: () => import('../app-layout/app-layout.module').then(m => m.AppLayoutModule)
   },
   {path: '**', component: NotfoundComponent},
 ];

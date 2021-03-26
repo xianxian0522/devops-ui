@@ -4,7 +4,7 @@
     <div class="layout-header-menu">
       <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
         <li nz-menu-item nzMatchRouter>
-          <a routerLink="/biz">业务拓扑</a>
+          <a routerLink="/">业务拓扑</a>
         </li>
         <li nz-menu-item>
           <a href="http://www.baidu.com">运维工具箱</a>
@@ -36,73 +36,76 @@
       </section>
     </div>
   </nz-header>
-  <nz-layout>
-    <nz-sider nzCollapsible nzWidth="200px" nzTheme="light">
-      <div class="select-menu-contain">
-        <nz-select class="select-menu" nzShowSearch nzPlaceHolder="Select" [formControl]="bizService.selectedValue">
-          <nz-option *ngFor="let biz of bizService.selectBizList" [nzLabel]="biz.Name" [nzValue]="biz.ID"></nz-option>
-<!--          <nz-option nzLabel="CMDB" nzValue="CMDB"></nz-option>-->
-<!--          <nz-option nzLabel="QB" nzValue="QB"></nz-option>-->
-        </nz-select>
-      </div>
-      <ul nz-menu nzMode="inline" class="sider-menu">
-        <!--        递归-->
-<!--        <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: sectionItem }"></ng-container>-->
-<!--        <ng-template #menuTpl let-menus>-->
-<!--          <ng-container *ngFor="let menu of menus">-->
-<!--            <li-->
-<!--                *ngIf="!menu.subMenu"-->
-<!--                nz-menu-item-->
-<!--                nzMatchRouter-->
-<!--                [nzPaddingLeft]="menu.level * 24"-->
-<!--            >-->
-<!--              <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>-->
-<!--              <span>-->
-<!--                <a [routerLink]="'/biz/' + menu.id">{{ menu.name }}</a>-->
-<!--              </span>-->
-<!--            </li>-->
-<!--            <li-->
-<!--                *ngIf="menu.subMenu"-->
-<!--                nz-submenu-->
-<!--                [nzTitle]="menu.name"-->
-<!--                [nzIcon]="menu.icon"-->
-<!--                [nzPaddingLeft]="menu.level * 24"-->
-<!--            >-->
-<!--              <ul>-->
-<!--                <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.subMenu }"></ng-container>-->
-<!--              </ul>-->
-<!--            </li>-->
-<!--          </ng-container>-->
-<!--        </ng-template>-->
-        <ng-container *ngFor="let menu of sectionItem">
-          <li *ngIf="!menu.subMenu" nz-menu-item nzMatchRouter>
-            <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
-            <span>
-              <a [routerLink]="'/biz/' + menu.id">{{ menu.name }}</a>
-            </span>
-          </li>
-          <li *ngIf="menu.subMenu" nz-submenu nzOpen [nzTitle]="menu.name" [nzIcon]="menu.icon">
-            <ul>
-              <li *ngFor="let item of menu.subMenu" nz-menu-item nzMatchRouter>
-                <i nz-icon [nzType]="item.icon" *ngIf="item.icon"></i>
-                <span>
-                  <a [routerLink]="'/biz/' + item.id">{{ item.name }}</a>
-                </span>
-              </li>
-            </ul>
-          </li>
-        </ng-container>
-      </ul>
-    </nz-sider>
-    <nz-layout >
-<!--      <nz-breadcrumb>-->
-<!--        <nz-breadcrumb-item>Home</nz-breadcrumb-item>-->
-<!--        <nz-breadcrumb-item>List</nz-breadcrumb-item>-->
-<!--        <nz-breadcrumb-item>App</nz-breadcrumb-item>-->
-<!--      </nz-breadcrumb>-->
-      <nz-content>
-        <router-outlet></router-outlet>
-      </nz-content>
-    </nz-layout>
-  </nz-layout>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
+<!--  <nz-layout>-->
+<!--    <nz-sider nzCollapsible nzWidth="200px" nzTheme="light">-->
+<!--      <div class="select-menu-contain">-->
+<!--        <nz-select class="select-menu" nzShowSearch nzPlaceHolder="Select" [formControl]="bizService.selectedValue">-->
+<!--          <nz-option *ngFor="let biz of bizService.selectBizList" [nzLabel]="biz.Name" [nzValue]="biz.ID"></nz-option>-->
+<!--&lt;!&ndash;          <nz-option nzLabel="CMDB" nzValue="CMDB"></nz-option>&ndash;&gt;-->
+<!--&lt;!&ndash;          <nz-option nzLabel="QB" nzValue="QB"></nz-option>&ndash;&gt;-->
+<!--        </nz-select>-->
+<!--      </div>-->
+<!--      <ul nz-menu nzMode="inline" class="sider-menu">-->
+<!--        &lt;!&ndash;        递归&ndash;&gt;-->
+<!--&lt;!&ndash;        <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: sectionItem }"></ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ng-template #menuTpl let-menus>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ng-container *ngFor="let menu of menus">&ndash;&gt;-->
+<!--&lt;!&ndash;            <li&ndash;&gt;-->
+<!--&lt;!&ndash;                *ngIf="!menu.subMenu"&ndash;&gt;-->
+<!--&lt;!&ndash;                nz-menu-item&ndash;&gt;-->
+<!--&lt;!&ndash;                nzMatchRouter&ndash;&gt;-->
+<!--&lt;!&ndash;                [nzPaddingLeft]="menu.level * 24"&ndash;&gt;-->
+<!--&lt;!&ndash;            >&ndash;&gt;-->
+<!--&lt;!&ndash;              <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a [routerLink]="'/biz/' + menu.id">{{ menu.name }}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li&ndash;&gt;-->
+<!--&lt;!&ndash;                *ngIf="menu.subMenu"&ndash;&gt;-->
+<!--&lt;!&ndash;                nz-submenu&ndash;&gt;-->
+<!--&lt;!&ndash;                [nzTitle]="menu.name"&ndash;&gt;-->
+<!--&lt;!&ndash;                [nzIcon]="menu.icon"&ndash;&gt;-->
+<!--&lt;!&ndash;                [nzPaddingLeft]="menu.level * 24"&ndash;&gt;-->
+<!--&lt;!&ndash;            >&ndash;&gt;-->
+<!--&lt;!&ndash;              <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.subMenu }"></ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;              </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ng-template>&ndash;&gt;-->
+<!--        <ng-container *ngFor="let menu of sectionItem">-->
+<!--          <li *ngIf="!menu.subMenu" nz-menu-item nzMatchRouter>-->
+<!--            <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>-->
+<!--            <span>-->
+<!--              <a [routerLink]="'/biz/' + menu.id">{{ menu.name }}</a>-->
+<!--            </span>-->
+<!--          </li>-->
+<!--          <li *ngIf="menu.subMenu" nz-submenu nzOpen [nzTitle]="menu.name" [nzIcon]="menu.icon">-->
+<!--            <ul>-->
+<!--              <li *ngFor="let item of menu.subMenu" nz-menu-item nzMatchRouter>-->
+<!--                <i nz-icon [nzType]="item.icon" *ngIf="item.icon"></i>-->
+<!--                <span>-->
+<!--                  <a [routerLink]="'/biz/' + item.id">{{ item.name }}</a>-->
+<!--                </span>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        </ng-container>-->
+<!--      </ul>-->
+<!--    </nz-sider>-->
+<!--    <nz-layout >-->
+<!--&lt;!&ndash;      <nz-breadcrumb>&ndash;&gt;-->
+<!--&lt;!&ndash;        <nz-breadcrumb-item>Home</nz-breadcrumb-item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <nz-breadcrumb-item>List</nz-breadcrumb-item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <nz-breadcrumb-item>App</nz-breadcrumb-item>&ndash;&gt;-->
+<!--&lt;!&ndash;      </nz-breadcrumb>&ndash;&gt;-->
+<!--      <nz-content>-->
+<!--        <router-outlet></router-outlet>-->
+<!--      </nz-content>-->
+<!--    </nz-layout>-->
+<!--  </nz-layout>-->
 </nz-layout>

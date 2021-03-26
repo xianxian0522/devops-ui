@@ -4,7 +4,7 @@ import {BizLayoutComponent} from './biz-layout.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: BizLayoutComponent,
     loadChildren: () => import('../../pages/biz/biz.module').then(m => m.BizModule)
   }

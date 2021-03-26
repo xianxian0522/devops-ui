@@ -20,6 +20,7 @@ export class BizLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.bizService.getSelectBizList();
+    this.sectionItem = this.menu.getItems('biz');
   }
 
 }

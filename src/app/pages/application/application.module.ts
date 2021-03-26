@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ModelRoutingModule } from './model-routing.module';
-import { ModelComponent } from './model.component';
+import { ApplicationRoutingModule } from './application-routing.module';
+import { ApplicationComponent } from './application.component';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzSelectModule} from 'ng-zorro-antd/select';
@@ -15,10 +15,10 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 
 
 @NgModule({
-  declarations: [ModelComponent],
+  declarations: [ApplicationComponent],
   imports: [
     CommonModule,
-    ModelRoutingModule,
+    ApplicationRoutingModule,
     NzButtonModule,
     NzLayoutModule,
     NzSelectModule,
@@ -31,4 +31,4 @@ import {NzInputModule} from 'ng-zorro-antd/input';
     NzInputModule,
   ]
 })
-export class ModelModule { }
+export class ApplicationModule { }

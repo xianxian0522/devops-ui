@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {BizService} from '../services/biz.service';
 import {BaseRepository} from '../services/base.repository';
 import {Biz} from '../mode/biz';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-layout',
@@ -19,6 +20,7 @@ export class LayoutComponent implements OnInit {
     private router: Router,
     public bizService: BizService,
     private baseRepository: BaseRepository<any>,
+    private location: Location,
   ) { }
   
   // selectedValue = new FormControl(null);
@@ -26,6 +28,7 @@ export class LayoutComponent implements OnInit {
   sectionItem: MenuItem[] = [];
   helper = new JwtHelperService();
   username = '用户名';
+  section = 'biz';
 
   ngOnInit(): void {
     // this.baseRepository.queryAll().subscribe(res => {
@@ -33,10 +36,16 @@ export class LayoutComponent implements OnInit {
     //   this.selectedValue.setValue(res[0].ID);
     //   localStorage.setItem('bizID', this.selectedValue.value);
     // });
-    this.bizService.getSelectBizList();
 
-    this.sectionItem = this.menu.getItems('biz');
-    console.log(this.sectionItem);
+    // const url = this.location.path();
+    // this.section = url.split('/')[1];
+    // console.log(url, 'url', this.section);
+    // if (this.section === 'biz') {
+    //   this.bizService.getSelectBizList();
+    // }
+    //
+    // this.sectionItem = this.menu.getItems('biz');
+    // console.log(this.sectionItem);
 
     const token = localStorage.getItem('token') || '';
     try {
