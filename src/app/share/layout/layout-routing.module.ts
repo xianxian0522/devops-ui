@@ -11,6 +11,7 @@ const routes: Routes = [
     // canActivateChild: [RoutesGuardService],
     // canActivate: [RoutesGuardService],
     loadChildren: () => import('../../pages/biz/biz.module').then(m => m.BizModule)
+    // loadChildren: () => import('../biz-layout/biz-layout.module').then(m => m.BizLayoutModule)
   },
   {
     path: 'model',

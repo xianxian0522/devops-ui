@@ -5,54 +5,60 @@ import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {BizHost} from '../../../share/mode/biz';
+import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
 
 @Component({
   selector: 'app-biz-host-details',
   templateUrl: './biz-host-details.component.html',
   styleUrls: ['./biz-host-details.component.less']
 })
-export class BizHostDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class BizHostDetailsComponent extends BaseCommonComponent<BizHost> implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private bizService: BizService,
-    private baseRepository: BaseRepository<BizHost>,
-  ) { }
+    protected bizService: BizService,
+    protected baseRepository: BaseRepository<BizHost>,
+  ) {
+    super(bizService, baseRepository);
+  }
 
-  listOfData: BizHost[] = [];
-  isResultLoading = false;
+  protected urlString = 'host';
+
+  // listOfData: BizHost[] = [];
+  // isResultLoading = false;
   searchForm = this.fb.group({
     Hostname: [],
     InnerIP: [],
   });
-  bizId: number = this.bizService.selectedValue.value;
-  unSubscribe!: Subscription;
+  // bizId: number = this.bizService.selectedValue.value;
+  // onSubscribe!: Subscription;
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.bizService.selectedValue.valueChanges.subscribe(value => {
-      this.bizId = value;
-      this.bizService.refresh.emit();
-    });
+    super.ngAfterViewInit();
+    // this.bizService.selectedValue.valueChanges.subscribe(value => {
+    //   this.bizId = value;
+    //   this.bizService.refresh.emit();
+    // });
 
-    this.unSubscribe = merge(this.bizService.refresh, this.searchForm.valueChanges).pipe(
-      debounceTime(200),
-      switchMap(_ => {
-        this.isResultLoading = true;
-        const value = {...this.searchForm.value};
-        return this.baseRepository.queryAllListByBizId('host', this.bizId, value);
-      })
-    ).subscribe(res => {
-      this.isResultLoading = false;
-      this.listOfData = res;
-    });
-
-    this.bizService.refresh.emit();
+    // this.onSubscribe = merge(this.bizService.refresh, this.searchForm.valueChanges).pipe(
+    //   debounceTime(200),
+    //   switchMap(_ => {
+    //     this.isResultLoading = true;
+    //     const value = {...this.searchForm.value};
+    //     return this.baseRepository.queryAllListByBizId('host', this.bizId, value);
+    //   })
+    // ).subscribe(res => {
+    //   this.isResultLoading = false;
+    //   this.listOfData = res;
+    // });
+    //
+    // this.bizService.refresh.emit();
   }
 
-  ngOnDestroy(): void {
-    this.unSubscribe.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.onSubscribe.unsubscribe();
+  // }
 }

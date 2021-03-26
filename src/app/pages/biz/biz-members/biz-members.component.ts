@@ -7,58 +7,64 @@ import {BizService} from '../../../share/services/biz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {BizMemberEditComponent} from '../biz-member-edit/biz-member-edit.component';
 import {BizMember, User} from '../../../share/mode/biz';
+import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
 
 @Component({
   selector: 'app-biz-members',
   templateUrl: './biz-members.component.html',
   styleUrls: ['./biz-members.component.less']
 })
-export class BizMembersComponent implements OnInit, AfterViewInit, OnDestroy {
+export class BizMembersComponent extends BaseCommonComponent<BizMember> implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private baseRepository: BaseRepository<any>,
-    private bizService: BizService,
+    protected baseRepository: BaseRepository<BizMember>,
+    protected bizService: BizService,
     private modalService: NzModalService,
-  ) { }
+  ) {
+    super(bizService, baseRepository);
+  }
+
+  protected urlString = 'member';
 
   searchForm = this.fb.group({
     username: [],
     role: [],
   });
-  listOfData: BizMember[] = [];
-  isResultLoading = false;
-  @Output() refresh = new EventEmitter();
-  bizId: number = this.bizService.selectedValue.value;
-  onSubscribe!: Subscription;
+  // listOfData: BizMember[] = [];
+  // isResultLoading = false;
+  // @Output() refresh = new EventEmitter();
+  // bizId: number = this.bizService.selectedValue.value;
+  // onSubscribe!: Subscription;
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.bizService.selectedValue.valueChanges.subscribe(value => {
-      this.bizId = value;
-      this.bizService.refresh.emit();
-    });
-
-    this.onSubscribe = merge(this.bizService.refresh, this.searchForm.valueChanges).pipe(
-      debounceTime(200),
-      switchMap(_ => {
-        this.isResultLoading = true;
-        const value = {...this.searchForm.value};
-        return this.baseRepository.queryAllListByBizId('member', this.bizId, value);
-      })
-    ).subscribe(res => {
-      this.isResultLoading = false;
-      this.listOfData = res;
-    });
-
-    this.bizService.refresh.emit();
+    super.ngAfterViewInit();
+    // this.bizService.selectedValue.valueChanges.subscribe(value => {
+    //   this.bizId = value;
+    //   this.bizService.refresh.emit();
+    // });
+    //
+    // this.onSubscribe = merge(this.bizService.refresh, this.searchForm.valueChanges).pipe(
+    //   debounceTime(200),
+    //   switchMap(_ => {
+    //     this.isResultLoading = true;
+    //     const value = {...this.searchForm.value};
+    //     return this.baseRepository.queryAllListByBizId('member', this.bizId, value);
+    //   })
+    // ).subscribe(res => {
+    //   this.isResultLoading = false;
+    //   this.listOfData = res;
+    // });
+    //
+    // this.bizService.refresh.emit();
   }
 
-  ngOnDestroy(): void {
-    this.onSubscribe.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.onSubscribe.unsubscribe();
+  // }
 
   showCreateDialog(): void {
     this.modalService.create({
