@@ -21,7 +21,7 @@
         <th>名字</th>
         <th>显示名</th>
         <th>级别</th>
-        <th nzRight nzWidth="120px" style="text-align: center">操作</th>
+        <th nzRight nzWidth="120px">操作</th>
       </tr>
       </thead>
       <tbody>
@@ -31,8 +31,12 @@
         <td>{{ data.Level }}</td>
         <td nzRight>
           <div style="display: flex">
-            <a nz-button nzType="text">成员</a>
-            <a nz-button nzType="text">编辑</a>
+            <a nz-button nzType="text">
+              <i nz-icon nzType="team" nzTheme="outline"></i>
+            </a>
+            <a nz-button nzType="text">
+              <i nz-icon nzType="edit" nzTheme="outline"></i>
+            </a>
           </div>
         </td>
       </tr>
