@@ -23,9 +23,6 @@ export class BizSetAppComponent implements OnInit, AfterViewInit, OnDestroy {
     name: [],
   });
   listOfData: BizApp[] = [];
-  total = 1;
-  pageIndex = 1;
-  pageSize = 10;
   isResultLoading = false;
   bizId: number = this.bizService.selectedValue.value;
   onSubscribe!: Subscription;

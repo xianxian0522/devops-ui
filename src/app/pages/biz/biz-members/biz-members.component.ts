@@ -27,9 +27,7 @@ export class BizMembersComponent implements OnInit, AfterViewInit, OnDestroy {
     role: [],
   });
   listOfData: BizMember[] = [];
-  total = 1;
-  pageIndex = 1;
-  pageSize = 10;
+  isResultLoading = false;
   @Output() refresh = new EventEmitter();
   bizId: number = this.bizService.selectedValue.value;
   onSubscribe!: Subscription;
@@ -46,10 +44,12 @@ export class BizMembersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.onSubscribe = merge(this.bizService.refresh, this.searchForm.valueChanges).pipe(
       debounceTime(200),
       switchMap(_ => {
+        this.isResultLoading = true;
         const value = {...this.searchForm.value};
         return this.baseRepository.queryAllListByBizId('member', this.bizId, value);
       })
     ).subscribe(res => {
+      this.isResultLoading = false;
       this.listOfData = res;
     });
 

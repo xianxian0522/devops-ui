@@ -26,8 +26,11 @@
     </nz-form-item>
   </div>
   <div>
-    <button style="margin-right: 20px;" nz-button (click)="onSubmit()">修改</button>
-    <button nz-button (click)="advancedSetting()">高级设置</button>
+    <button nz-button (click)="onSubmit()" nzType="primary">修改</button>
+<!--    <button nz-button (click)="advancedSetting()">高级设置</button>-->
+  </div>
+  <div>
+    <nz-divider style="font-size: 14px; color: #1890ff; cursor: pointer" (click)="advancedSetting()" nzText="高级设置" nzOrientation="left"></nz-divider>
   </div>
   <div class="biz-information-footer" *ngIf="isTransferShow">
     <div nz-form nzLayout="vertical" style="width: 200px">

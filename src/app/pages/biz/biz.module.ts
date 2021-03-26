@@ -20,6 +20,7 @@ import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzMessageModule} from 'ng-zorro-antd/message';
 import { BizMemberEditComponent } from './biz-member-edit/biz-member-edit.component';
 import {NzModalModule} from 'ng-zorro-antd/modal';
+import {NzDividerModule} from 'ng-zorro-antd/divider';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {NzModalModule} from 'ng-zorro-antd/modal';
     NzFormModule,
     NzMessageModule,
     NzModalModule,
+    NzDividerModule,
   ]
 })
 export class BizModule { }

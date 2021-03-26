@@ -32,6 +32,7 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
   userList: BizMember[] = [];
   isTransferShow = false;
   onSubscribe!: Subscription;
+  onSubscribeMem!: Subscription;
 
   ngOnInit(): void {
 
@@ -40,9 +41,15 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
   ngAfterViewInit(): void {
     this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
+      this.bizService.refresh.emit();
     });
 
-    this.baseRepository.queryAllListByBizId('member', this.bizId).subscribe(res => {
+    this.onSubscribeMem = merge(this.bizService.refresh).pipe(
+      debounceTime(200),
+      switchMap(_ => {
+        return this.baseRepository.queryAllListByBizId('member', this.bizId);
+      })
+    ).subscribe(res => {
       this.userList = res;
     });
 
@@ -61,6 +68,7 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
   }
   ngOnDestroy(): void {
     this.onSubscribe.unsubscribe();
+    this.onSubscribeMem.unsubscribe();
   }
 
   onSubmit(): void {
@@ -73,7 +81,12 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
     });
   }
   onSubmitTransfer(): void {
-
+    const userId = this.OwnerID.value;
+    this.baseRepository.transferUserByBizId(this.bizId, userId).subscribe(res => {
+      this.messageService.success('转交成功');
+    }, err => {
+      this.messageService.error(err.message);
+    });
   }
   advancedSetting(): void {
     this.isTransferShow = !this.isTransferShow;

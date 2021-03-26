@@ -22,9 +22,6 @@ export class BizComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   listOfData: BizApp[] = [];
-  total = 1;
-  pageSize = 10;
-  pageIndex = 1;
   isResultLoading = false;
   @Output() refresh = new EventEmitter();
   searchForm = this.fb.group({

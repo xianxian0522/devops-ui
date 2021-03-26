@@ -20,9 +20,6 @@ export class BizHostDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   ) { }
 
   listOfData: BizHost[] = [];
-  total = 1;
-  pageIndex = 1;
-  pageSize = 10;
   isResultLoading = false;
   searchForm = this.fb.group({
     Hostname: [],
