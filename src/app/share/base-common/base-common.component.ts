@@ -18,6 +18,7 @@ export abstract class BaseCommonComponent<MODEL extends {ID?: number}> implement
   }
 
   listOfData: MODEL[] = [];
+  resourceData: MODEL[] = [];
   isResultLoading = false;
   searchForm!: FormGroup;
   bizId: number = this.bizService.selectedValue.value;
@@ -31,9 +32,32 @@ export abstract class BaseCommonComponent<MODEL extends {ID?: number}> implement
     this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
       this.bizService.refresh.emit();
+      this.searchForm.reset();
     });
 
-    this.onSubscribe = merge(this.bizService.refresh, this.searchForm.valueChanges).pipe(
+    this.searchForm.valueChanges.pipe(
+      debounceTime(200),
+    ).subscribe(value => {
+      const valueFilter = Object.keys(value).filter(key => !!value[key]);
+      const data = this.resourceData || [];
+      if (valueFilter.length > 0 && data.length > 0) {
+        valueFilter.forEach(v => {
+          // this.listOfData = data.filter((d: any) => d[v] === value[v]);
+          this.listOfData = data.filter((d: any) => {
+            if (d.hasOwnProperty(v)) {
+              // return d[v].indexOf(value[v]) !== -1;
+              return d[v] === value[v];
+            } else {
+              return true;
+            }
+          });
+        });
+      } else {
+        this.listOfData = data;
+      }
+    });
+
+    this.onSubscribe = merge(this.bizService.refresh).pipe(
       debounceTime(200),
       switchMap(_ => {
         this.isResultLoading = true;
@@ -43,6 +67,7 @@ export abstract class BaseCommonComponent<MODEL extends {ID?: number}> implement
     ).subscribe(res => {
       this.isResultLoading = false;
       this.listOfData = res;
+      this.resourceData = res;
     });
 
     this.bizService.refresh.emit();
