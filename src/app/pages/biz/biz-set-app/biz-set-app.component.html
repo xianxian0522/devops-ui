@@ -1,10 +1,10 @@
 <div >
   <div class="biz-set-content-search">
-    <div nz-form nzLayout="inline">
+    <div nz-form nzLayout="inline" [formGroup]="searchForm">
       <nz-form-item>
         <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" placeholder="输入名字" />
+          <input nz-input nzSize="small" placeholder="输入名字" formControlName="Name" />
         </nz-form-control>
       </nz-form-item>
     </div>

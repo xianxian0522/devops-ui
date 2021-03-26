@@ -28,8 +28,8 @@ export class BizMembersComponent extends BaseCommonComponent<BizMember> implemen
   protected urlString = 'member';
 
   searchForm = this.fb.group({
-    username: [],
-    role: [],
+    Username: [],
+    Role: [],
   });
   // listOfData: BizMember[] = [];
   // isResultLoading = false;

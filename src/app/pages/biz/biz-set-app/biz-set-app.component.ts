@@ -25,7 +25,7 @@ export class BizSetAppComponent extends BaseCommonComponent<BizApp> implements O
   protected urlString = 'app';
 
   searchForm = this.fb.group({
-    name: [],
+    Name: [],
   });
   // listOfData: BizApp[] = [];
   // isResultLoading = false;

@@ -39,7 +39,7 @@ export abstract class BaseCommonComponent<MODEL extends {ID?: number}> implement
       debounceTime(200),
     ).subscribe(value => {
       const valueFilter = Object.keys(value).filter(key => !!value[key]);
-      const data = this.resourceData || [];
+      let data = this.resourceData || [];
       if (valueFilter.length > 0 && data.length > 0) {
         valueFilter.forEach(v => {
           // this.listOfData = data.filter((d: any) => d[v] === value[v]);
@@ -51,6 +51,7 @@ export abstract class BaseCommonComponent<MODEL extends {ID?: number}> implement
               return true;
             }
           });
+          data = this.listOfData;
         });
       } else {
         this.listOfData = data;
