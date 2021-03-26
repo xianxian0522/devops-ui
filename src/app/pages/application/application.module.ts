@@ -12,10 +12,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzTreeModule} from 'ng-zorro-antd/tree';
 import {NzTableModule} from 'ng-zorro-antd/table';
 import {NzInputModule} from 'ng-zorro-antd/input';
+import { AppHostDetailsComponent } from './app-host-details/app-host-details.component';
+import { AppMembersComponent } from './app-members/app-members.component';
+import { AppSetInformationComponent } from './app-set-information/app-set-information.component';
+import { AppSetClusterComponent } from './app-set-cluster/app-set-cluster.component';
+import { AppSetClusterEditComponent } from './app-set-cluster-edit/app-set-cluster-edit.component';
+import { AppClusterInstanceComponent } from './app-cluster-instance/app-cluster-instance.component';
 
 
 @NgModule({
-  declarations: [ApplicationComponent],
+  declarations: [ApplicationComponent, AppHostDetailsComponent, AppMembersComponent, AppSetInformationComponent, AppSetClusterComponent, AppSetClusterEditComponent, AppClusterInstanceComponent],
   imports: [
     CommonModule,
     ApplicationRoutingModule,
