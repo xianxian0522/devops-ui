@@ -34,7 +34,7 @@
             <a nz-button nzType="text">
               <i nz-icon nzType="team" nzTheme="outline"></i>
             </a>
-            <a nz-button nzType="text">
+            <a nz-button nzType="text" [routerLink]="['/app/index']" [queryParams]="{id: data.ID}">
               <i nz-icon nzType="edit" nzTheme="outline"></i>
             </a>
           </div>

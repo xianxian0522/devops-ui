@@ -1,43 +1,34 @@
-@baseBorder: #DCDEE5;
+.app-common-content {
+  padding: 0 20px;
 
-.common-header {
-  height: 53px;
-  border-bottom: 1px solid @baseBorder;
-  line-height: 53px;
-  //padding-left: 20px;
-  button {
-    margin-left: 20px;
+  .app-common-header {
+    height: 53px;
+    line-height: 53px;
   }
 }
-nz-content {
-  background: #fff;
-  padding: 24px;
-  height: 100%;
-  border-left: 1px solid @baseBorder;
-}
-.layout-contain-com {
-  width: 100%;
-  height: 100%;
-}
-.select-menu-contain {
+.app-common-body {
   display: flex;
-  justify-content: center;
-  height: 53px;
-  align-items: center;
+  margin-bottom: 50px;
+
+  .app-body-header {
+    border: 1px solid #DCDEE5;
+    padding: 15px 5px;
+    width: 120px;
+    text-align: center;
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .app-body-comment {
+    margin-left: 50px;
+    flex: 1;
+    border: 1px solid #DCDEE5;
+    padding: 15px 5px;
+    text-align: center;
+  }
 }
-.select-menu {
-  width: 180px;
-}
-// 侧边栏滚动
-.ant-layout-sider {
-  overflow: auto;
-}
-// tree结构的span不换行
-.business-tree ::ng-deep .ant-tree .ant-tree-node-content-wrapper {
-  white-space: nowrap;
-  width: 100%;
-}
-.business-tree nz-input-group {
-  margin: 10px;
-  width: auto;
+.app-common-footer {
+  a {
+    margin-left: 40px;
+  }
 }

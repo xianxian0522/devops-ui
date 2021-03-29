@@ -18,10 +18,20 @@ import { AppSetInformationComponent } from './app-set-information/app-set-inform
 import { AppSetClusterComponent } from './app-set-cluster/app-set-cluster.component';
 import { AppSetClusterEditComponent } from './app-set-cluster-edit/app-set-cluster-edit.component';
 import { AppClusterInstanceComponent } from './app-cluster-instance/app-cluster-instance.component';
+import {NzFormModule} from 'ng-zorro-antd/form';
+import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 
 
 @NgModule({
-  declarations: [ApplicationComponent, AppHostDetailsComponent, AppMembersComponent, AppSetInformationComponent, AppSetClusterComponent, AppSetClusterEditComponent, AppClusterInstanceComponent],
+  declarations: [
+    ApplicationComponent,
+    AppHostDetailsComponent,
+    AppMembersComponent,
+    AppSetInformationComponent,
+    AppSetClusterComponent,
+    AppSetClusterEditComponent,
+    AppClusterInstanceComponent
+  ],
   imports: [
     CommonModule,
     ApplicationRoutingModule,
@@ -35,6 +45,8 @@ import { AppClusterInstanceComponent } from './app-cluster-instance/app-cluster-
     NzTreeModule,
     NzTableModule,
     NzInputModule,
+    NzFormModule,
+    NzBreadCrumbModule,
   ]
 })
 export class ApplicationModule { }

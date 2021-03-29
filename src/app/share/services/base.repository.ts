@@ -34,6 +34,13 @@ export class BaseRepository<MODEl extends {ID?: number}> {
     return this.httpClient.delete(`${API}/bizmember/${id}`);
   }
 
+  queryAppDetailsById(appId: number): Observable<MODEl> {
+    return this.httpClient.get<MODEl>(`${API}/app/${appId}`);
+  }
+  queryAllListByAppId(resourceUrl: string, appId: number, q?: {[key: string]: any}): Observable<MODEl[]> {
+    return this.httpClient.get<MODEl[]>(`${API}/app/${appId}/${resourceUrl}`);
+  }
+
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);

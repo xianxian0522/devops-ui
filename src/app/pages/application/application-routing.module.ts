@@ -10,6 +10,7 @@ import {AppHostDetailsComponent} from './app-host-details/app-host-details.compo
 
 const routes: Routes = [
   {path: '', redirectTo: 'index', pathMatch: 'full'},
+  // {path: 'index/:id', component: ApplicationComponent},
   {path: 'index', component: ApplicationComponent},
   {
     path: 'members',
