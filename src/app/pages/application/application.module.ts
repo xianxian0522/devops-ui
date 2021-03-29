@@ -20,6 +20,9 @@ import { AppSetClusterEditComponent } from './app-set-cluster-edit/app-set-clust
 import { AppClusterInstanceComponent } from './app-cluster-instance/app-cluster-instance.component';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
+import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
+import {NzModalModule} from 'ng-zorro-antd/modal';
+import {NzMessageModule} from 'ng-zorro-antd/message';
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
     NzInputModule,
     NzFormModule,
     NzBreadCrumbModule,
+    NzPopconfirmModule,
+    NzModalModule,
+    NzMessageModule,
   ]
 })
 export class ApplicationModule { }

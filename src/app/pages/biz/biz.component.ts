@@ -7,14 +7,14 @@ import {Biz} from '../../share/mode/biz';
 import {BizService} from '../../share/services/biz.service';
 import {LayoutComponent} from '../../share/layout/layout.component';
 import {BizApp} from '../../share/mode/biz';
-import {BaseCommonComponent} from '../../share/base-common/base-common.component';
+import {BizBaseCommonComponent} from '../../share/base-common/biz-base-common.component';
 
 @Component({
   selector: 'app-business',
   templateUrl: './biz.component.html',
   styleUrls: ['./biz.component.less']
 })
-export class BizComponent extends BaseCommonComponent<BizApp> implements OnInit, AfterViewInit, OnDestroy {
+export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     protected baseRepository: BaseRepository<BizApp>,

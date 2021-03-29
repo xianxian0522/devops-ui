@@ -1,1 +1,49 @@
-<p>app-set-cluster works!</p>
+<div class="app-common-content">
+  <nz-breadcrumb nzSeparator=">" class="app-common-header">
+    <nz-breadcrumb-item>devops</nz-breadcrumb-item>
+    <nz-breadcrumb-item>devops</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <div class="app-set-content-search">
+    <button nz-button>添加</button>
+    <div nz-form nzLayout="inline" [formGroup]="searchForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" placeholder="输入名字" formControlName="Name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <nz-table #basicTable
+              [nzData]="listOfData"
+              nzShowPagination
+              nzShowSizeChanger
+              [nzLoading]="isResultLoading"
+    >
+      <thead>
+      <tr>
+        <th>集群名</th>
+        <th>描述</th>
+        <th nzRight nzWidth="120px">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.Name }}</td>
+        <td>{{ data.Comment }}</td>
+        <td nzRight>
+          <div style="display: flex">
+            <a nz-button nzType="text">
+              <i nz-icon nzType="team" nzTheme="outline"></i>
+            </a>
+<!--            <a nz-button nzType="text" [routerLink]="['/app/index']" [queryParams]="{id: data.ID}">-->
+<!--              <i nz-icon nzType="edit" nzTheme="outline"></i>-->
+<!--            </a>-->
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

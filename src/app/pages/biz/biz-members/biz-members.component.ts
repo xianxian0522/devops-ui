@@ -7,7 +7,7 @@ import {BizService} from '../../../share/services/biz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {BizMemberEditComponent} from '../biz-member-edit/biz-member-edit.component';
 import {BizMember, User} from '../../../share/mode/biz';
-import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
+import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
@@ -15,7 +15,7 @@ import {NzMessageService} from 'ng-zorro-antd/message';
   templateUrl: './biz-members.component.html',
   styleUrls: ['./biz-members.component.less']
 })
-export class BizMembersComponent extends BaseCommonComponent<BizMember> implements OnInit, AfterViewInit {
+export class BizMembersComponent extends BizBaseCommonComponent<BizMember> implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,

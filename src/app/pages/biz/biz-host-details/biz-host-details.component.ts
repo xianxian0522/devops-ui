@@ -5,14 +5,14 @@ import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {BizHost} from '../../../share/mode/biz';
-import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
+import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 
 @Component({
   selector: 'app-biz-host-details',
   templateUrl: './biz-host-details.component.html',
   styleUrls: ['./biz-host-details.component.less']
 })
-export class BizHostDetailsComponent extends BaseCommonComponent<BizHost> implements OnInit, AfterViewInit, OnDestroy {
+export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,

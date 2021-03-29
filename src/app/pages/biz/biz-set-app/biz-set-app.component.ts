@@ -5,14 +5,14 @@ import {BizApp} from '../../../share/mode/biz';
 import {merge, Subscription} from 'rxjs';
 import {FormBuilder} from '@angular/forms';
 import {debounceTime, switchMap} from 'rxjs/operators';
-import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
+import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 
 @Component({
   selector: 'app-biz-set-app',
   templateUrl: './biz-set-app.component.html',
   styleUrls: ['./biz-set-app.component.less']
 })
-export class BizSetAppComponent extends BaseCommonComponent<BizApp> implements OnInit, AfterViewInit, OnDestroy {
+export class BizSetAppComponent extends BizBaseCommonComponent<BizApp> implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     protected bizService: BizService,
