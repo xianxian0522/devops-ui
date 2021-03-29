@@ -1,5 +1,12 @@
 export interface App {
   ID: number;
+  Comment: string;
+  CreatedAt: string;
+  DisplayName: string;
+  InstanceTemplate: AppInstance;
+  Level: string;
+  Name: string;
+  UpdatedAt: string;
 }
 
 export interface AppMember {

@@ -18,6 +18,10 @@ export class ApplicationComponent implements OnInit {
     private baseRepository: BaseRepository<App>,
   ) { }
 
+  name = '';
+  displayName = '';
+  comment = '';
+
   ngOnInit(): void {
     // this.activatedRoute.paramMap.subscribe(params => {
     //   console.log(params);
@@ -25,10 +29,11 @@ export class ApplicationComponent implements OnInit {
     //     this.appService.appId = parseInt(params.get('id') as string, 10);
     //   }
     // });
-    console.log(this.appService.appId);
 
     this.baseRepository.queryAppDetailsById(this.appService.appId).subscribe(res => {
-      console.log(res);
+      this.name = res.Name;
+      this.displayName = res.DisplayName;
+      this.comment = res.Comment;
     });
   }
 
