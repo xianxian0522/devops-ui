@@ -1,1 +1,58 @@
-<p>app-set-information works!</p>
+<div class="app-common-content">
+  <nz-breadcrumb nzSeparator=">" class="app-common-header">
+    <nz-breadcrumb-item>devops</nz-breadcrumb-item>
+    <nz-breadcrumb-item>devops</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <div class="app-information-content">
+    <div [formGroup]="editForm" nz-form nzLayout="vertical" class="app-information-content-form">
+      <nz-form-item>
+        <nz-form-label nzNoColon>名字</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="Name" placeholder="名字" readonly />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div [formGroup]="editForm" nz-form nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label nzNoColon>中文名</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="DisplayName" placeholder="中文名" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-form nzLayout="vertical" [formGroup]="editForm">
+    <nz-form-item>
+      <nz-form-label nzNoColon>描述</nz-form-label>
+      <nz-form-control>
+        <textarea rows="5" nz-input formControlName="Comment"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div>
+    <button nz-button (click)="onSubmit()" nzType="primary">修改</button>
+  </div>
+  <div>
+    <div class="app-information-divider" (click)="advancedSetting()">
+      <span >高级设置</span>
+    </div>
+    <!--    <nz-divider style="font-size: 14px; color: #1890ff; cursor: pointer" (click)="advancedSetting()" nzText="高级设置" nzOrientation="left"></nz-divider>-->
+  </div>
+  <div *ngIf="isTransferShow">
+    <div>实例模板</div>
+    <div></div>
+  </div>
+  <div class="app-information-footer" *ngIf="isTransferShow">
+    <div nz-form nzLayout="vertical" style="width: 200px">
+      <nz-form-item>
+        <nz-form-label nzNoColon>转交给</nz-form-label>
+        <nz-form-control>
+          <nz-select nzShowSearch nzAllowClear [formControl]="OwnerID" nzPlaceHolder="Select a person" nzSize="small">
+            <nz-option *ngFor="let user of userList" [nzLabel]="user.Username" [nzValue]="user.UserID"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <button nz-button (click)="onSubmitTransfer()">确定</button>
+  </div>
+</div>

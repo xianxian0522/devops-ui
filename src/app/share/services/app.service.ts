@@ -11,7 +11,7 @@ export class AppService {
   }
 
   refresh = new EventEmitter();
-  appId = 0;
+  appId = parseInt(localStorage.getItem('appId') as string, 10);
 
   getAppId(): void {
     this.activatedRoute.queryParamMap.subscribe(query => {
