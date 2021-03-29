@@ -23,6 +23,30 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
     DisplayName: [],
     Comment: [],
   });
+  editInstanceForm = this.fb.group({
+    BindInfos: this.fb.array([
+      this.fb.group({
+        Ip: [],
+        Name: [],
+        Port: [],
+        Protocol: []
+      })
+    ]),
+    EnvVars: this.fb.array([
+      this.fb.group({
+        Name: [],
+        Value: [],
+      })
+    ]),
+    Comment: [],
+    DataDir: [],
+    LogDir: [],
+    MetricEndpoint: [],
+    Name: [],
+    State: [],
+    User: [],
+    WorkDir: [],
+  });
   // 从业务成员里面选择
   OwnerID = new FormControl(null);
   appId: number = this.appService.appId;

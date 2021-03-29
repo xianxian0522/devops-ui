@@ -40,7 +40,7 @@
   </div>
   <div *ngIf="isTransferShow">
     <div>实例模板</div>
-    <div></div>
+    <div app-common-form [editForm]="editInstanceForm"></div>
   </div>
   <div class="app-information-footer" *ngIf="isTransferShow">
     <div nz-form nzLayout="vertical" style="width: 200px">

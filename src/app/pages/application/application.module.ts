@@ -23,6 +23,8 @@ import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {NzMessageModule} from 'ng-zorro-antd/message';
+import { CommonFormComponent } from './common-form/common-form.component';
+import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
     AppSetInformationComponent,
     AppSetClusterComponent,
     AppSetClusterEditComponent,
-    AppClusterInstanceComponent
+    AppClusterInstanceComponent,
+    CommonFormComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +56,7 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
     NzPopconfirmModule,
     NzModalModule,
     NzMessageModule,
+    NzInputNumberModule,
   ]
 })
 export class ApplicationModule { }

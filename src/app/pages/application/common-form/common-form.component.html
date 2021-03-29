@@ -1,0 +1,135 @@
+<form nz-form [formGroup]="editForm">
+  <div>
+    <nz-form-item>
+      <nz-form-label nzSpan="3" nzNoColon>端口绑定信息</nz-form-label>
+      <i class="common-add-info" nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      <nz-form-control nzSpan="18">
+        <div class="common-form-content" formArrayName="BindInfos" *ngFor="let content of bindInfos.controls;
+              let infoIndex = index">
+          <div class="common-form-block" [formGroupName]="infoIndex.toString()">
+            <i class="common-sub" nz-icon nzType="minus-circle" nzTheme="outline"></i>
+            <nz-row >
+              <nz-form-label nzSpan="3" nz-col>Ip地址</nz-form-label>
+              <nz-form-control nz-col nzSpan="12">
+                <input nz-input formControlName="Ip" type="text" nzSize="small" />
+              </nz-form-control>
+              <nz-form-label nzSpan="3" nz-col>名字</nz-form-label>
+              <nz-form-control nz-col nzSpan="12">
+                <input nz-input formControlName="Name" type="text" nzSize="small" />
+              </nz-form-control>
+            </nz-row>
+            <nz-row>
+              <nz-form-label nzSpan="3" nz-col>端口号</nz-form-label>
+              <nz-form-control nz-col nzSpan="12">
+                <nz-input-number formControlName="Port" [nzStep]="1" nzSize="small"></nz-input-number>
+              </nz-form-control>
+              <nz-form-label nzSpan="3" nz-col>协议</nz-form-label>
+              <nz-form-control nz-col nzSpan="12">
+                <input nz-input formControlName="Protocol" type="text" nzSize="small" />
+              </nz-form-control>
+            </nz-row>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div>
+    <nz-form-item>
+      <nz-form-label nzSpan="3" nz-col nzNoColon>环境变量</nz-form-label>
+      <i class="common-add-env" nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      <nz-form-control nzSpan="18">
+        <div class="common-form-content" formArrayName="EnvVars"
+             *ngFor="let content of envVars.controls;
+              let infoIndex = index">
+          <div class="common-form-block" [formGroupName]="infoIndex.toString()">
+            <i class="common-sub" nz-icon nzType="minus-circle" nzTheme="outline"></i>
+            <nz-row >
+              <nz-form-label nzSpan="3" nz-col>名字</nz-form-label>
+              <nz-form-control nz-col nzSpan="12">
+                <input nz-input formControlName="Name" type="text" nzSize="small" />
+              </nz-form-control>
+              <nz-form-label nzSpan="3" nz-col>值</nz-form-label>
+              <nz-form-control nz-col nzSpan="12">
+                <input nz-input formControlName="Value" type="text" nzSize="small" />
+              </nz-form-control>
+            </nz-row>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>名字</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="Name" placeholder="名字" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>启动用户</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="User" placeholder="启动用户" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>监控采集接口</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="MetricEndpoint" placeholder="监控采集接口" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>日志目录</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="LogDir" placeholder="日志目录" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>数据目录</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="DataDir" placeholder="数据目录" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>工作目录</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="LogDir" placeholder="工作目录" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>备注</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="Comment" placeholder="备注" nzSize="small">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item >
+        <nz-form-label [nzSpan]="8" nzNoColon>状态</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-select [nzDropdownMatchSelectWidth]="false" nzSize="small" nzShowSearch nzAllowClear nzPlaceHolder="select state" formControlName="State">
+            <nz-option nzLabel="active" nzValue="active"></nz-option>
+            <nz-option nzLabel="inactive" nzValue="inactive"></nz-option>
+            <nz-option nzLabel="maintaining" nzValue="maintaining"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
