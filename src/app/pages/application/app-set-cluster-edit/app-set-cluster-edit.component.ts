@@ -43,10 +43,13 @@ export class AppSetClusterEditComponent implements OnInit {
     User: [],
     WorkDir: [],
   });
+  id!: number;
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      console.log(params);
+      if (params && params.get('clusterId')) {
+        this.id = parseInt(params.get('clusterId') as string, 10);
+      }
     });
   }
 
