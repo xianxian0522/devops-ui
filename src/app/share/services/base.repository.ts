@@ -35,11 +35,11 @@ export class BaseRepository<MODEl extends {ID?: number}> {
     return this.httpClient.delete(`${API}/${urlFragment}member/${id}`);
   }
 
-  queryAppDetailsById(appId: number): Observable<MODEl> {
-    return this.httpClient.get<MODEl>(`${API}/app/${appId}`);
+  queryDetailsById(id: number, resourceUrl: string): Observable<MODEl> {
+    return this.httpClient.get<MODEl>(`${API}/${resourceUrl}/${id}`);
   }
-  updateAppDetailsById(appId: number, model: MODEl): Observable<MODEl> {
-    return this.httpClient.patch<MODEl>(`${API}/app/${appId}`, model);
+  updateDetailsById(id: number, model: MODEl, resourceUrl: string): Observable<MODEl> {
+    return this.httpClient.patch<MODEl>(`${API}/${resourceUrl}/${id}`, model);
   }
   queryAllListByAppId(resourceUrl: string, appId: number, q?: {[key: string]: any}): Observable<MODEl[]> {
     return this.httpClient.get<MODEl[]>(`${API}/app/${appId}/${resourceUrl}`);

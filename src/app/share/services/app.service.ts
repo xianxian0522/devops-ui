@@ -15,9 +15,9 @@ export class AppService {
 
   getAppId(): void {
     this.activatedRoute.queryParamMap.subscribe(query => {
-      if (query && query.get('id')) {
-        localStorage.setItem('appId', query.get('id') as string);
-        this.appId = parseInt(query.get('id') as string, 10);
+      if (query && query.get('appId')) {
+        localStorage.setItem('appId', query.get('appId') as string);
+        this.appId = parseInt(query.get('appId') as string, 10);
       } else {
         const id = localStorage.getItem('appId') as string;
         this.appId = parseInt(id, 10);

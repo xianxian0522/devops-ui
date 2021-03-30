@@ -30,7 +30,7 @@ export class ApplicationComponent implements OnInit {
     //   }
     // });
 
-    this.baseRepository.queryAppDetailsById(this.appService.appId).subscribe(res => {
+    this.baseRepository.queryDetailsById(this.appService.appId, 'app').subscribe(res => {
       this.name = res.Name;
       this.displayName = res.DisplayName;
       this.comment = res.Comment;

@@ -26,7 +26,7 @@ export class AppLayoutComponent implements OnInit {
 
     this.appService.getAppId();
 
-    this.baseRepository.queryAppDetailsById(this.appService.appId).subscribe(res => {
+    this.baseRepository.queryDetailsById(this.appService.appId, 'app').subscribe(res => {
       this.name = res.Name;
     });
   }

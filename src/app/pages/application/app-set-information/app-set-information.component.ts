@@ -64,7 +64,7 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
       this.userList = res;
     });
 
-    this.baseRepository.queryAppDetailsById(this.appId).subscribe(res => {
+    this.baseRepository.queryDetailsById(this.appId, 'app').subscribe(res => {
       this.editForm.patchValue({...res});
 
       if (res.Owner && res.Owner.ID) {
@@ -100,7 +100,7 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
 
   onSubmitInstance(): void {
     const value = {InstanceTemplate: {...this.editInstanceForm.value}};
-    this.baseRepository.updateAppDetailsById(this.appId, value).subscribe(_ => {
+    this.baseRepository.updateDetailsById(this.appId, value, 'app').subscribe(_ => {
       this.messageService.success('修改成功');
     }, err => {
       this.messageService.error(err.message);
@@ -108,7 +108,7 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
   }
   onSubmit(): void {
     const value = {...this.editForm.value};
-    this.baseRepository.updateAppDetailsById(this.appId, value).subscribe(res => {
+    this.baseRepository.updateDetailsById(this.appId, value, 'app').subscribe(res => {
       this.messageService.success('修改成功');
     }, err => {
       this.messageService.error(err.message);
