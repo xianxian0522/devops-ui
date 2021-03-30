@@ -1,18 +1,36 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter} from '@angular/core';
 import {debounceTime} from 'rxjs/operators';
 import {FormGroup} from '@angular/forms';
+import {BaseRepository} from '../services/base.repository';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-base-common',
   template: ''
 })
 export abstract class BaseCommonComponent<MODEL> implements AfterViewInit {
-  protected constructor() {
+  protected constructor(
+    protected baseRepository: BaseRepository<MODEL>,
+    protected messageService: NzMessageService,
+  ) {
   }
 
   listOfData: MODEL[] = [];
   resourceData: MODEL[] = [];
   searchForm!: FormGroup;
+  refresh = new EventEmitter();
+
+  protected abstract urlFragment: string;
+
+  deleteMember(id: number): void {
+    this.baseRepository.deleteMemberById(id, this.urlFragment).subscribe(_ => {
+      this.refresh.emit();
+      this.messageService.success('删除成功');
+    });
+  }
+  onCancel(): void {
+    this.messageService.info('取消删除');
+  }
 
   ngAfterViewInit(): void {
     this.searchForm.valueChanges.pipe(

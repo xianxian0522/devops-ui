@@ -5,6 +5,7 @@ import {FormGroup} from '@angular/forms';
 import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseCommonComponent} from './base-common.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-app-base-common',
@@ -15,16 +16,17 @@ export abstract class AppBaseCommonComponent<MODEL extends {ID?: number}> extend
   protected constructor(
     protected appService: AppService,
     protected baseRepository: BaseRepository<MODEL>,
+    protected messageService: NzMessageService,
   ) {
-    super();
+    super(baseRepository, messageService);
   }
 
   isResultLoading = false;
   appId: number = this.appService.appId;
   onSubscribe!: Subscription;
-  refresh = new EventEmitter();
 
   protected abstract urlString: string;
+  protected urlFragment = 'app';
 
   ngAfterViewInit(): void {
     super.ngAfterViewInit();

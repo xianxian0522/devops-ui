@@ -4,6 +4,7 @@ import {AppBaseCommonComponent} from '../../../share/base-common/app-base-common
 import {AppHost} from '../../../share/mode/app';
 import {AppService} from '../../../share/services/app.service';
 import {BaseRepository} from '../../../share/services/base.repository';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-app-host-details',
@@ -16,8 +17,9 @@ export class AppHostDetailsComponent extends AppBaseCommonComponent<AppHost> imp
     private fb: FormBuilder,
     protected appService: AppService,
     protected baseRepository: BaseRepository<AppHost>,
+    protected messageService: NzMessageService,
   ) {
-    super(appService, baseRepository);
+    super(appService, baseRepository, messageService);
   }
 
   protected urlString = 'host';

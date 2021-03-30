@@ -6,6 +6,7 @@ import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {BizHost} from '../../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-biz-host-details',
@@ -18,8 +19,9 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
     private fb: FormBuilder,
     protected bizService: BizService,
     protected baseRepository: BaseRepository<BizHost>,
+    protected messageService: NzMessageService
   ) {
-    super(bizService, baseRepository);
+    super(bizService, baseRepository, messageService);
   }
 
   protected urlString = 'host';

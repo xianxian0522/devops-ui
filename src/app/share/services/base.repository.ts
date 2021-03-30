@@ -27,11 +27,12 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   transferUserByBizId(bizId: number, OwnerID: number): Observable<any> {
     return this.httpClient.patch(`${API}/biz/${bizId}/transfer`, {OwnerID});
   }
-  updateOrAdd(bizId: number, model: MODEl): Observable<any> {
-    return this.httpClient.post(`${API}/biz/${bizId}/member`, model);
+
+  updateOrAdd(urlFragment: string, bizId: number, model: MODEl): Observable<any> {
+    return this.httpClient.post(`${API}/${urlFragment}/${bizId}/member`, model);
   }
-  deleteBizMemberById(id: number): Observable<any> {
-    return this.httpClient.delete(`${API}/bizmember/${id}`);
+  deleteMemberById(id: number, urlFragment: string): Observable<any> {
+    return this.httpClient.delete(`${API}/${urlFragment}member/${id}`);
   }
 
   queryAppDetailsById(appId: number): Observable<MODEl> {

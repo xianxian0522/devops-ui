@@ -1,16 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NzModalRef} from 'ng-zorro-antd/modal';
 import {FormBuilder, Validators} from '@angular/forms';
-import {BaseRepository} from '../../../share/services/base.repository';
-import {User} from '../../../share/mode/biz';
+import {BaseRepository} from '../../share/services/base.repository';
+import {User} from '../../share/mode/biz';
 import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-biz-member-edit',
-  templateUrl: './biz-member-edit.component.html',
-  styleUrls: ['./biz-member-edit.component.less']
+  templateUrl: './member-edit.component.html',
+  styleUrls: ['./member-edit.component.less']
 })
-export class BizMemberEditComponent implements OnInit {
+export class MemberEditComponent implements OnInit {
 
   constructor(
     private modalRef: NzModalRef,
@@ -21,7 +21,8 @@ export class BizMemberEditComponent implements OnInit {
 
   @Input() data: any;
   @Input() mode!: string;
-  @Input() bizId!: number;
+  @Input() id!: number;
+  @Input() urlFragment!: string;
   editForm = this.fb.group({
     Role: ['', Validators.required],
     UserID: ['', Validators.required],
@@ -41,7 +42,7 @@ export class BizMemberEditComponent implements OnInit {
   }
   onSubmit(): void {
     const value = {...this.editForm.value};
-    this.baseRepository.updateOrAdd(this.bizId, value).subscribe(_ => {
+    this.baseRepository.updateOrAdd(this.urlFragment, this.id, value).subscribe(_ => {
       this.messageService.success(this.mode === 'edit' ? '修改成功' : '新增成功');
       this.modalRef.close(true);
     }, err => {

@@ -8,6 +8,7 @@ import {BizService} from '../../share/services/biz.service';
 import {LayoutComponent} from '../../share/layout/layout.component';
 import {BizApp} from '../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../share/base-common/biz-base-common.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-business',
@@ -20,8 +21,9 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
     protected baseRepository: BaseRepository<BizApp>,
     private fb: FormBuilder,
     protected bizService: BizService,
+    protected messageService: NzMessageService,
   ) {
-    super(bizService, baseRepository);
+    super(bizService, baseRepository, messageService);
   }
 
   protected urlString = 'app';

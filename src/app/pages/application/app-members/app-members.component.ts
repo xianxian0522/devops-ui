@@ -7,6 +7,7 @@ import {NzModalService} from 'ng-zorro-antd/modal';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {AppBaseCommonComponent} from '../../../share/base-common/app-base-common.component';
 import {BaseRepository} from '../../../share/services/base.repository';
+import {MemberEditComponent} from '../../member-edit/member-edit.component';
 
 @Component({
   selector: 'app-app-members',
@@ -20,9 +21,9 @@ export class AppMembersComponent extends AppBaseCommonComponent<AppMember> imple
     protected appService: AppService,
     protected baseRepository: BaseRepository<AppMember>,
     private modalService: NzModalService,
-    private messageService: NzMessageService,
+    protected messageService: NzMessageService,
   ) {
-    super(appService, baseRepository);
+    super(appService, baseRepository, messageService);
   }
 
   searchForm = this.fb.group({
@@ -36,35 +37,26 @@ export class AppMembersComponent extends AppBaseCommonComponent<AppMember> imple
   }
 
   showCreateDialog(): void {
-    // this.modalService.create({
-    //   nzFooter: null,
-    //   nzContent: BizMemberEditComponent,
-    //   nzComponentParams: {data: {}, bizId: this.bizId, mode: 'created'},
-    // }).afterClose.subscribe(_ => {
-    //   if (_) {
-    //     this.bizService.refresh.emit();
-    //   }
-    // });
+    this.modalService.create({
+      nzFooter: null,
+      nzContent: MemberEditComponent,
+      nzComponentParams: {data: {}, id: this.appId, mode: 'created', urlFragment: 'app'},
+    }).afterClose.subscribe(_ => {
+      if (_) {
+        this.refresh.emit();
+      }
+    });
   }
   showEditDialog(ele: AppMember): void {
-    // this.modalService.create({
-    //   nzFooter: null,
-    //   nzContent: BizMemberEditComponent,
-    //   nzComponentParams: {data: ele, bizId: this.bizId, mode: 'edit'},
-    // }).afterClose.subscribe(_ => {
-    //   if (_) {
-    //     this.bizService.refresh.emit();
-    //   }
-    // });
-  }
-  deleteMember(id: number): void {
-    // this.baseRepository.deleteBizMemberById(id).subscribe(_ => {
-    //   this.bizService.refresh.emit();
-    //   this.messageService.success('删除成功');
-    // });
-  }
-  onCancel(): void {
-    // this.messageService.info('取消删除');
+    this.modalService.create({
+      nzFooter: null,
+      nzContent: MemberEditComponent,
+      nzComponentParams: {data: ele, id: this.appId, mode: 'edit', urlFragment: 'app'},
+    }).afterClose.subscribe(_ => {
+      if (_) {
+        this.refresh.emit();
+      }
+    });
   }
 
 }

@@ -5,6 +5,7 @@ import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../services/base.repository';
 import {BaseCommonComponent} from './base-common.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-biz-base-common',
@@ -16,8 +17,9 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   protected constructor(
     protected bizService: BizService,
     protected baseRepository: BaseRepository<MODEL>,
+    protected messageService: NzMessageService,
   ) {
-    super();
+    super(baseRepository, messageService);
   }
 
   // listOfData: MODEL[] = [];
@@ -28,6 +30,7 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   onSubscribe!: Subscription;
 
   protected abstract urlString: string;
+  protected urlFragment = 'biz';
 
   ngOnInit(): void {
   }
@@ -63,7 +66,7 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
     //   }
     // });
 
-    this.onSubscribe = merge(this.bizService.refresh).pipe(
+    this.onSubscribe = merge(this.bizService.refresh, this.refresh).pipe(
       debounceTime(200),
       switchMap(_ => {
         this.isResultLoading = true;

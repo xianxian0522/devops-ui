@@ -5,7 +5,7 @@ import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BizService} from '../../../share/services/biz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
-import {BizMemberEditComponent} from '../biz-member-edit/biz-member-edit.component';
+import {MemberEditComponent} from '../../member-edit/member-edit.component';
 import {BizMember, User} from '../../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
@@ -22,9 +22,9 @@ export class BizMembersComponent extends BizBaseCommonComponent<BizMember> imple
     protected baseRepository: BaseRepository<BizMember>,
     protected bizService: BizService,
     private modalService: NzModalService,
-    private messageService: NzMessageService,
+    protected messageService: NzMessageService,
   ) {
-    super(bizService, baseRepository);
+    super(bizService, baseRepository, messageService);
   }
 
   protected urlString = 'member';
@@ -67,8 +67,8 @@ export class BizMembersComponent extends BizBaseCommonComponent<BizMember> imple
   showCreateDialog(): void {
     this.modalService.create({
       nzFooter: null,
-      nzContent: BizMemberEditComponent,
-      nzComponentParams: {data: {}, bizId: this.bizId, mode: 'created'},
+      nzContent: MemberEditComponent,
+      nzComponentParams: {data: {}, id: this.bizId, mode: 'created', urlFragment: 'biz'},
     }).afterClose.subscribe(_ => {
       if (_) {
         this.bizService.refresh.emit();
@@ -78,21 +78,12 @@ export class BizMembersComponent extends BizBaseCommonComponent<BizMember> imple
   showEditDialog(ele: BizMember): void {
     this.modalService.create({
       nzFooter: null,
-      nzContent: BizMemberEditComponent,
-      nzComponentParams: {data: ele, bizId: this.bizId, mode: 'edit'},
+      nzContent: MemberEditComponent,
+      nzComponentParams: {data: ele, id: this.bizId, mode: 'edit', urlFragment: 'biz'},
     }).afterClose.subscribe(_ => {
       if (_) {
         this.bizService.refresh.emit();
       }
     });
-  }
-  deleteMember(id: number): void {
-    this.baseRepository.deleteBizMemberById(id).subscribe(_ => {
-      this.bizService.refresh.emit();
-      this.messageService.success('删除成功');
-    });
-  }
-  onCancel(): void {
-    this.messageService.info('取消删除');
   }
 }
