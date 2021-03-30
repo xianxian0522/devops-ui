@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: '[app-common-form]',
@@ -8,7 +8,9 @@ import {FormArray, FormGroup} from '@angular/forms';
 })
 export class CommonFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+  ) { }
   
   @Input() editForm!: FormGroup;
 
@@ -23,4 +25,29 @@ export class CommonFormComponent implements OnInit {
     return this.editForm.get('EnvVars') as FormArray;
   }
 
+  addInfo(): void {
+    this.bindInfos.push(
+      this.fb.group({
+        Ip: [],
+        Name: [],
+        Port: [],
+        Protocol: []
+      })
+    );
+  }
+  addEnv(): void {
+    this.envVars.push(
+      this.fb.group({
+        Name: [],
+        Value: [],
+      })
+    );
+  }
+  removeInfo(index: number): void {
+    console.log(index);
+    this.bindInfos.removeAt(index);
+  }
+  removeEnv(index: number): void {
+    this.envVars.removeAt(index);
+  }
 }

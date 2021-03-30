@@ -41,6 +41,9 @@
   <div *ngIf="isTransferShow">
     <div>实例模板</div>
     <div app-common-form [editForm]="editInstanceForm"></div>
+    <div >
+      <button nz-button nzType="primary" (click)="onSubmitInstance()">修改</button>
+    </div>
   </div>
   <div class="app-information-footer" *ngIf="isTransferShow">
     <div nz-form nzLayout="vertical" style="width: 200px">

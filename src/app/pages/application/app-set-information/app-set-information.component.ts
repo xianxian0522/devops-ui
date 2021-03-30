@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AppService} from '../../../share/services/app.service';
 import {Subscription} from 'rxjs';
 import {AppMember} from '../../../share/mode/app';
@@ -70,9 +70,42 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
       if (res.Owner && res.Owner.ID) {
         this.OwnerID.setValue(res.Owner.ID);
       }
+      if (res.InstanceTemplate) {
+        if (res.InstanceTemplate.BindInfos && res.InstanceTemplate.BindInfos.length > 1) {
+          (this.editInstanceForm.get('BindInfos') as FormArray).clear();
+          const arr = res.InstanceTemplate.BindInfos;
+          arr.forEach((item: any) => {
+            const baseGroup = new FormGroup({});
+            Object.keys(item).forEach(key => {
+              baseGroup.addControl(key, new FormControl(null));
+            });
+            (this.editInstanceForm.get('BindInfos') as FormArray).push(baseGroup);
+          });
+        }
+        if (res.InstanceTemplate.EnvVars && res.InstanceTemplate.EnvVars.length > 1) {
+          (this.editInstanceForm.get('EnvVars') as FormArray).clear();
+          const arr = res.InstanceTemplate.EnvVars;
+          arr.forEach((item: any) => {
+            const baseGroup = new FormGroup({});
+            Object.keys(item).forEach(key => {
+              baseGroup.addControl(key, new FormControl(null));
+            });
+            (this.editInstanceForm.get('EnvVars') as FormArray).push(baseGroup);
+          });
+        }
+        this.editInstanceForm.patchValue({...res.InstanceTemplate});
+      }
     });
   }
 
+  onSubmitInstance(): void {
+    const value = {InstanceTemplate: {...this.editInstanceForm.value}};
+    this.baseRepository.updateAppDetailsById(this.appId, value).subscribe(_ => {
+      this.messageService.success('修改成功');
+    }, err => {
+      this.messageService.error(err.message);
+    });
+  }
   onSubmit(): void {
     const value = {...this.editForm.value};
     this.baseRepository.updateAppDetailsById(this.appId, value).subscribe(res => {

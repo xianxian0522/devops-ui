@@ -2,12 +2,12 @@
   <div>
     <nz-form-item>
       <nz-form-label nzSpan="3" nzNoColon>端口绑定信息</nz-form-label>
-      <i class="common-add-info" nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      <i class="common-add-info" (click)="addInfo()" nz-icon nzType="plus-circle" nzTheme="outline"></i>
       <nz-form-control nzSpan="18">
         <div class="common-form-content" formArrayName="BindInfos" *ngFor="let content of bindInfos.controls;
               let infoIndex = index">
           <div class="common-form-block" [formGroupName]="infoIndex.toString()">
-            <i class="common-sub" nz-icon nzType="minus-circle" nzTheme="outline"></i>
+            <i class="common-sub" (click)="removeInfo(infoIndex)" nz-icon nzType="minus-circle" nzTheme="outline"></i>
             <nz-row >
               <nz-form-label nzSpan="3" nz-col>Ip地址</nz-form-label>
               <nz-form-control nz-col nzSpan="12">
@@ -36,13 +36,13 @@
   <div>
     <nz-form-item>
       <nz-form-label nzSpan="3" nz-col nzNoColon>环境变量</nz-form-label>
-      <i class="common-add-env" nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      <i class="common-add-env" (click)="addEnv()" nz-icon nzType="plus-circle" nzTheme="outline"></i>
       <nz-form-control nzSpan="18">
         <div class="common-form-content" formArrayName="EnvVars"
              *ngFor="let content of envVars.controls;
               let infoIndex = index">
           <div class="common-form-block" [formGroupName]="infoIndex.toString()">
-            <i class="common-sub" nz-icon nzType="minus-circle" nzTheme="outline"></i>
+            <i class="common-sub" (click)="removeEnv(infoIndex)" nz-icon nzType="minus-circle" nzTheme="outline"></i>
             <nz-row >
               <nz-form-label nzSpan="3" nz-col>名字</nz-form-label>
               <nz-form-control nz-col nzSpan="12">
