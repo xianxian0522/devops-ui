@@ -61,7 +61,9 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
     ).subscribe(res => {
       this.editForm.patchValue({...res});
 
-      this.OwnerID.setValue(res.Owner.ID);
+      if (res.Owner && res.Owner.ID) {
+        this.OwnerID.setValue(res.Owner.ID);
+      }
     });
 
     this.bizService.refresh.emit();

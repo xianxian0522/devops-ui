@@ -4,6 +4,7 @@ import {AppService} from '../../../share/services/app.service';
 import {Subscription} from 'rxjs';
 import {AppMember} from '../../../share/mode/app';
 import {BaseRepository} from '../../../share/services/base.repository';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-app-set-information',
@@ -16,6 +17,7 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private appService: AppService,
     private baseRepository: BaseRepository<any>,
+    private messageService: NzMessageService,
   ) { }
 
   editForm = this.fb.group({
@@ -64,26 +66,28 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
 
     this.baseRepository.queryAppDetailsById(this.appId).subscribe(res => {
       this.editForm.patchValue({...res});
-      // this.OwnerID.setValue(res.Owner.ID);
+
+      if (res.Owner && res.Owner.ID) {
+        this.OwnerID.setValue(res.Owner.ID);
+      }
     });
   }
 
   onSubmit(): void {
-    // const value = {...this.editForm.value};
-    // this.baseRepository.updateBizDetailsById(this.bizId, value).subscribe(res => {
-    //   this.messageService.success('修改成功');
-    //   // this.bizService.refresh.emit();
-    // }, err => {
-    //   this.messageService.error(err.message);
-    // });
+    const value = {...this.editForm.value};
+    this.baseRepository.updateAppDetailsById(this.appId, value).subscribe(res => {
+      this.messageService.success('修改成功');
+    }, err => {
+      this.messageService.error(err.message);
+    });
   }
   onSubmitTransfer(): void {
-    // const userId = this.OwnerID.value;
-    // this.baseRepository.transferUserByBizId(this.bizId, userId).subscribe(res => {
-    //   this.messageService.success('转交成功');
-    // }, err => {
-    //   this.messageService.error(err.message);
-    // });
+    const userId = this.OwnerID.value;
+    this.baseRepository.transferUserByAppId(this.appId, userId).subscribe(res => {
+      this.messageService.success('转交成功');
+    }, err => {
+      this.messageService.error(err.message);
+    });
   }
   advancedSetting(): void {
     this.isTransferShow = !this.isTransferShow;

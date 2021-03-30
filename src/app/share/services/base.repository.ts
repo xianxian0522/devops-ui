@@ -37,8 +37,14 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   queryAppDetailsById(appId: number): Observable<MODEl> {
     return this.httpClient.get<MODEl>(`${API}/app/${appId}`);
   }
+  updateAppDetailsById(appId: number, model: MODEl): Observable<MODEl> {
+    return this.httpClient.patch<MODEl>(`${API}/app/${appId}`, model);
+  }
   queryAllListByAppId(resourceUrl: string, appId: number, q?: {[key: string]: any}): Observable<MODEl[]> {
     return this.httpClient.get<MODEl[]>(`${API}/app/${appId}/${resourceUrl}`);
+  }
+  transferUserByAppId(appId: number, OwnerID: number): Observable<any> {
+    return this.httpClient.patch(`${API}/app/${appId}/transfer`, {OwnerID});
   }
 
 
