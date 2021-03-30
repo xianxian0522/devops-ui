@@ -27,11 +27,15 @@
       <span >高级设置</span>
     </div>
   </div>
-  <div *ngIf="isTransferShow">
-    <div>实例模板</div>
+  <div *ngIf="isAdvancedSettingShow">
+    <div style="margin: 10px 0">实例模板</div>
     <div app-common-form [editForm]="editInstanceForm"></div>
     <div >
       <button nz-button nzType="primary" (click)="onSubmitInstance()">修改</button>
     </div>
+  </div>
+  <div *ngIf="isAdvancedSettingShow" style="margin-top: 20px;">
+    <div>绑定机房环境</div>
+    <div></div>
   </div>
 </div>

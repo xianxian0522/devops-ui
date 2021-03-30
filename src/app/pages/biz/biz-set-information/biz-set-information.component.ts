@@ -30,7 +30,7 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
   OwnerID = new FormControl(null);
   bizId: number = this.bizService.selectedValue.value;
   userList: BizMember[] = [];
-  isTransferShow = false;
+  isAdvancedSettingShow = false;
   onSubscribe!: Subscription;
   onSubscribeMem!: Subscription;
 
@@ -91,7 +91,7 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
     });
   }
   advancedSetting(): void {
-    this.isTransferShow = !this.isTransferShow;
+    this.isAdvancedSettingShow = !this.isAdvancedSettingShow;
   }
 
 }

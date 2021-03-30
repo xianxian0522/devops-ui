@@ -53,7 +53,7 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
   OwnerID = new FormControl(null);
   appId: number = this.appService.appId;
   userList: AppMember[] = [];
-  isTransferShow = false;
+  isAdvancedSettingShow = false;
 
   ngOnInit(): void {
 
@@ -123,7 +123,7 @@ export class AppSetInformationComponent implements OnInit, AfterViewInit {
     });
   }
   advancedSetting(): void {
-    this.isTransferShow = !this.isTransferShow;
+    this.isAdvancedSettingShow = !this.isAdvancedSettingShow;
   }
 
 }

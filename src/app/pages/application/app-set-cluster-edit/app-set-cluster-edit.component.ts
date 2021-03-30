@@ -18,7 +18,7 @@ export class AppSetClusterEditComponent implements OnInit {
     Comment: [],
     Name: [],
   });
-  isTransferShow = false;
+  isAdvancedSettingShow = false;
   editInstanceForm = this.fb.group({
     BindInfos: this.fb.array([
       this.fb.group({
@@ -57,6 +57,6 @@ export class AppSetClusterEditComponent implements OnInit {
 
   }
   advancedSetting(): void {
-    this.isTransferShow = !this.isTransferShow;
+    this.isAdvancedSettingShow = !this.isAdvancedSettingShow;
   }
 }
