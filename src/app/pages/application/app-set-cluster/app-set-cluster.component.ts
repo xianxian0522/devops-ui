@@ -5,6 +5,7 @@ import {AppService} from '../../../share/services/app.service';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {FormBuilder} from '@angular/forms';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalService} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-app-set-cluster',
@@ -25,10 +26,34 @@ export class AppSetClusterComponent extends AppBaseCommonComponent<AppCluster> i
   searchForm = this.fb.group({
     Name: [],
   });
+  isVisible = false;
+  editForm = this.fb.group({
+    Comment: [],
+    Name: [],
+  });
 
   protected urlString = 'cluster';
 
   ngOnInit(): void {
+  }
+
+  deleteCluster(): void {
+
+  }
+
+  showCreateDialog(): void {
+    this.isVisible = true;
+  }
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+  handleOk(): void {
+    const value = {...this.editForm.value};
+    this.baseRepository.updateOrAdd('app', this.appId, value, this.urlString).subscribe(_ => {
+      this.messageService.success('新增成功');
+      this.isVisible = false;
+      this.refresh.emit();
+    });
   }
 
 }

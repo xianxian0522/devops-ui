@@ -37,6 +37,7 @@ export interface BizHost {
   OsName: string;
   OsType: string;
   OsVersion: string;
+  OsBit: string;
   State: string;
   UpdatedAt: string;
 }

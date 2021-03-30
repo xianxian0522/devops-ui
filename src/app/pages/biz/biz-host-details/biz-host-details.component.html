@@ -10,7 +10,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="10" nzNoColon>IP</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" formControlName="InnerIP" placeholder="显示名" />
+          <input nz-input nzSize="small" formControlName="InnerIP" placeholder="IP" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -32,6 +32,7 @@
         <th>操作系统名</th>
         <th>操作系统类型</th>
         <th>操作系统版本</th>
+        <th>操作系统位数</th>
         <th>状态</th>
         <th>备注</th>
         <th nzWidth="120px" nzRight>操作</th>
@@ -46,6 +47,7 @@
         <td>{{ data.OsName }}</td>
         <td>{{ data.OsType }}</td>
         <td>{{ data.OsVersion }}</td>
+        <td>{{ data.OsBit }}</td>
         <td>{{ data.State }}</td>
         <td>{{ data.Comment }}</td>
         <td nzRight>

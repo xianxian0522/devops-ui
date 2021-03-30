@@ -14,7 +14,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="10" nzNoColon>IP</nz-form-label>
         <nz-form-control>
-          <input nz-input nzSize="small" formControlName="InnerIP" placeholder="显示名" />
+          <input nz-input nzSize="small" formControlName="InnerIP" placeholder="IP" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -25,7 +25,7 @@
               nzShowPagination
               nzShowSizeChanger
               [nzLoading]="isResultLoading"
-              [nzScroll]="{x: '1600px'}"
+              [nzScroll]="{x: '1800px'}"
     >
       <thead>
       <tr>
@@ -36,27 +36,30 @@
         <th>操作系统名</th>
         <th>操作系统类型</th>
         <th>操作系统版本</th>
+        <th>操作系统位数</th>
         <th>状态</th>
         <th>备注</th>
-        <th>环境</th>
-        <th>机房</th>
-        <th nzWidth="120px" nzRight>操作</th>
+<!--        <th>环境</th>-->
+<!--        <th>机房</th>-->
+        <th nzWidth="150px" nzRight>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of basicTable.data">
-<!--        <td nzLeft>{{ data.InnerIP }}</td>-->
-<!--        <td>{{ data.CPU }}</td>-->
-<!--        <td>{{ data.Hostname }}</td>-->
-<!--        <td>{{ data.Memory }}</td>-->
-<!--        <td>{{ data.OsName }}</td>-->
-<!--        <td>{{ data.OsType }}</td>-->
-<!--        <td>{{ data.OsVersion }}</td>-->
-<!--        <td>{{ data.State }}</td>-->
-<!--        <td>{{ data.Comment }}</td>-->
+        <td nzLeft>{{ data.InnerIP }}</td>
+        <td>{{ data.CPU }}</td>
+        <td>{{ data.Hostname }}</td>
+        <td>{{ data.Memory }}</td>
+        <td>{{ data.OsName }}</td>
+        <td>{{ data.OsType }}</td>
+        <td>{{ data.OsVersion }}</td>
+        <td>{{ data.OsBit }}</td>
+        <td>{{ data.State }}</td>
+        <td>{{ data.Comment }}</td>
         <td nzRight>
-          <div>
-            <a nz-button nzType="text">分配</a>
+          <div style="display: flex;">
+            <button nz-button nzType="text">实例</button>
+            <button nz-button nzType="text">终端</button>
           </div>
         </td>
       </tr>

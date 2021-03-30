@@ -28,8 +28,8 @@ export class BaseRepository<MODEl extends {ID?: number}> {
     return this.httpClient.patch(`${API}/biz/${bizId}/transfer`, {OwnerID});
   }
 
-  updateOrAdd(urlFragment: string, bizId: number, model: MODEl): Observable<any> {
-    return this.httpClient.post(`${API}/${urlFragment}/${bizId}/member`, model);
+  updateOrAdd(urlFragment: string, id: number, model: MODEl, resourceUrl: string): Observable<any> {
+    return this.httpClient.post(`${API}/${urlFragment}/${id}/${resourceUrl}`, model);
   }
   deleteMemberById(id: number, urlFragment: string): Observable<any> {
     return this.httpClient.delete(`${API}/${urlFragment}member/${id}`);

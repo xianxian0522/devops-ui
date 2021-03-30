@@ -28,6 +28,27 @@ export interface AppCluster {
 
 export interface AppHost {
   ID: number;
+  Apps: App[];
+  CPU: number;
+  Comment: string;
+  CreatedAt: string;
+  Disk: [
+    {
+      Device: string;
+      FsType: string;
+      MountPoint: string;
+      SizeGB: number;
+    }
+  ];
+  Hostname: string;
+  InnerIP: string;
+  Memory: number;
+  OsBit: string;
+  OsName: string;
+  OsType: string;
+  OsVersion: string;
+  State: string;
+  UpdatedAt: string;
 }
 
 export interface AppInstance {
