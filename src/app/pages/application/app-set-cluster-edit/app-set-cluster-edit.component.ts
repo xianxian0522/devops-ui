@@ -103,5 +103,9 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
 
   nzCheck(event: NzFormatEmitEvent): void {
     console.log(event);
+    // const logicidcenvId = 1;
+    // this.baseRepository.clusterBindLogicidcenv(this.id, logicidcenvId).subscribe(res => {
+    //
+    // });
   }
 }

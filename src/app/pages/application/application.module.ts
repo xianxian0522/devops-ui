@@ -25,6 +25,7 @@ import {NzModalModule} from 'ng-zorro-antd/modal';
 import {NzMessageModule} from 'ng-zorro-antd/message';
 import { CommonFormComponent } from './common-form/common-form.component';
 import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
+import { CommonTreeComponent } from './common-tree/common-tree.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
     AppSetClusterComponent,
     AppSetClusterEditComponent,
     AppClusterInstanceComponent,
-    CommonFormComponent
+    CommonFormComponent,
+    CommonTreeComponent
   ],
   imports: [
     CommonModule,

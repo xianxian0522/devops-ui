@@ -52,6 +52,9 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   queryAllLogicidcenv(): Observable<LogicIdcEnvResponse[]> {
     return this.httpClient.get<LogicIdcEnvResponse[]>(`${API}/logicidcenv`);
   }
+  clusterBindLogicidcenv(clusterId: number, logicidcenvId: number): Observable<any> {
+    return this.httpClient.post(`${API}/cluster/${clusterId}/logicidcenv/${logicidcenvId}`, {});
+  }
 
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
