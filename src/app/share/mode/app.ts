@@ -1,3 +1,5 @@
+import {User} from './biz';
+
 export interface App {
   ID: number;
   Comment: string;
@@ -7,6 +9,9 @@ export interface App {
   Level: string;
   Name: string;
   UpdatedAt: string;
+  AppMembers: AppMember[];
+  Hosts: AppHost[];
+  Owner: User;
 }
 
 export interface AppMember {
