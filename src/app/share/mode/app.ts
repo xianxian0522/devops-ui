@@ -109,3 +109,17 @@ export interface LogicIdcEnvResponse {
   LogicIdc: AppLogicIdcEnv;
   UpdatedAt: string;
 }
+
+export interface NodeTree {
+  title: string;
+  key: string;
+  icon?: string;
+  isLeaf?: boolean;
+  checked?: boolean;
+  selected?: boolean;
+  selectable?: boolean;
+  disabled?: boolean;
+  disableCheckbox?: boolean;
+  expanded?: boolean;
+  children?: NodeTree[];
+}

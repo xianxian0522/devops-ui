@@ -64,7 +64,7 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
       }
     });
 
-    this.baseRepository.queryAllLogicidcenv().subscribe(res => {
+    this.baseRepository.queryAllLogicIdcEnv().subscribe(res => {
       if (res && res.length > 0) {
         const logic = res.map(r => ({logicIdcID: r.LogicIdc.ID, name: r.LogicIdc.Name}));
         const result: any = [];
@@ -82,6 +82,7 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
             title: l.name,
             key: l.logicIdcID,
             disabled: true,
+            expanded: true,
             children: [],
           });
           res.forEach(r => {
@@ -90,7 +91,8 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
              (nodesTree[index].children as NzTreeNodeOptions[]).push({
                 title: r.Env.Name,
                 key: r.ID + '-' + l.logicIdcID + '-' + r.Env.ID,
-                isLeaf: true,
+                checked: true,
+                selected: false
               });
             }
           });

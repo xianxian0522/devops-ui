@@ -26,6 +26,7 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
 import { CommonFormComponent } from './common-form/common-form.component';
 import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
 import { CommonTreeComponent } from './common-tree/common-tree.component';
+import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { CommonTreeComponent } from './common-tree/common-tree.component';
     NzModalModule,
     NzMessageModule,
     NzInputNumberModule,
+    NzCheckboxModule,
   ]
 })
 export class ApplicationModule { }

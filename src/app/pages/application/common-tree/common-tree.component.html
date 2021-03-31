@@ -1,1 +1,16 @@
-<p>common-tree works!</p>
+<div>
+  <ul *ngFor="let node of nodesData">
+    <li *ngIf="node.children; else elseBlockLi">
+      <i (click)="isExpandedChildren(node)" nz-icon [nzType]="node.expanded ? 'caret-down' : 'caret-right'" nzTheme="outline"></i>
+      <label *ngIf="node.checked" nz-checkbox [(ngModel)]="node.selected"></label>
+      <span>{{node.title}}</span>
+      <app-common-tree *ngIf="node.expanded" [nodesData]="node.children"></app-common-tree>
+    </li>
+    <ng-template #elseBlockLi>
+      <li >
+        <label (nzCheckedChange)="clusterBindLogicIdcEnv(node)" *ngIf="node.checked" nz-checkbox [(ngModel)]="node.selected"></label>
+        <span>{{node.title}}</span>
+      </li>
+    </ng-template>
+  </ul>
+</div>
