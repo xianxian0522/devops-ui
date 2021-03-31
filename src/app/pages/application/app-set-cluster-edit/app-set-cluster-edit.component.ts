@@ -4,6 +4,7 @@ import {FormBuilder} from '@angular/forms';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {BaseCommonEditComponent} from '../../../share/base-common-edit/base-common-edit.component';
+import {NzFormatEmitEvent, NzTreeNodeOptions} from 'ng-zorro-antd/tree';
 
 @Component({
   selector: 'app-app-set-cluster-edit',
@@ -52,6 +53,8 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
   // });
   id!: number;
 
+  nodesData: NzTreeNodeOptions[] = [];
+
   protected urlString = 'cluster';
 
   ngOnInit(): void {
@@ -60,5 +63,45 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
         this.id = parseInt(params.get('clusterId') as string, 10);
       }
     });
+
+    this.baseRepository.queryAllLogicidcenv().subscribe(res => {
+      if (res && res.length > 0) {
+        const logic = res.map(r => ({logicIdcID: r.LogicIdc.ID, name: r.LogicIdc.Name}));
+        const result: any = [];
+        const obj: any = {};
+        logic.forEach(item => {
+          if (!obj[item.logicIdcID]) {
+            result.push(item);
+            obj[item.logicIdcID] = true;
+          }
+        });
+        // console.log(logic, result, '去重');
+        const nodesTree: NzTreeNodeOptions[] = [];
+        result.forEach((l: any, index: number) => {
+          nodesTree.push({
+            title: l.name,
+            key: l.logicIdcID,
+            disabled: true,
+            children: [],
+          });
+          res.forEach(r => {
+            if (l.logicIdcID === r.LogicIdc.ID) {
+              // console.log(l, r);
+             (nodesTree[index].children as NzTreeNodeOptions[]).push({
+                title: r.Env.Name,
+                key: r.ID + '-' + l.logicIdcID + '-' + r.Env.ID,
+                isLeaf: true,
+              });
+            }
+          });
+        });
+        console.log(nodesTree);
+        this.nodesData = nodesTree;
+      }
+    });
+  }
+
+  nzCheck(event: NzFormatEmitEvent): void {
+    console.log(event);
   }
 }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {LogicIdcEnvResponse} from '../mode/app';
 
 const API = '/api/v1/my';
 
@@ -48,8 +49,8 @@ export class BaseRepository<MODEl extends {ID?: number}> {
     return this.httpClient.patch(`${API}/app/${appId}/transfer`, {OwnerID});
   }
 
-  queryAllLogicidcenv(): Observable<any> {
-    return this.httpClient.get(`${API}/logicidcenv`);
+  queryAllLogicidcenv(): Observable<LogicIdcEnvResponse[]> {
+    return this.httpClient.get<LogicIdcEnvResponse[]>(`${API}/logicidcenv`);
   }
 
 

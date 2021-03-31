@@ -94,7 +94,18 @@ export interface AppReplicaSet {
 export interface AppLogicIdcEnv {
   Comment: string;
   CreatedAt: string;
-  EnvVars: [{Name: string; Value: string;}];
+  EnvVars: [{Name: string; Value: string}];
   ID: number;
+  UpdatedAt: string;
+  DisplayName: string;
+  Name: string;
+}
+export interface LogicIdcEnvResponse {
+  Comment: string;
+  CreatedAt: string;
+  Env: AppLogicIdcEnv;
+  EnvVars: [{Name: string; Value: string}];
+  ID: number;
+  LogicIdc: AppLogicIdcEnv;
   UpdatedAt: string;
 }

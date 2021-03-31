@@ -34,8 +34,15 @@
       <button nz-button nzType="primary" (click)="onSubmitInstance()">修改</button>
     </div>
   </div>
-  <div *ngIf="isAdvancedSettingShow" style="margin-top: 20px;">
+  <div *ngIf="isAdvancedSettingShow" class="app-set-cluster-footer">
     <div>绑定机房环境</div>
-    <div></div>
+    <div>
+      <nz-tree
+          [nzData]="nodesData"
+          nzCheckable
+          nzExpandAll
+          (nzCheckBoxChange)="nzCheck($event)">
+      </nz-tree>
+    </div>
   </div>
 </div>
