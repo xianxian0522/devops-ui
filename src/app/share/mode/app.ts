@@ -80,3 +80,21 @@ export interface AppInstance {
   Name: string;
   State: string;
 }
+
+export interface AppReplicaSet {
+  Cluster: AppCluster;
+  Comment: string;
+  CreatedAt: string;
+  ID: number;
+  InstanceTemplate: AppInstance;
+  LogicIdcEnv: AppLogicIdcEnv;
+  UpdatedAt: string;
+}
+
+export interface AppLogicIdcEnv {
+  Comment: string;
+  CreatedAt: string;
+  EnvVars: [{Name: string; Value: string;}];
+  ID: number;
+  UpdatedAt: string;
+}

@@ -19,8 +19,8 @@ const routes: Routes = [
   {path: 'set-information', component: AppSetInformationComponent},
   {path: 'set-cluster', component: AppSetClusterComponent},
   {path: 'set-cluster/edit/:clusterId', component: AppSetClusterEditComponent},
-  {path: 'cluster-instance', component: AppClusterInstanceComponent},
-  // {path: 'set-cluster/instance/:id', component: AppClusterInstanceComponent},
+  // {path: 'cluster-instance', component: AppClusterInstanceComponent},
+  {path: 'set-cluster/instance/:clusterId', component: AppClusterInstanceComponent},
   {path: 'host-details', component: AppHostDetailsComponent},
 ];
 

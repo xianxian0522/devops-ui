@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {NzFormatEmitEvent} from 'ng-zorro-antd/tree';
+import {FormBuilder} from '@angular/forms';
+import {AppBaseCommonComponent} from '../../../share/base-common/app-base-common.component';
+import {AppService} from '../../../share/services/app.service';
+import {BaseRepository} from '../../../share/services/base.repository';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {AppReplicaSet} from '../../../share/mode/app';
 
 @Component({
   selector: 'app-app-cluster-instance',
@@ -7,15 +13,17 @@ import {NzFormatEmitEvent} from 'ng-zorro-antd/tree';
   styleUrls: ['./app-cluster-instance.component.less']
 })
 export class AppClusterInstanceComponent implements OnInit {
+  constructor(
+    private fb: FormBuilder,
+    protected appService: AppService,
+    protected baseRepository: BaseRepository<AppReplicaSet>,
+    protected messageService: NzMessageService,
+  ) {}
 
-  constructor() { }
-
-  searchValue = '';
-  listOfData = [
-    {id: 1, innerIp: '192.168.51.11', name: 'QBServer', house: '上海南汇', dev: '生产'},
-    {id: 2, innerIp: '192.168.51.12', name: 'QBServer', house: '上海南汇', dev: '生产'},
-    {id: 3, innerIp: '192.168.51.13', name: 'QBServer', house: '上海南汇', dev: '生产'},
-  ];
+  searchForm = this.fb.group({
+    Name: [],
+  });
+  listOfData: AppReplicaSet[] = [];
 
   nodes = [
     {
@@ -85,10 +93,17 @@ export class AppClusterInstanceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  nzCheck(event: NzFormatEmitEvent): void {
+    console.log(event);
+  }
   nzEvent(event: NzFormatEmitEvent): void {
     console.log(event);
   }
   showListData(event: NzFormatEmitEvent): void {
     console.log(event, 'event');
+  }
+
+  showCreateDialog(): void {
+
   }
 }

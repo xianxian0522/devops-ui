@@ -81,12 +81,12 @@ const ALL_APP_MENUS: MenuItem[] = [
         icon: 'appstore',
         level: 2,
       },
-      {
-        id: 'cluster-instance',
-        name: '实例配置',
-        icon: 'highlight',
-        level: 2,
-      }
+      // {
+      //   id: 'cluster-instance',
+      //   name: '实例配置',
+      //   icon: 'highlight',
+      //   level: 2,
+      // }
     ],
   },
   {
