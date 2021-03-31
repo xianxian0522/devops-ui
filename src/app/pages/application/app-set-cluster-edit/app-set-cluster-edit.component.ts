@@ -25,31 +25,31 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
     Comment: [],
     Name: [],
   });
-  isAdvancedSettingShow = false;
-  editInstanceForm = this.fb.group({
-    BindInfos: this.fb.array([
-      this.fb.group({
-        Ip: [],
-        Name: [],
-        Port: [],
-        Protocol: []
-      })
-    ]),
-    EnvVars: this.fb.array([
-      this.fb.group({
-        Name: [],
-        Value: [],
-      })
-    ]),
-    Comment: [],
-    DataDir: [],
-    LogDir: [],
-    MetricEndpoint: [],
-    Name: [],
-    State: [],
-    User: [],
-    WorkDir: [],
-  });
+  // isAdvancedSettingShow = false;
+  // editInstanceForm = this.fb.group({
+  //   BindInfos: this.fb.array([
+  //     this.fb.group({
+  //       Ip: [],
+  //       Name: [],
+  //       Port: [],
+  //       Protocol: []
+  //     })
+  //   ]),
+  //   EnvVars: this.fb.array([
+  //     this.fb.group({
+  //       Name: [],
+  //       Value: [],
+  //     })
+  //   ]),
+  //   Comment: [],
+  //   DataDir: [],
+  //   LogDir: [],
+  //   MetricEndpoint: [],
+  //   Name: [],
+  //   State: [],
+  //   User: [],
+  //   WorkDir: [],
+  // });
   id!: number;
 
   protected urlString = 'cluster';

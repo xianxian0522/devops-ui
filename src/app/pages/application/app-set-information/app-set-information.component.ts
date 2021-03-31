@@ -28,35 +28,35 @@ export class AppSetInformationComponent extends BaseCommonEditComponent<any> imp
     DisplayName: [],
     Comment: [],
   });
-  editInstanceForm = this.fb.group({
-    BindInfos: this.fb.array([
-      this.fb.group({
-        Ip: [],
-        Name: [],
-        Port: [],
-        Protocol: []
-      })
-    ]),
-    EnvVars: this.fb.array([
-      this.fb.group({
-        Name: [],
-        Value: [],
-      })
-    ]),
-    Comment: [],
-    DataDir: [],
-    LogDir: [],
-    MetricEndpoint: [],
-    Name: [],
-    State: [],
-    User: [],
-    WorkDir: [],
-  });
+  // editInstanceForm = this.fb.group({
+  //   BindInfos: this.fb.array([
+  //     this.fb.group({
+  //       Ip: [],
+  //       Name: [],
+  //       Port: [],
+  //       Protocol: []
+  //     })
+  //   ]),
+  //   EnvVars: this.fb.array([
+  //     this.fb.group({
+  //       Name: [],
+  //       Value: [],
+  //     })
+  //   ]),
+  //   Comment: [],
+  //   DataDir: [],
+  //   LogDir: [],
+  //   MetricEndpoint: [],
+  //   Name: [],
+  //   State: [],
+  //   User: [],
+  //   WorkDir: [],
+  // });
   // 从业务成员里面选择
   // OwnerID = new FormControl(null);
   id: number = this.appService.appId;
   userList: AppMember[] = [];
-  isAdvancedSettingShow = false;
+  // isAdvancedSettingShow = false;
 
   protected urlString = 'app';
 

@@ -48,6 +48,10 @@ export class BaseRepository<MODEl extends {ID?: number}> {
     return this.httpClient.patch(`${API}/app/${appId}/transfer`, {OwnerID});
   }
 
+  queryAllLogicidcenv(): Observable<any> {
+    return this.httpClient.get(`${API}/logicidcenv`);
+  }
+
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);

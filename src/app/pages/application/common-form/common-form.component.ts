@@ -44,7 +44,7 @@ export class CommonFormComponent implements OnInit {
     );
   }
   removeInfo(index: number): void {
-    console.log(index);
+    // console.log(index);
     this.bindInfos.removeAt(index);
   }
   removeEnv(index: number): void {
