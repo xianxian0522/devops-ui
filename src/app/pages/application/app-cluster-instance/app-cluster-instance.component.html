@@ -25,7 +25,7 @@
       </nz-sider>
       <nz-content>
         <div class="app-set-content-search">
-          <button nz-button (click)="showCreateDialog()">添加</button>
+          <button nz-button (click)="showCreateDialog()" [disabled]="!rsId">添加</button>
           <div nz-form nzLayout="inline" [formGroup]="searchForm">
             <nz-form-item>
               <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
@@ -36,7 +36,8 @@
           </div>
         </div>
         <nz-table #basicTable [nzData]="listOfData"
-                  [nzScroll]="{x: '1500px'}"
+                  [nzScroll]="{x: '1500px', y: '500px'}"
+                  [nzLoading]="isResultLoading"
                   nzShowPagination
                   nzShowSizeChanger>
           <thead>
@@ -50,7 +51,7 @@
             <th>日志目录</th>
             <th>监控采集地址</th>
             <th>工作目录</th>
-            <th nzWidth="200px" nzRight>操作</th>
+            <th nzWidth="80px" nzRight>操作</th>
           </tr>
           </thead>
           <tbody>
@@ -66,10 +67,10 @@
             <td>{{ data.WorkDir }}</td>
             <td nzRight>
               <div>
-                <button nz-button nzType="text" nzSize="small">上架</button>
-                <button nz-button nzType="text" nzSize="small">下架</button>
-                <button nz-button nzType="text" nzSize="small">释放</button>
-                <button nz-button nzType="text" >
+<!--                <button nz-button nzType="text" nzSize="small">下架</button>-->
+<!--                <button nz-button nzType="text" nzSize="small">上线</button>-->
+<!--                <button nz-button nzType="text" nzSize="small">释放</button>-->
+                <button nz-button nzType="text" (click)="showEditDialog(data)">
                   <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </button>
               </div>

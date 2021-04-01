@@ -1,0 +1,18 @@
+<div>
+  <div app-common-form [editForm]="editForm"></div>
+  <div nz-form *ngIf="mode === 'created'">
+    <nz-form-item>
+      <nz-form-label nzSpan="3" nzNoColon>主机</nz-form-label>
+      <nz-form-control nzSpan="6">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a host" [formControl]="HostID" nzSize="small">
+          <nz-option *ngFor="let host of hostList" [nzLabel]="host.InnerIP" [nzValue]="host.ID"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div class="btns">
+    <button nz-button (click)="onCancel()">取消</button>
+    <button *ngIf="mode === 'edit'" nz-button nzType="primary" (click)="onSubmit()" [disabled]="!editForm.valid">确定</button>
+    <button *ngIf="mode === 'created'" nz-button nzType="primary" (click)="onSubmit()" [disabled]="(!editForm.valid || !HostID.valid)">确定</button>
+  </div>
+</div>

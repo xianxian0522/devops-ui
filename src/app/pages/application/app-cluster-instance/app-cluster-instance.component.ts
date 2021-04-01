@@ -10,6 +10,9 @@ import {ActivatedRoute} from '@angular/router';
 import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
 import {merge} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {CommonFormComponent} from '../common-form/common-form.component';
+import {AppRsInstanceEditComponent} from '../app-rs-instance-edit/app-rs-instance-edit.component';
 
 @Component({
   selector: 'app-app-cluster-instance',
@@ -24,6 +27,7 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
     protected baseRepository: BaseRepository<AppReplicaSet>,
     protected messageService: NzMessageService,
     private activatedRoute: ActivatedRoute,
+    private modalService: NzModalService,
   ) {
     super(baseRepository, messageService);
   }
@@ -36,6 +40,8 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
   nodesData: NzTreeNodeOptions[] = [];
   clusterId!: number;
   protected urlFragment = 'rs';
+  rsId!: number;
+  isResultLoading = false;
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -86,19 +92,45 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
     merge(this.refresh).pipe(
       debounceTime(200),
       switchMap(v => {
+        this.isResultLoading = true;
         return this.baseRepository.queryRsInstance(v);
       })
     ).subscribe(res => {
+      this.isResultLoading = false;
       this.listOfData = res;
       this.resourceData = res;
     });
   }
 
   showCreateDialog(): void {
-
+    this.modalService.create({
+      nzContent: AppRsInstanceEditComponent,
+      nzComponentParams: {data: {}, mode: 'created', rsId: this.rsId},
+      nzWidth: '80vw',
+      nzFooter: null,
+      nzTitle: '新增实例',
+    }).afterClose.subscribe(_ => {
+      if (_) {
+        this.refresh.emit(this.rsId);
+      }
+    });
+  }
+  showEditDialog(ele: AppInstance): void {
+    this.modalService.create({
+      nzTitle: '修改实例',
+      nzComponentParams: {data: ele, mode: 'edit', rsId: this.rsId},
+      nzWidth: '80vw',
+      nzFooter: null,
+      nzContent: AppRsInstanceEditComponent,
+    }).afterClose.subscribe(_ => {
+      if (_) {
+        this.refresh.emit(this.rsId);
+      }
+    });
   }
 
   queryEvent(event: number): void {
+    this.rsId = event;
     this.refresh.emit(event);
   }
 }

@@ -64,6 +64,12 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   queryRsInstance(rsId: number): Observable<any> {
     return this.httpClient.get(`${API}/rs/${rsId}/instance`);
   }
+  addInstance(rsId: number, model: MODEl): Observable<any> {
+    return this.httpClient.post(`${API}/rs/${rsId}`, model);
+  }
+  update(model: MODEl): Observable<any> {
+    return this.httpClient.patch(`${API}/instnace/${model.ID}`, model);
+  }
 
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {

@@ -27,6 +27,7 @@ import { CommonFormComponent } from './common-form/common-form.component';
 import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
 import { CommonTreeComponent } from './common-tree/common-tree.component';
 import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
+import { AppRsInstanceEditComponent } from './app-rs-instance-edit/app-rs-instance-edit.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
     AppSetClusterEditComponent,
     AppClusterInstanceComponent,
     CommonFormComponent,
-    CommonTreeComponent
+    CommonTreeComponent,
+    AppRsInstanceEditComponent
   ],
   imports: [
     CommonModule,
