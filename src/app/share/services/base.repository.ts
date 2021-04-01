@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {LogicIdcEnvResponse} from '../mode/app';
+import {App, AppReplicaSet, LogicIdcEnvResponse} from '../mode/app';
 
 const API = '/api/v1/my';
 
@@ -54,6 +54,12 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   }
   clusterBindLogicIdcEnv(clusterId: number, logicidcenvId: number): Observable<any> {
     return this.httpClient.post(`${API}/cluster/${clusterId}/logicidcenv/${logicidcenvId}`, {});
+  }
+  deleteClusterBindLogicIdcEnv(clusterId: number, logicidcenvId: number): Observable<any> {
+    return this.httpClient.delete(`${API}/cluster/${clusterId}/logicidcenv/${logicidcenvId}`);
+  }
+  getRsByClusterId(clusterId: number): Observable<AppReplicaSet[]> {
+    return this.httpClient.get<AppReplicaSet[]>(`${API}/cluster/${clusterId}/rs`);
   }
 
 

@@ -36,14 +36,14 @@
   </div>
   <div *ngIf="isAdvancedSettingShow" class="app-set-cluster-footer">
     <div>绑定机房环境</div>
-    <div>
-      <nz-tree
-          [nzData]="nodesData"
-          nzCheckable
-          nzExpandAll
-          (nzCheckBoxChange)="nzCheck($event)">
-      </nz-tree>
-    </div>
+<!--    <div>-->
+<!--      <nz-tree-->
+<!--          [nzData]="nodesData"-->
+<!--          nzCheckable-->
+<!--          nzExpandAll-->
+<!--          (nzCheckBoxChange)="nzCheck($event)">-->
+<!--      </nz-tree>-->
+<!--    </div>-->
     <div>
       <app-common-tree [clusterId]="id" [nodesData]="nodesData"></app-common-tree>
     </div>

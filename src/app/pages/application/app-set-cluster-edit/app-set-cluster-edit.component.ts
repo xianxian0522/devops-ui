@@ -75,39 +75,49 @@ export class AppSetClusterEditComponent extends BaseCommonEditComponent<any> imp
             obj[item.logicIdcID] = true;
           }
         });
-        // console.log(logic, result, '去重');
-        const nodesTree: NzTreeNodeOptions[] = [];
-        result.forEach((l: any, index: number) => {
-          nodesTree.push({
-            title: l.name,
-            key: l.logicIdcID,
-            disabled: true,
-            expanded: true,
-            children: [],
+
+        let logicIdcEnvIds: number[] = [];
+        this.baseRepository.getRsByClusterId(this.id).subscribe(rs => {
+          // 获取集群副本集里的逻辑机房环境 是否绑定逻辑机房环境
+          if (rs) {
+            logicIdcEnvIds = rs.map(r => r.LogicIdcEnv.ID);
+          }
+
+          // console.log(logic, result, '去重');
+          const nodesTree: NzTreeNodeOptions[] = [];
+          result.forEach((l: any, index: number) => {
+            nodesTree.push({
+              title: l.name,
+              key: l.logicIdcID,
+              expanded: true,
+              children: [],
+            });
+            res.forEach(r => {
+              if (l.logicIdcID === r.LogicIdc.ID) {
+                if (logicIdcEnvIds.includes(r.ID)) {
+                  (nodesTree[index].children as NzTreeNodeOptions[]).push({
+                    title: r.Env.Name,
+                    key: r.ID + '-' + l.logicIdcID + '-' + r.Env.ID,
+                    checked: true,
+                    selected: true
+                  });
+                } else {
+                  (nodesTree[index].children as NzTreeNodeOptions[]).push({
+                    title: r.Env.Name,
+                    key: r.ID + '-' + l.logicIdcID + '-' + r.Env.ID,
+                    checked: true,
+                    selected: false
+                  });
+                }
+                // console.log(l, r, logicIdcEnvIds);
+              }
+            });
           });
-          res.forEach(r => {
-            if (l.logicIdcID === r.LogicIdc.ID) {
-              // console.log(l, r);
-             (nodesTree[index].children as NzTreeNodeOptions[]).push({
-                title: r.Env.Name,
-                key: r.ID + '-' + l.logicIdcID + '-' + r.Env.ID,
-                checked: true,
-                selected: false
-              });
-            }
-          });
+          console.log(nodesTree);
+          this.nodesData = nodesTree;
         });
-        console.log(nodesTree);
-        this.nodesData = nodesTree;
       }
     });
   }
 
-  nzCheck(event: NzFormatEmitEvent): void {
-    console.log(event);
-    // const logicidcenvId = 1;
-    // this.baseRepository.clusterBindLogicidcenv(this.id, logicidcenvId).subscribe(res => {
-    //
-    // });
-  }
 }

@@ -110,16 +110,11 @@ export interface LogicIdcEnvResponse {
   UpdatedAt: string;
 }
 
-export interface NodeTree {
+export interface TreeNodeOptions {
   title: string;
   key: string;
-  icon?: string;
-  isLeaf?: boolean;
   checked?: boolean;
   selected?: boolean;
-  selectable?: boolean;
-  disabled?: boolean;
-  disableCheckbox?: boolean;
   expanded?: boolean;
-  children?: NodeTree[];
+  children?: TreeNodeOptions[];
 }

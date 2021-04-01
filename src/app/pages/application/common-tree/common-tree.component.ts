@@ -28,8 +28,10 @@ export class CommonTreeComponent implements OnInit {
   clusterBindLogicIdcEnv(node: NzTreeNodeOptions): void {
     const key = node.key;
     const logicIdcEnvId = parseInt(key.split('-')[0], 10);
-    this.baseRepository.clusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId).subscribe(res => {
-      this.messageService.success('集群成功绑定到逻辑机房');
+    (node.selected ? this.baseRepository.clusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId) :
+      this.baseRepository.deleteClusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId)
+    ).subscribe(res => {
+      this.messageService.success( node.selected ? '集群成功绑定到逻辑机房' : '集群成功解除绑定逻辑机房');
     });
   }
 }
