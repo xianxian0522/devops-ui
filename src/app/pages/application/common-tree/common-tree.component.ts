@@ -31,14 +31,14 @@ export class CommonTreeComponent implements OnInit {
     const key = node.key;
     if (this.queryOrBind === 'bind') {
       const logicIdcEnvId = parseInt(key.split('-')[0], 10);
-      console.log(logicIdcEnvId);
+
       (node.selected ? this.baseRepository.clusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId) :
           this.baseRepository.deleteClusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId)
       ).subscribe(res => {
         this.messageService.success( node.selected ? '集群成功绑定到逻辑机房' : '集群成功解除绑定逻辑机房');
       });
     } else {
-      console.log(node);
+      // console.log(node, this.nodesData);
       const rsId = parseInt(key.split('-')[0], 10);
       if (node.selected) {
         this.queryEvent.emit(rsId);

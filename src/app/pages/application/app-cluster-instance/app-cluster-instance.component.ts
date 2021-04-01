@@ -132,5 +132,18 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
   queryEvent(event: number): void {
     this.rsId = event;
     this.refresh.emit(event);
+    // console.log(this.rsId, this.nodesData);
+    const data = this.nodesData.map(k => k.children);
+    const arr = this.flattenDeep(data);
+    arr.map((k: any) => {
+      const id = parseInt(k.key.split('-')[0], 10);
+      if (id !== this.rsId) {
+        k.selected = false;
+      }
+    });
+  }
+  flattenDeep(arr: any): any {
+    return arr.reduce((acc: any, val: any) => Array.isArray(val) ?
+      acc.concat(this.flattenDeep(val)) : acc.concat(val), []);
   }
 }
