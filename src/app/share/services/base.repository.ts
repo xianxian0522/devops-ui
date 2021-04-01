@@ -61,6 +61,9 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   getRsByClusterId(clusterId: number): Observable<AppReplicaSet[]> {
     return this.httpClient.get<AppReplicaSet[]>(`${API}/cluster/${clusterId}/rs`);
   }
+  queryRsInstance(rsId: number): Observable<any> {
+    return this.httpClient.get(`${API}/rs/${rsId}/instance`);
+  }
 
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {

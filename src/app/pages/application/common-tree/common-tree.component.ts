@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {NzTreeNodeOptions} from 'ng-zorro-antd/tree';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {NzMessageService} from 'ng-zorro-antd/message';
@@ -17,6 +17,8 @@ export class CommonTreeComponent implements OnInit {
 
   @Input() nodesData!: NzTreeNodeOptions[];
   @Input() clusterId!: number;
+  @Input() queryOrBind!: string;
+  @Output() queryEvent = new EventEmitter();
 
   ngOnInit(): void {
 
@@ -27,11 +29,20 @@ export class CommonTreeComponent implements OnInit {
   }
   clusterBindLogicIdcEnv(node: NzTreeNodeOptions): void {
     const key = node.key;
-    const logicIdcEnvId = parseInt(key.split('-')[0], 10);
-    (node.selected ? this.baseRepository.clusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId) :
-      this.baseRepository.deleteClusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId)
-    ).subscribe(res => {
-      this.messageService.success( node.selected ? '集群成功绑定到逻辑机房' : '集群成功解除绑定逻辑机房');
-    });
+    if (this.queryOrBind === 'bind') {
+      const logicIdcEnvId = parseInt(key.split('-')[0], 10);
+      console.log(logicIdcEnvId);
+      (node.selected ? this.baseRepository.clusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId) :
+          this.baseRepository.deleteClusterBindLogicIdcEnv(this.clusterId, logicIdcEnvId)
+      ).subscribe(res => {
+        this.messageService.success( node.selected ? '集群成功绑定到逻辑机房' : '集群成功解除绑定逻辑机房');
+      });
+    } else {
+      console.log(node);
+      const rsId = parseInt(key.split('-')[0], 10);
+      if (node.selected) {
+        this.queryEvent.emit(rsId);
+      }
+    }
   }
 }

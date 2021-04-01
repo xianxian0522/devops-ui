@@ -9,22 +9,19 @@
     <nz-layout>
       <nz-sider nzWidth="200px" nzTheme="light">
         <div class="business-tree">
-<!--          <nz-input-group [nzSuffix]="suffixIcon">-->
-<!--            <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />-->
-<!--          </nz-input-group>-->
-<!--          <ng-template #suffixIcon>-->
-<!--            <i nz-icon nzType="search"></i>-->
-<!--          </ng-template>-->
-          <nz-tree
-              [nzData]="nodes"
-              nzCheckable
-              nzExpandAll
-              (nzClick)="showListData($event)"
-              (nzExpandChange)="nzEvent($event)"
-              (nzCheckBoxChange)="nzCheck($event)"
-              (nzSearchValueChange)="nzEvent($event)">
-          </nz-tree>
+          <app-common-tree [nodesData]="nodesData" [clusterId]="clusterId" (queryEvent)="queryEvent($event)" queryOrBind="query"></app-common-tree>
         </div>
+<!--        <div class="business-tree">-->
+<!--          <nz-tree-->
+<!--              [nzData]="nodes"-->
+<!--              nzCheckable-->
+<!--              nzExpandAll-->
+<!--              (nzClick)="showListData($event)"-->
+<!--              (nzExpandChange)="nzEvent($event)"-->
+<!--              (nzCheckBoxChange)="nzCheck($event)"-->
+<!--              (nzSearchValueChange)="nzEvent($event)">-->
+<!--          </nz-tree>-->
+<!--        </div>-->
       </nz-sider>
       <nz-content>
         <div class="app-set-content-search">
@@ -39,25 +36,44 @@
           </div>
         </div>
         <nz-table #basicTable [nzData]="listOfData"
-                  [nzScroll]="{x: '1100px'}"
+                  [nzScroll]="{x: '1500px'}"
                   nzShowPagination
                   nzShowSizeChanger>
           <thead>
           <tr>
-            <th nzWidth="120px" nzLeft>ID</th>
-            <th>内网IP</th>
-            <th>应用名</th>
-            <th>机房</th>
-            <th>环境</th>
+            <th nzWidth="100px" nzLeft>ID</th>
+            <th>实例名</th>
+            <th>描述</th>
+            <th>状态</th>
+            <th>用户</th>
+            <th>数据目录</th>
+            <th>日志目录</th>
+            <th>监控采集地址</th>
+            <th>工作目录</th>
+            <th nzWidth="200px" nzRight>操作</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let data of basicTable.data">
-<!--            <td nzLeft>{{ data.id }}</td>-->
-<!--            <td>{{ data.innerIp }}</td>-->
-<!--            <td>{{ data.name }}</td>-->
-<!--            <td>{{ data.house }}</td>-->
-<!--            <td>{{ data.dev }}</td>-->
+            <td nzLeft>{{ data.ID }}</td>
+            <td>{{ data.Name }}</td>
+            <td>{{ data.Comment }}</td>
+            <td>{{ data.State }}</td>
+            <td>{{ data.User }}</td>
+            <td>{{ data.DataDir }}</td>
+            <td>{{ data.LogDir }}</td>
+            <td>{{ data.MetricEndpoint }}</td>
+            <td>{{ data.WorkDir }}</td>
+            <td nzRight>
+              <div>
+                <button nz-button nzType="text" nzSize="small">上架</button>
+                <button nz-button nzType="text" nzSize="small">下架</button>
+                <button nz-button nzType="text" nzSize="small">释放</button>
+                <button nz-button nzType="text" >
+                  <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </button>
+              </div>
+            </td>
           </tr>
           </tbody>
         </nz-table>

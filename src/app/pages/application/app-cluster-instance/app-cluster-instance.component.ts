@@ -1,109 +1,104 @@
-import { Component, OnInit } from '@angular/core';
-import {NzFormatEmitEvent} from 'ng-zorro-antd/tree';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {NzFormatEmitEvent, NzTreeNodeOptions} from 'ng-zorro-antd/tree';
 import {FormBuilder} from '@angular/forms';
 import {AppBaseCommonComponent} from '../../../share/base-common/app-base-common.component';
 import {AppService} from '../../../share/services/app.service';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {AppReplicaSet} from '../../../share/mode/app';
+import {AppInstance, AppReplicaSet} from '../../../share/mode/app';
+import {ActivatedRoute} from '@angular/router';
+import {BaseCommonComponent} from '../../../share/base-common/base-common.component';
+import {merge} from 'rxjs';
+import {debounceTime, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-app-cluster-instance',
   templateUrl: './app-cluster-instance.component.html',
   styleUrls: ['./app-cluster-instance.component.less']
 })
-export class AppClusterInstanceComponent implements OnInit {
+export class AppClusterInstanceComponent extends BaseCommonComponent<any> implements OnInit, AfterViewInit {
+
   constructor(
     private fb: FormBuilder,
     protected appService: AppService,
     protected baseRepository: BaseRepository<AppReplicaSet>,
     protected messageService: NzMessageService,
-  ) {}
+    private activatedRoute: ActivatedRoute,
+  ) {
+    super(baseRepository, messageService);
+  }
 
   searchForm = this.fb.group({
     Name: [],
   });
-  listOfData: AppReplicaSet[] = [];
+  listOfData: AppInstance[] = [];
 
-  nodes = [
-    {
-      title: 'QB',
-      key: 'QB',
-      children: [
-        {
-          title: '上海办公网',
-          key: 'QB-1',
-          children: [
-            { title: '空闲', key: 'QB-1-1', isLeaf: true },
-            { title: '开发环境', key: 'QB-1-2',
-              children: [
-                {title: 'APP:QBServer', key: 'QB-1-2-1',
-                  children: [{title: 'CLUSTER: QBServer', key: 'QB-1-2-1-1', isLeaf: true}],
-                }
-              ],
-            },
-            { title: '测试环境', key: 'Qb-1-3',
-              children: [
-                {title: 'APP: QBServer', key: 'QB-1-2-2',
-                  children: [{title: 'CLUSTER: QBServer', key: 'QB-1-2-1-1', isLeaf: true}]
-                }
-              ],
-            }
-          ]
-        },
-        {
-          title: '上海南汇',
-          key: 'QB-2',
-          children: [
-            { title: '空闲', key: 'QB-2-1', isLeaf: true },
-            { title: '生产环境', key: 'QB-2-2', isLeaf: true },
-            { title: '预发布环境', key: 'Qb-2-3', isLeaf: true }
-          ]
-        },
-        {
-          title: '华为云上海1',
-          key: 'QB-3',
-          children: [
-            {title: '空闲', key: 'QB-3-1', isLeaf: true},
-            {title: '生产环境', key: 'QB-3-2', isLeaf: true},
-          ],
-        }
-      ]
-    },
-    {
-      title: '0-1',
-      key: '0-1',
-      children: [
-        { title: '0-1-0-0', key: '0-1-0-0', isLeaf: true },
-        { title: '0-1-0-1', key: '0-1-0-1', isLeaf: true },
-        { title: '0-1-0-2', key: '0-1-0-2', isLeaf: true }
-      ]
-    },
-    {
-      title: '0-2',
-      key: '0-2',
-      children: [
-        { title: '空闲', key: 'QB-2-1', isLeaf: true },
-        { title: '生产环境', key: 'QB-2-2', isLeaf: true },
-        { title: '预发布环境', key: 'Qb-2-3', isLeaf: true }
-      ]
-    }
-  ];
+  nodesData: NzTreeNodeOptions[] = [];
+  clusterId!: number;
+  protected urlFragment = 'rs';
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+      if (params && params.get('clusterId')) {
+        this.clusterId = parseInt(params.get('clusterId') as string, 10);
+      }
+    });
+
+    this.baseRepository.getRsByClusterId(this.clusterId).subscribe(res => {
+      if (res && res.length > 0) {
+        const logic = res.map(r => ({logicIdcID: r.LogicIdcEnv.LogicIdc.ID, name: r.LogicIdcEnv.LogicIdc.Name}));
+        const result: any = [];
+        const obj: any = {};
+        logic.forEach(item => {
+          if (!obj[item.logicIdcID]) {
+            result.push(item);
+            obj[item.logicIdcID] = true;
+          }
+        });
+
+        const nodesTree: NzTreeNodeOptions[] = [];
+        result.map((logicIdc: any, index: number) => {
+          nodesTree.push({
+            title: logicIdc.name,
+            key: logicIdc.logicIdcID,
+            expanded: true,
+            children: [],
+          });
+          res.map(r => {
+            if (logicIdc.logicIdcID === r.LogicIdcEnv.LogicIdc.ID) {
+              (nodesTree[index].children as NzTreeNodeOptions[]).push({
+                title: r.LogicIdcEnv.Env.Name,
+                key: r.ID + '-' + r.LogicIdcEnv.ID + '-' + logicIdc.logicIdcID + '-' + r.LogicIdcEnv.Env.ID,
+                checked: true,
+                selected: false
+              });
+            }
+          });
+        });
+        this.nodesData = nodesTree;
+      }
+    });
   }
 
-  nzCheck(event: NzFormatEmitEvent): void {
-    console.log(event);
-  }
-  nzEvent(event: NzFormatEmitEvent): void {
-    console.log(event);
-  }
-  showListData(event: NzFormatEmitEvent): void {
-    console.log(event, 'event');
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
+
+    merge(this.refresh).pipe(
+      debounceTime(200),
+      switchMap(v => {
+        return this.baseRepository.queryRsInstance(v);
+      })
+    ).subscribe(res => {
+      this.listOfData = res;
+      this.resourceData = res;
+    });
   }
 
   showCreateDialog(): void {
 
+  }
+
+  queryEvent(event: number): void {
+    this.refresh.emit(event);
   }
 }

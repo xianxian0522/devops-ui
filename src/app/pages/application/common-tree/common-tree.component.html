@@ -4,7 +4,7 @@
       <i (click)="isExpandedChildren(node)" nz-icon [nzType]="node.expanded ? 'caret-down' : 'caret-right'" nzTheme="outline"></i>
       <label *ngIf="node.checked" nz-checkbox [(ngModel)]="node.selected"></label>
       <span>{{node.title}}</span>
-      <app-common-tree *ngIf="node.expanded" [nodesData]="node.children" [clusterId]="clusterId"></app-common-tree>
+      <app-common-tree *ngIf="node.expanded" [nodesData]="node.children" [clusterId]="clusterId" [queryOrBind]="queryOrBind" (queryEvent)="queryEvent.emit($event)"></app-common-tree>
     </li>
     <ng-template #elseBlockLi>
       <li >

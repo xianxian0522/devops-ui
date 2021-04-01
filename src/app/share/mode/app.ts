@@ -57,6 +57,7 @@ export interface AppHost {
 }
 
 export interface AppInstance {
+  ID: number;
   BindInfos: [
     {
       Ip: string;
@@ -87,7 +88,7 @@ export interface AppReplicaSet {
   CreatedAt: string;
   ID: number;
   InstanceTemplate: AppInstance;
-  LogicIdcEnv: AppLogicIdcEnv;
+  LogicIdcEnv: LogicIdcEnvResponse;
   UpdatedAt: string;
 }
 
