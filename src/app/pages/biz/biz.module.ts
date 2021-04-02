@@ -22,6 +22,7 @@ import {NzModalModule} from 'ng-zorro-antd/modal';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
 import {NzTagModule} from 'ng-zorro-antd/tag';
+import { BizDistributionAppComponent } from './biz-distribution-app/biz-distribution-app.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {NzTagModule} from 'ng-zorro-antd/tag';
     BizSetInformationComponent,
     BizSetAppComponent,
     BizHostDetailsComponent,
+    BizDistributionAppComponent,
   ],
   imports: [
     CommonModule,

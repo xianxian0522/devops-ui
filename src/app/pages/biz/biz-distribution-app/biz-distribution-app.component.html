@@ -1,0 +1,11 @@
+<div>
+  <div style="margin-bottom: 20px;">
+    <nz-select style="width: 100%;" [(ngModel)]="appsIds" nzSize="small" nzMode="multiple" nzPlaceHolder="Please select">
+      <nz-option *ngFor="let app of appsList" [nzLabel]="app.Name" [nzValue]="app.ID"></nz-option>
+    </nz-select>
+  </div>
+  <div class="btns">
+    <button nz-button (click)="distributionAppCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="distributionApp()">确定</button>
+  </div>
+</div>

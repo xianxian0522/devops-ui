@@ -4,9 +4,11 @@ import {BizService} from '../../../share/services/biz.service';
 import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../../../share/services/base.repository';
-import {BizHost} from '../../../share/mode/biz';
+import {BizApp, BizHost} from '../../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {BizDistributionAppComponent} from '../biz-distribution-app/biz-distribution-app.component';
 
 @Component({
   selector: 'app-biz-host-details',
@@ -19,7 +21,8 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
     private fb: FormBuilder,
     protected bizService: BizService,
     protected baseRepository: BaseRepository<BizHost>,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
+    private modalService: NzModalService,
   ) {
     super(bizService, baseRepository, messageService);
   }
@@ -36,6 +39,7 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
   // onSubscribe!: Subscription;
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit(): void {
@@ -63,4 +67,19 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
   // ngOnDestroy(): void {
   //   this.onSubscribe.unsubscribe();
   // }
+
+  showModal(ele: BizHost): void {
+    let appsId: number[] = [];
+    if (ele.Apps) {
+      appsId = ele.Apps.map(app => app.ID);
+    }
+    this.modalService.create({
+      nzContent: BizDistributionAppComponent,
+      nzFooter: null,
+      nzTitle: '分配应用',
+      nzComponentParams: {bizId: this.bizId, appsIds: appsId},
+    }).afterClose.subscribe(_ => {
+      // console.log(_);
+    });
+  }
 }
