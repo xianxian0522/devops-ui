@@ -28,6 +28,7 @@ import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
 import { CommonTreeComponent } from './common-tree/common-tree.component';
 import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
 import { AppRsInstanceEditComponent } from './app-rs-instance-edit/app-rs-instance-edit.component';
+import {NzTagModule} from 'ng-zorro-antd/tag';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { AppRsInstanceEditComponent } from './app-rs-instance-edit/app-rs-instan
     NzMessageModule,
     NzInputNumberModule,
     NzCheckboxModule,
+    NzTagModule,
   ]
 })
 export class ApplicationModule { }

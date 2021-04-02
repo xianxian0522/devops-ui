@@ -34,6 +34,7 @@ export interface AppCluster {
 export interface AppHost {
   ID: number;
   Apps: App[];
+  Instances: AppInstance[];
   CPU: number;
   Comment: string;
   CreatedAt: string;
@@ -52,6 +53,8 @@ export interface AppHost {
   OsName: string;
   OsType: string;
   OsVersion: string;
+  MgtOutbond: string;
+  LgDevType: string;
   State: string;
   UpdatedAt: string;
 }

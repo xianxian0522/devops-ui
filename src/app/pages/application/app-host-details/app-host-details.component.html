@@ -25,35 +25,43 @@
               nzShowPagination
               nzShowSizeChanger
               [nzLoading]="isResultLoading"
-              [nzScroll]="{x: '1800px', y: '500px'}"
+              [nzScroll]="{x: '2600px', y: '500px'}"
     >
       <thead>
       <tr>
         <th nzWidth="180px" nzLeft>主机IP</th>
-        <th>CPU</th>
         <th>主机名</th>
-        <th>存储</th>
+        <th nzWidth="300px">分配应用</th>
+        <th>CPU</th>
+        <th>内存</th>
+        <th>带外管理地址</th>
         <th>操作系统名</th>
         <th>操作系统类型</th>
         <th>操作系统版本</th>
         <th>操作系统位数</th>
+        <th>逻辑设备类型</th>
         <th>状态</th>
         <th>备注</th>
-<!--        <th>环境</th>-->
-<!--        <th>机房</th>-->
         <th nzWidth="150px" nzRight>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of basicTable.data">
         <td nzLeft>{{ data.InnerIP }}</td>
-        <td>{{ data.CPU }}</td>
         <td>{{ data.Hostname }}</td>
+        <td>
+          <div>
+            <nz-tag *ngFor="let app of data.Apps" nzColor="processing">{{app.Name}}</nz-tag>
+          </div>
+        </td>
+        <td>{{ data.CPU }}</td>
         <td>{{ data.Memory }}</td>
+        <td>{{ data.MgtOutbond }}</td>
         <td>{{ data.OsName }}</td>
         <td>{{ data.OsType }}</td>
         <td>{{ data.OsVersion }}</td>
         <td>{{ data.OsBit }}</td>
+        <td>{{ data.LgDevType }}</td>
         <td>{{ data.State }}</td>
         <td>{{ data.Comment }}</td>
         <td nzRight>

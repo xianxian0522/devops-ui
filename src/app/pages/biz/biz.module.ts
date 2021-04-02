@@ -21,6 +21,7 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
+import {NzTagModule} from 'ng-zorro-antd/tag';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
     NzModalModule,
     NzDividerModule,
     NzPopconfirmModule,
+    NzTagModule,
   ]
 })
 export class BizModule { }

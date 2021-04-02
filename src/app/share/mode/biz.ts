@@ -19,6 +19,7 @@ export interface BizApp {
 }
 
 export interface BizHost {
+  Apps: BizApp[];
   CPU: number;
   Comment: string;
   CreatedAt: string;
@@ -34,11 +35,13 @@ export interface BizHost {
   ID: number;
   InnerIP: string;
   Memory: number;
+  MgtOutbond: string;
   OsName: string;
   OsType: string;
   OsVersion: string;
   OsBit: string;
   State: string;
+  LgDevType: string;
   UpdatedAt: string;
 }
 
