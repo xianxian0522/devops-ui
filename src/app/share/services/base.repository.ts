@@ -28,6 +28,13 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   transferUserByBizId(bizId: number, OwnerID: number): Observable<any> {
     return this.httpClient.patch(`${API}/biz/${bizId}/transfer`, {OwnerID});
   }
+  distributionHostToApp(bizId: number, appId: number, hostId: number): Observable<any> {
+    return this.httpClient.post(`${API}/biz/${bizId}/app/${appId}/host/${hostId}`, {});
+  }
+  deleteDistributionHostToApp(bizId: number, appId: number, hostId: number): Observable<any> {
+    return this.httpClient.delete(`${API}/biz/${bizId}/app/${appId}/host/${hostId}`);
+  }
+
 
   updateOrAdd(urlFragment: string, id: number, model: MODEl, resourceUrl: string): Observable<any> {
     return this.httpClient.post(`${API}/${urlFragment}/${id}/${resourceUrl}`, model);
@@ -35,6 +42,7 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   deleteMemberById(id: number, urlFragment: string): Observable<any> {
     return this.httpClient.delete(`${API}/${urlFragment}member/${id}`);
   }
+
 
   queryDetailsById(id: number, resourceUrl: string): Observable<MODEl> {
     return this.httpClient.get<MODEl>(`${API}/${resourceUrl}/${id}`);
@@ -70,7 +78,9 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   update(model: MODEl): Observable<any> {
     return this.httpClient.patch(`${API}/instnace/${model.ID}`, model);
   }
-
+  queryAppHostInstance(appId: number, hostId: number): Observable<any> {
+    return this.httpClient.get(`${API}/app/${appId}/host/${hostId}/instance`);
+  }
 
   queryPage(page: number, size: number, q?: {[key: string]: any}): Observable<any> {
     const params = this.genParams(q);
