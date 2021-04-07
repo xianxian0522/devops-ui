@@ -7,6 +7,7 @@ import {AppSetClusterComponent} from './app-set-cluster/app-set-cluster.componen
 import {AppSetClusterEditComponent} from './app-set-cluster-edit/app-set-cluster-edit.component';
 import {AppClusterInstanceComponent} from './app-cluster-instance/app-cluster-instance.component';
 import {AppHostDetailsComponent} from './app-host-details/app-host-details.component';
+import {AppHostInstanceComponent} from './app-host-instance/app-host-instance.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
   // {path: 'cluster-instance', component: AppClusterInstanceComponent},
   {path: 'set-cluster/instance/:clusterId', component: AppClusterInstanceComponent},
   {path: 'host-details', component: AppHostDetailsComponent},
+  {path: 'host-details/instance/:hostId', component: AppHostInstanceComponent},
 ];
 
 @NgModule({

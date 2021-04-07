@@ -1,1 +1,52 @@
-<p>app-host-instance works!</p>
+<div class="app-common-content">
+  <nz-breadcrumb nzSeparator=">" class="app-common-header">
+    <nz-breadcrumb-item>devops</nz-breadcrumb-item>
+    <nz-breadcrumb-item>devops</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <div class="biz-host-content-header">
+    <div nz-form nzLayout="inline" [formGroup]="searchForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzNoColon>名字</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="Name" placeholder="输入名字" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <nz-table #basicTable
+              [nzData]="listOfData"
+              nzShowPagination
+              nzShowSizeChanger
+              [nzLoading]="isResultLoading"
+              [nzScroll]="{x: '1600px', y: '500px'}"
+    >
+      <thead>
+      <tr>
+        <th nzWidth="100px" nzLeft>ID</th>
+        <th>实例名</th>
+        <th>描述</th>
+        <th>状态</th>
+        <th>用户</th>
+        <th>数据目录</th>
+        <th>日志目录</th>
+        <th>监控采集地址</th>
+        <th>工作目录</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzLeft>{{ data.ID }}</td>
+        <td>{{ data.Name }}</td>
+        <td>{{ data.Comment }}</td>
+        <td>{{ data.State }}</td>
+        <td>{{ data.User }}</td>
+        <td>{{ data.DataDir }}</td>
+        <td>{{ data.LogDir }}</td>
+        <td>{{ data.MetricEndpoint }}</td>
+        <td>{{ data.WorkDir }}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

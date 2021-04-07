@@ -83,6 +83,7 @@ export interface AppInstance {
   WorkDir: string;
   Name: string;
   State: string;
+  ReplicaSet: AppReplicaSet;
 }
 
 export interface AppReplicaSet {
