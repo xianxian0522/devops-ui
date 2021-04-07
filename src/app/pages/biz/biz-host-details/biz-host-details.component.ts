@@ -77,9 +77,11 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
       nzContent: BizDistributionAppComponent,
       nzFooter: null,
       nzTitle: '分配应用',
-      nzComponentParams: {bizId: this.bizId, appsIds: appsId},
+      nzComponentParams: {bizId: this.bizId, appsIds: appsId, hostId: ele.ID},
     }).afterClose.subscribe(_ => {
-      // console.log(_);
+      if (_) {
+        this.refresh.emit();
+      }
     });
   }
 }

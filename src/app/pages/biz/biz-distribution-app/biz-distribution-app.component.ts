@@ -19,15 +19,33 @@ export class BizDistributionAppComponent implements OnInit {
 
   @Input() bizId!: number;
   @Input() appsIds: number[] = [];
+  @Input() hostId!: number;
+  oldAppsIds: number[] = [];
   appsList: BizApp[] = [];
 
   ngOnInit(): void {
+    this.oldAppsIds = this.appsIds;
     this.baseRepository.queryAllListByBizId('app', this.bizId).subscribe(apps => {
       this.appsList = apps;
     });
   }
 
   distributionApp(): void {
+    const value = this.appsIds;
+    this.oldAppsIds.map(oldAppId => {
+      if (!value.includes(oldAppId)) {
+        this.baseRepository.deleteDistributionHostToApp(this.bizId, oldAppId, this.hostId).subscribe(_ => {
+          this.modalRef.close(true);
+        });
+      }
+    });
+    value.map(appId => {
+      if (!this.oldAppsIds.includes(appId)) {
+        this.baseRepository.distributionHostToApp(this.bizId, appId, this.hostId).subscribe(_ => {
+          this.modalRef.close(true);
+        });
+      }
+    });
   }
   distributionAppCancel(): void {
     this.modalRef.close();
