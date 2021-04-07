@@ -31,4 +31,8 @@ export class AppHostDetailsComponent extends AppBaseCommonComponent<AppHost> imp
   ngOnInit(): void {
   }
 
+  showInstance(ele: AppHost): void {
+    this.baseRepository.queryAppHostInstance(this.appId, ele.ID).subscribe(res => {});
+  }
+
 }
