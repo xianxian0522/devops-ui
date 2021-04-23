@@ -18,9 +18,11 @@ export class BizService {
 
   getSelectBizList(): void {
     this.baseRepository.queryAll('biz').subscribe(res => {
-      this.selectedValue.setValue(res[0].ID);
+      if (res && res.length > 0) {
+        this.selectedValue.setValue(res[0].ID);
+      }
       this.selectBizList = res;
-      // localStorage.setItem('bizID', this.selectedValue.value);
+      localStorage.setItem('bizList', JSON.stringify(this.selectBizList));
     });
   }
 
