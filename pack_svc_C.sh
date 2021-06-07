@@ -28,7 +28,7 @@ pack_app(){
 #  set -e
 #  cd "$appName"
   mv dist $appName
-  tar -czvf "$appName.tar.gz" $appName/
+  tar -czvf "$appName.tar.gz" /
 #  set +e
 }
 pack_third(){
