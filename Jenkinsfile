@@ -3,7 +3,7 @@ library 'sslib@0.0.7' //引用此工程，格式为<工程名>@<branchName>。�
 def jobInfo = [
     nodeName: "std-docker-slave", //指定在哪个Jenkins节点上执行
     projName: "devops",//项目名称
-    name: "cmdb-web-ui",//工程名称
+    name: "devops-ui",//工程名称
     deployInput:"",//可选，空为分步操作，不空为一键操作，仅限salt
 
 /*
@@ -17,11 +17,11 @@ def jobInfo = [
 */
     packageInfo: [ //可选，打包信息
       // packageShell: "pack_svc_C.sh", //可选，打包脚本(如需要)
-      // shellOptions: ". cmdb-web-ui ${env.BRANCH_NAME}" //可选，打包脚本参数，默认为空
-      name: "cmdb-web-ui", //可选，默认使用工程名称
+      // shellOptions: ". devops-ui ${env.BRANCH_NAME}" //可选，打包脚本参数，默认为空
+      name: "devops-ui", //可选，默认使用工程名称
       src: "./dist/", //可选，要打包的文件，默认当前文件夹
       archiveFiles: "*.tar.gz", //可选，存档的包文件，可用通配符，默认为*.tar.gz
-        appName: "cmdb-web-ui", //可选，默认使用应用名称
+        appName: "devops-ui", //可选，默认使用应用名称
     ],
     deploysInfo: [ //可选，部署信息
       serverName: "artifactory", //部署目标，必须是在Jenkins中配置好的Artifactory服务器
