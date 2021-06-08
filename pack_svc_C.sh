@@ -13,10 +13,6 @@ pack_app(){
   version=$4
   name=$packageName-$version
 
-  yum remove -y nodejs
-  yum clean all
-  curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash
-  yum install -y nodejs
 #  echo "打印安装"
   npm i
 #  echo " 编译"
