@@ -16,8 +16,8 @@ pack_app(){
 #  echo "打印安装"
   npm i
   echo " 编译"
-#  npm run build --prod
-  ng build --prod
+  npm run build --prod
+#  ng build --prod
   echo "执行 --prod"
 
 #  mkdir -p  $appName/
