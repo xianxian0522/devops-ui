@@ -7,6 +7,7 @@ import {BizService} from '../services/biz.service';
 import {BaseRepository} from '../services/base.repository';
 import {Biz} from '../mode/biz';
 import {Location} from '@angular/common';
+import {Bar} from '../mode/bar';
 
 @Component({
   selector: 'app-layout',
@@ -29,8 +30,11 @@ export class LayoutComponent implements OnInit {
   helper = new JwtHelperService();
   username = '用户名';
   section = 'biz';
+  menuBar: Bar[] = [];
 
   ngOnInit(): void {
+    this.getMenuBar();
+
     // this.baseRepository.queryAll().subscribe(res => {
     //   this.selectBizList = res;
     //   this.selectedValue.setValue(res[0].ID);
@@ -67,6 +71,11 @@ export class LayoutComponent implements OnInit {
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
+  }
+  getMenuBar(): void {
+    this.baseRepository.queryMenuBar().subscribe(res => {
+      this.menuBar = res;
+    });
   }
 
 }

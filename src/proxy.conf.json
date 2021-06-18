@@ -3,5 +3,9 @@
     "target": "http://172.16.78.42:8001",
     "secure": false,
     "changeOrigin": true
+  },
+  "/api/my/": {
+    "target": "http://127.0.0.1:3000",
+    "changeOrigin": true
   }
 }

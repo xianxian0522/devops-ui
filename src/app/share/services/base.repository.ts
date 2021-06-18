@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {App, AppReplicaSet, LogicIdcEnvResponse} from '../mode/app';
+import {Bar} from '../mode/bar';
 
 const API = '/api/v1/my';
 
@@ -10,6 +11,10 @@ const API = '/api/v1/my';
 })
 export class BaseRepository<MODEl extends {ID?: number}> {
   constructor(protected httpClient: HttpClient) {}
+
+  queryMenuBar(): Observable<Bar[]> {
+    return this.httpClient.get<Bar[]>('/api/my/bar');
+  }
 
   queryAll(url: string): Observable<MODEl[]> {
     return this.httpClient.get<MODEl[]>(`${API}/${url}`);

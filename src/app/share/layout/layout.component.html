@@ -3,24 +3,24 @@
     <div class="logo">logo</div>
     <div class="layout-header-menu">
       <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-        <li nz-menu-item nzMatchRouter>
-          <a routerLink="/">业务拓扑</a>
+        <li nz-menu-item [nzSelected]="bar.route === '/biz/index'" *ngFor="let bar of menuBar">
+          <a [href]="bar.path">{{ bar.name }}</a>
         </li>
-        <li nz-menu-item>
-          <a href="http://www.baidu.com">运维工具箱</a>
-        </li>
-        <li nz-menu-item nzMatchRouter>
-          <a routerLink="/x">CI</a>
-        </li>
-        <li nz-menu-item nzMatchRouter>
-          <a routerLink="/x">CD</a>
-        </li>
-        <li nz-menu-item nzMatchRouter>
-          <a routerLink="/x">监控中心</a>
-        </li>
-        <li nz-menu-item nzMatchRouter>
-          <a routerLink="/x">日志中心</a>
-        </li>
+<!--        <li nz-menu-item>-->
+<!--          <a href="http://www.baidu.com">运维工具箱</a>-->
+<!--        </li>-->
+<!--        <li nz-menu-item nzMatchRouter>-->
+<!--          <a routerLink="/x">CI</a>-->
+<!--        </li>-->
+<!--        <li nz-menu-item nzMatchRouter>-->
+<!--          <a routerLink="/x">CD</a>-->
+<!--        </li>-->
+<!--        <li nz-menu-item nzMatchRouter>-->
+<!--          <a routerLink="/x">监控中心</a>-->
+<!--        </li>-->
+<!--        <li nz-menu-item nzMatchRouter>-->
+<!--          <a routerLink="/x">日志中心</a>-->
+<!--        </li>-->
       </ul>
       <section>
         <nz-avatar nzIcon="user" class="user-avatar"></nz-avatar>
