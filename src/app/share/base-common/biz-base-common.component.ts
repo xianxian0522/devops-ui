@@ -39,6 +39,7 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
 
   }
   filterBizInfo(value: number): void {
+    console.log(this.bizService.selectBizList, '?????');
     const bizList = JSON.parse(localStorage.getItem('bizList') as string) || [];
     const data = bizList.filter((k: Biz) => k.ID === value);
     if (data && data.length > 0) {
@@ -47,7 +48,6 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
     }
   }
   ngAfterViewInit(): void {
-
 
     this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
