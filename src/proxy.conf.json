@@ -1,6 +1,6 @@
 {
   "/api/v1": {
-    "target": "http://devops-web.dev.ops.sumscope.com:7004",
+    "target": "http://172.16.97.194:7004",
     "secure": false,
     "changeOrigin": true
   },

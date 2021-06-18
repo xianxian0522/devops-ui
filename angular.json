@@ -74,7 +74,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "devops-ui:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {
