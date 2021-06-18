@@ -2,7 +2,7 @@ import {AfterViewInit, Component, Directive, OnDestroy, OnInit} from '@angular/c
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BizService} from '../services/biz.service';
 import {merge, Subscription} from 'rxjs';
-import {debounceTime, switchMap} from 'rxjs/operators';
+import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../services/base.repository';
 import {BaseCommonComponent} from './base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
@@ -31,6 +31,7 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   onSubscribe!: Subscription;
   bizName = ' ';
   bizDisplayName = ' ';
+  bizInfoSubscribe!: Subscription;
 
   protected abstract urlString: string;
   protected urlFragment = 'biz';
@@ -39,9 +40,8 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
 
   }
   filterBizInfo(value: number): void {
-    console.log(this.bizService.selectBizList, '?????');
-    const bizList = JSON.parse(localStorage.getItem('bizList') as string) || [];
-    const data = bizList.filter((k: Biz) => k.ID === value);
+    // const bizList = JSON.parse(localStorage.getItem('bizList') as string) || [];
+    const data = this.bizService.selectBizList.filter((k: Biz) => k.ID === value);
     if (data && data.length > 0) {
       this.bizName = data[0].Name;
       this.bizDisplayName = data[0].DisplayName;
@@ -49,7 +49,7 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   }
   ngAfterViewInit(): void {
 
-    this.bizService.selectedValue.valueChanges.subscribe(value => {
+    this.bizInfoSubscribe = this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
       this.bizService.refresh.emit();
       this.searchForm.reset();
@@ -98,5 +98,6 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   }
   ngOnDestroy(): void {
     this.onSubscribe.unsubscribe();
+    this.bizInfoSubscribe.unsubscribe();
   }
 }

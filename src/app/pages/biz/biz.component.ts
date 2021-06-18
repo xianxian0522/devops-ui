@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
 import {BaseRepository} from '../../share/services/base.repository';
-import {merge, Subscription} from 'rxjs';
+import {merge, of, Subscription} from 'rxjs';
 import {FormBuilder} from '@angular/forms';
-import {debounceTime, switchMap} from 'rxjs/operators';
+import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {Biz} from '../../share/mode/biz';
 import {BizService} from '../../share/services/biz.service';
 import {LayoutComponent} from '../../share/layout/layout.component';
@@ -37,7 +37,16 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
   // onSubscribe!: Subscription;
 
   ngOnInit(): void {
-    super.filterBizInfo(this.bizId);
+    this.bizService.getSelectBizList().pipe(switchMap(res => {
+        if (res && res.length > 0) {
+          this.bizService.selectedValue.setValue(res[0].ID);
+        }
+        this.bizService.selectBizList = res;
+        return of([]);
+      })).subscribe(res => {
+        super.filterBizInfo(this.bizId);
+      });
+    // super.filterBizInfo(this.bizId);
   }
 
   ngAfterViewInit(): void {
