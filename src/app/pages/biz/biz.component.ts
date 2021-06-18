@@ -37,6 +37,7 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
   // onSubscribe!: Subscription;
 
   ngOnInit(): void {
+    super.filterBizInfo(this.bizId);
   }
 
   ngAfterViewInit(): void {

@@ -38,18 +38,22 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   ngOnInit(): void {
 
   }
-  ngAfterViewInit(): void {
+  filterBizInfo(value: number): void {
     const bizList = JSON.parse(localStorage.getItem('bizList') as string) || [];
+    const data = bizList.filter((k: Biz) => k.ID === value);
+    if (data && data.length > 0) {
+      this.bizName = data[0].Name;
+      this.bizDisplayName = data[0].DisplayName;
+    }
+  }
+  ngAfterViewInit(): void {
+
 
     this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
       this.bizService.refresh.emit();
       this.searchForm.reset();
-      const data = bizList.filter((k: Biz) => k.ID === value);
-      if (data && data.length > 0) {
-        this.bizName = data[0].Name;
-        this.bizDisplayName = data[0].DisplayName;
-      }
+      this.filterBizInfo(value);
     });
 
     super.ngAfterViewInit();
