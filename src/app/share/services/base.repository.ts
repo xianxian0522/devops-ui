@@ -13,7 +13,13 @@ export class BaseRepository<MODEl extends {ID?: number}> {
   constructor(protected httpClient: HttpClient) {}
 
   queryMenuBar(): Observable<Bar[]> {
-    return this.httpClient.get<Bar[]>('/api/my/bar');
+    let api = '/api/my/bar';
+    if (window.location.hostname.endsWith('dev.ops.sumscope.com')) {
+      api = 'http://menu.dev.ops.sumscope.com:3000' + api;
+    } else if (window.location.hostname.endsWith('ops.sumscope.com')) {
+      api = 'http://menu.ops.sumscope.com' + api;
+    }
+    return this.httpClient.get<Bar[]>(api);
   }
 
   queryAll(url: string): Observable<MODEl[]> {
