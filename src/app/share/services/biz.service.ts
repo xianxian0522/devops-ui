@@ -2,7 +2,8 @@ import {Injectable, Output, EventEmitter} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Biz} from '../mode/biz';
 import {BaseRepository} from './base.repository';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class BizService {
   public refresh = new EventEmitter();
 
   public selectedValue = new FormControl(0);
-  selectBizList: Biz[] = [];
+  // selectBizList: Observable<Biz[]> = of<Biz[]>([]);
+  selectBizList = new FormControl([]);
 
   getSelectBizList(): Observable<Biz[]> {
     return this.baseRepository.queryAll('biz');

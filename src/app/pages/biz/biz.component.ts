@@ -35,18 +35,15 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
   });
   // bizId: number = this.bizService.selectedValue.value;
   // onSubscribe!: Subscription;
+  filterSubscribe!: Subscription;
 
   ngOnInit(): void {
-    this.bizService.getSelectBizList().pipe(switchMap(res => {
-        if (res && res.length > 0) {
-          this.bizService.selectedValue.setValue(res[0].ID);
-        }
-        this.bizService.selectBizList = res;
-        return of([]);
-      })).subscribe(res => {
-        super.filterBizInfo(this.bizId);
-      });
-    // super.filterBizInfo(this.bizId);
+
+    this.filterSubscribe = this.bizService.selectBizList.valueChanges.subscribe(r => {
+      super.filterBizInfo(this.bizId);
+    });
+
+    super.filterBizInfo(this.bizId);
   }
 
   ngAfterViewInit(): void {
@@ -75,8 +72,9 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
     // this.bizService.refresh.emit();
   }
 
-  // ngOnDestroy(): void {
-  //   this.onSubscribe.unsubscribe();
-  // }
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this.filterSubscribe.unsubscribe();
+  }
 
 }

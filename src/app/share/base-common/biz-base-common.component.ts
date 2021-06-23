@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Directive, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BizService} from '../services/biz.service';
-import {merge, Subscription} from 'rxjs';
+import {merge, of, Subscription} from 'rxjs';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {BaseRepository} from '../services/base.repository';
 import {BaseCommonComponent} from './base-common.component';
@@ -40,15 +40,21 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
 
   }
   filterBizInfo(value: number): void {
-    // const bizList = JSON.parse(localStorage.getItem('bizList') as string) || [];
-    const data = this.bizService.selectBizList.filter((k: Biz) => k.ID === value);
+    const data = this.bizService.selectBizList.value.filter((k: Biz) => k.ID === value);
     if (data && data.length > 0) {
       this.bizName = data[0].Name;
       this.bizDisplayName = data[0].DisplayName;
     }
+    // this.bizService.selectBizList.subscribe(list => {
+    //   console.log(list, ';;;;;');
+    //   const data = list.filter((k: Biz) => k.ID === value);
+    //   if (data && data.length > 0) {
+    //     this.bizName = data[0].Name;
+    //     this.bizDisplayName = data[0].DisplayName;
+    //   }
+    // });
   }
   ngAfterViewInit(): void {
-
     this.bizInfoSubscribe = this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
       this.bizService.refresh.emit();
