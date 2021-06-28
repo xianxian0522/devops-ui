@@ -7,6 +7,7 @@ import {BaseRepository} from '../services/base.repository';
 import {BaseCommonComponent} from './base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {Biz} from '../mode/biz';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-biz-base-common',
@@ -19,6 +20,7 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
     protected bizService: BizService,
     protected baseRepository: BaseRepository<MODEL>,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
     super(baseRepository, messageService);
   }
@@ -37,24 +39,22 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
   protected urlFragment = 'biz';
 
   ngOnInit(): void {
-
+    this.activatedRoute.queryParams.subscribe(query => {
+      this.bizId = query?.bizId || 0;
+    });
   }
   filterBizInfo(value: number): void {
+    this.baseRepository.queryBizDetailsById(this.bizId).subscribe(biz => {
+      console.log(biz, ';;;;[====');
+    });
     const data = this.bizService.selectBizList.value.filter((k: Biz) => k.ID === value);
     if (data && data.length > 0) {
       this.bizName = data[0].Name;
       this.bizDisplayName = data[0].DisplayName;
     }
-    // this.bizService.selectBizList.subscribe(list => {
-    //   console.log(list, ';;;;;');
-    //   const data = list.filter((k: Biz) => k.ID === value);
-    //   if (data && data.length > 0) {
-    //     this.bizName = data[0].Name;
-    //     this.bizDisplayName = data[0].DisplayName;
-    //   }
-    // });
   }
   ngAfterViewInit(): void {
+
     this.bizInfoSubscribe = this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
       this.bizService.refresh.emit();

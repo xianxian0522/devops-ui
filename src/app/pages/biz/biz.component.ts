@@ -9,6 +9,7 @@ import {LayoutComponent} from '../../share/layout/layout.component';
 import {BizApp} from '../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-business',
@@ -22,8 +23,9 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
     private fb: FormBuilder,
     protected bizService: BizService,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
-    super(bizService, baseRepository, messageService);
+    super(bizService, baseRepository, messageService, activatedRoute);
   }
 
   protected urlString = 'app';
@@ -38,16 +40,17 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
   filterSubscribe!: Subscription;
 
   ngOnInit(): void {
+    super.ngOnInit();
+  }
+
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
 
     this.filterSubscribe = this.bizService.selectBizList.valueChanges.subscribe(r => {
       super.filterBizInfo(this.bizId);
     });
 
     super.filterBizInfo(this.bizId);
-  }
-
-  ngAfterViewInit(): void {
-    super.ngAfterViewInit();
     // const  bizId = parseInt(localStorage.getItem('bizID') as string, 10);
     // const bizId = this.bizService.selectedValue.value;
     // console.log(bizId, 'v');

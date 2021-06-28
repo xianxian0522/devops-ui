@@ -9,6 +9,7 @@ import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {BizDistributionAppComponent} from '../biz-distribution-app/biz-distribution-app.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-biz-host-details',
@@ -23,8 +24,9 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
     protected baseRepository: BaseRepository<BizHost>,
     protected messageService: NzMessageService,
     private modalService: NzModalService,
+    protected activatedRoute: ActivatedRoute,
   ) {
-    super(bizService, baseRepository, messageService);
+    super(bizService, baseRepository, messageService, activatedRoute);
   }
 
   protected urlString = 'host';
@@ -39,7 +41,7 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
   // onSubscribe!: Subscription;
 
   ngOnInit(): void {
-
+    super.ngOnInit();
   }
 
   ngAfterViewInit(): void {
