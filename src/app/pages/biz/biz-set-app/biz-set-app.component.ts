@@ -7,7 +7,7 @@ import {FormBuilder} from '@angular/forms';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-biz-set-app',
@@ -22,8 +22,9 @@ export class BizSetAppComponent extends BizBaseCommonComponent<BizApp> implement
     private fb: FormBuilder,
     protected messageService: NzMessageService,
     protected activatedRoute: ActivatedRoute,
+    protected router: Router,
   ) {
-    super(bizService, baseRepository, messageService, activatedRoute);
+    super(bizService, baseRepository, messageService, activatedRoute, router);
   }
 
   protected urlString = 'app';

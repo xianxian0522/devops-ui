@@ -6,7 +6,7 @@ import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BizDetails, BizMember} from '../../../share/mode/biz';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-biz-set-information',
@@ -21,6 +21,7 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
     private baseRepository: BaseRepository<any>,
     private messageService: NzMessageService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) { }
 
   editForm = this.fb.group({
@@ -45,6 +46,8 @@ export class BizSetInformationComponent implements OnInit, AfterViewInit, OnDest
   ngAfterViewInit(): void {
     this.bizService.selectedValue.valueChanges.subscribe(value => {
       this.bizId = value;
+      const path = this.router.url.split('?')?.[0];
+      this.router.navigate([path], {queryParams: {bizId: value}});
       this.bizService.refresh.emit();
     });
 

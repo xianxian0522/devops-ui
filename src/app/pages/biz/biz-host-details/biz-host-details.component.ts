@@ -9,7 +9,7 @@ import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {BizDistributionAppComponent} from '../biz-distribution-app/biz-distribution-app.component';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-biz-host-details',
@@ -25,8 +25,9 @@ export class BizHostDetailsComponent extends BizBaseCommonComponent<BizHost> imp
     protected messageService: NzMessageService,
     private modalService: NzModalService,
     protected activatedRoute: ActivatedRoute,
+    protected router: Router,
   ) {
-    super(bizService, baseRepository, messageService, activatedRoute);
+    super(bizService, baseRepository, messageService, activatedRoute, router);
   }
 
   protected urlString = 'host';

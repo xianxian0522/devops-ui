@@ -9,7 +9,7 @@ import {MemberEditComponent} from '../../member-edit/member-edit.component';
 import {BizMember, User} from '../../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-biz-members',
@@ -25,8 +25,9 @@ export class BizMembersComponent extends BizBaseCommonComponent<BizMember> imple
     private modalService: NzModalService,
     protected messageService: NzMessageService,
     protected activatedRoute: ActivatedRoute,
+    protected router: Router,
   ) {
-    super(bizService, baseRepository, messageService, activatedRoute);
+    super(bizService, baseRepository, messageService, activatedRoute, router);
   }
 
   protected urlString = 'member';

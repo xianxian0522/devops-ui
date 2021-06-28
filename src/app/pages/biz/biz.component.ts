@@ -9,7 +9,7 @@ import {LayoutComponent} from '../../share/layout/layout.component';
 import {BizApp} from '../../share/mode/biz';
 import {BizBaseCommonComponent} from '../../share/base-common/biz-base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-business',
@@ -24,8 +24,9 @@ export class BizComponent extends BizBaseCommonComponent<BizApp> implements OnIn
     protected bizService: BizService,
     protected messageService: NzMessageService,
     protected activatedRoute: ActivatedRoute,
+    protected router: Router,
   ) {
-    super(bizService, baseRepository, messageService, activatedRoute);
+    super(bizService, baseRepository, messageService, activatedRoute, router);
   }
 
   protected urlString = 'app';
