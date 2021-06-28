@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {path: ':appId/set-information', component: AppSetInformationComponent},
   {path: ':appId/set-cluster', component: AppSetClusterComponent},
-  {path: 'set-cluster/edit/:clusterId', component: AppSetClusterEditComponent},
+  {path: ':appId/set-cluster/edit/:clusterId', component: AppSetClusterEditComponent},
   // {path: 'cluster-instance', component: AppClusterInstanceComponent},
   {path: ':appId/set-cluster/instance/:clusterId', component: AppClusterInstanceComponent},
   {path: ':appId/host-details', component: AppHostDetailsComponent},
