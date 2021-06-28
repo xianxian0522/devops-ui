@@ -38,19 +38,19 @@
         <!--          </ng-container>-->
         <!--        </ng-template>-->
         <ng-container *ngFor="let menu of sectionItem">
-          <li *ngIf="!menu.subMenu" nz-menu-item nzMatchRouter>
+          <li *ngIf="!menu.subMenu" nz-menu-item [nzSelected]="menu.id === selectUrl">
             <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
             <span>
 <!--              <a [routerLink]="'/biz/' + menu.id">{{ menu.name }}</a>-->
-              <a [routerLink]="menu.id">{{ menu.name }}</a>
+              <a [routerLink]="menu.id" [queryParams]="{bizId: bizService.selectedValue.value}">{{ menu.name }}</a>
             </span>
           </li>
           <li *ngIf="menu.subMenu" nz-submenu nzOpen [nzTitle]="menu.name" [nzIcon]="menu.icon">
             <ul>
-              <li *ngFor="let item of menu.subMenu" nz-menu-item nzMatchRouter>
+              <li *ngFor="let item of menu.subMenu" nz-menu-item [nzSelected]="item.id === selectUrl">
                 <i nz-icon [nzType]="item.icon" *ngIf="item.icon"></i>
                 <span>
-                  <a [routerLink]="item.id">{{ item.name }}</a>
+                  <a [routerLink]="item.id" [queryParams]="{bizId: bizService.selectedValue.value}">{{ item.name }}</a>
                 </span>
               </li>
             </ul>
