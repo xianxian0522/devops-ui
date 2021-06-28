@@ -44,14 +44,17 @@ export abstract class BizBaseCommonComponent<MODEL extends {ID?: number}> extend
     });
   }
   filterBizInfo(value: number): void {
-    this.baseRepository.queryBizDetailsById(this.bizId).subscribe(biz => {
-      console.log(biz, ';;;;[====');
-    });
-    const data = this.bizService.selectBizList.value.filter((k: Biz) => k.ID === value);
-    if (data && data.length > 0) {
-      this.bizName = data[0].Name;
-      this.bizDisplayName = data[0].DisplayName;
+    if (value !== 0) {
+      this.baseRepository.queryBizDetailsById(value).subscribe((bizInfo: any) => {
+        this.bizName = bizInfo?.Name;
+        this.bizDisplayName = bizInfo?.DisplayName;
+      });
     }
+    // const data = this.bizService.selectBizList.value.filter((k: Biz) => k.ID === value);
+    // if (data && data.length > 0) {
+    //   this.bizName = data[0].Name;
+    //   this.bizDisplayName = data[0].DisplayName;
+    // }
   }
   ngAfterViewInit(): void {
 
