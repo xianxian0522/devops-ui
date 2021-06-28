@@ -41,7 +41,28 @@
   <div *ngIf="isAdvancedSettingShow">
     <div style="margin: 10px 0;">实例模板</div>
     <div app-common-form [editForm]="editInstanceForm"></div>
-    <div >
+    <div style="margin: 10px 0">发布包信息</div>
+    <div nz-form nzLayout="inline" [formGroup]="editReleaseInfo">
+      <nz-form-item>
+        <nz-form-label nzNoColon>仓库名</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="RepoName" placeholder="仓库名" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzNoColon>项目名</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="ProjectName" placeholder="项目名" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzNoColon>包名</nz-form-label>
+        <nz-form-control>
+          <input nz-input nzSize="small" formControlName="PackageName" placeholder="包名" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div style="margin-top: 10px">
       <button nz-button nzType="primary" (click)="onSubmitInstance()">修改</button>
     </div>
   </div>

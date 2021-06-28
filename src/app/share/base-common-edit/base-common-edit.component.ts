@@ -41,6 +41,11 @@ export abstract class BaseCommonEditComponent<MODEL extends {ID?: number}> imple
     User: [],
     WorkDir: [],
   });
+  editReleaseInfo = this.fb.group({
+    PackageName: [],
+    ProjectName: [],
+    RepoName: [],
+  });
   OwnerID = new FormControl(null);
   isAdvancedSettingShow = false;
   id = 0;
@@ -82,11 +87,14 @@ export abstract class BaseCommonEditComponent<MODEL extends {ID?: number}> imple
         }
         this.editInstanceForm.patchValue({...res.InstanceTemplate});
       }
+      if (res.ReleaseInfo) {
+        this.editReleaseInfo.patchValue({...res.ReleaseInfo});
+      }
     });
   }
 
   onSubmitInstance(): void {
-    const value = {InstanceTemplate: {...this.editInstanceForm.value}};
+    const value = {InstanceTemplate: {...this.editInstanceForm.value}, ReleaseInfo: {...this.editReleaseInfo.value}};
     this.baseRepository.updateDetailsById(this.id, value, this.urlString).subscribe(_ => {
       this.messageService.success('修改成功');
     }, err => {

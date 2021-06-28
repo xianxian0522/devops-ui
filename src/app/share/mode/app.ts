@@ -12,6 +12,7 @@ export interface App {
   AppMembers: AppMember[];
   Hosts: AppHost[];
   Owner: User;
+  ReleaseInfo: {[key: string]: string};
 }
 
 export interface AppMember {
