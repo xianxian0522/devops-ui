@@ -21,16 +21,11 @@ export class ApplicationComponent implements OnInit {
   name = '';
   displayName = '';
   comment = '';
+  appId = parseInt(this.activatedRoute.snapshot.params.appId, 10);
 
   ngOnInit(): void {
-    // this.activatedRoute.paramMap.subscribe(params => {
-    //   console.log(params);
-    //   if (params && params.get('id')) {
-    //     this.appService.appId = parseInt(params.get('id') as string, 10);
-    //   }
-    // });
 
-    this.baseRepository.queryDetailsById(this.appService.appId, 'app').subscribe(res => {
+    this.baseRepository.queryDetailsById(this.appId, 'app').subscribe(res => {
       this.name = res.Name;
       this.displayName = res.DisplayName;
       this.comment = res.Comment;

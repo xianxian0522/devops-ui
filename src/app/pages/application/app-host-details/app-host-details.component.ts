@@ -5,6 +5,7 @@ import {AppHost} from '../../../share/mode/app';
 import {AppService} from '../../../share/services/app.service';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-app-host-details',
@@ -18,8 +19,9 @@ export class AppHostDetailsComponent extends AppBaseCommonComponent<AppHost> imp
     protected appService: AppService,
     protected baseRepository: BaseRepository<AppHost>,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
-    super(appService, baseRepository, messageService);
+    super(appService, baseRepository, messageService, activatedRoute);
   }
 
   protected urlString = 'host';

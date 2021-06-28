@@ -26,7 +26,7 @@ export class AppHostInstanceComponent extends BaseCommonComponent<AppInstance> i
     super(baseRepository, messageService);
   }
 
-  appId: number = this.appService.appId;
+  appId: number = parseInt(this.activatedRoute.snapshot.params.appId, 10);
   searchForm = this.fb.group({
     Name: [],
   });

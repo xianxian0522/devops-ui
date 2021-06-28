@@ -6,6 +6,7 @@ import {BaseRepository} from '../../../share/services/base.repository';
 import {FormBuilder} from '@angular/forms';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalService} from 'ng-zorro-antd/modal';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-app-set-cluster',
@@ -19,8 +20,9 @@ export class AppSetClusterComponent extends AppBaseCommonComponent<AppCluster> i
     protected baseRepository: BaseRepository<AppCluster>,
     private fb: FormBuilder,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
-    super(appService, baseRepository, messageService);
+    super(appService, baseRepository, messageService, activatedRoute);
   }
 
   searchForm = this.fb.group({

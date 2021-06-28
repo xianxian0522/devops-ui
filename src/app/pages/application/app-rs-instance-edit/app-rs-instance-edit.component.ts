@@ -24,6 +24,7 @@ export class AppRsInstanceEditComponent implements OnInit {
   @Input() data: any;
   @Input() mode!: string;
   @Input() rsId!: number;
+  @Input() appId!: number;
   editForm = this.fb.group({
     ID: [],
     BindInfos: this.fb.array([
@@ -81,7 +82,7 @@ export class AppRsInstanceEditComponent implements OnInit {
     }
 
     if (this.mode === 'created') {
-      this.baseRepository.queryAllListByAppId('host', this.appService.appId).subscribe(host => {
+      this.baseRepository.queryAllListByAppId('host', this.appId).subscribe(host => {
         this.hostList = host;
       });
     }

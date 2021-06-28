@@ -8,6 +8,7 @@ import {NzMessageService} from 'ng-zorro-antd/message';
 import {AppBaseCommonComponent} from '../../../share/base-common/app-base-common.component';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {MemberEditComponent} from '../../member-edit/member-edit.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-app-members',
@@ -22,8 +23,9 @@ export class AppMembersComponent extends AppBaseCommonComponent<AppMember> imple
     protected baseRepository: BaseRepository<AppMember>,
     private modalService: NzModalService,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
-    super(appService, baseRepository, messageService);
+    super(appService, baseRepository, messageService, activatedRoute);
   }
 
   searchForm = this.fb.group({

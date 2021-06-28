@@ -10,20 +10,20 @@ import {AppHostDetailsComponent} from './app-host-details/app-host-details.compo
 import {AppHostInstanceComponent} from './app-host-instance/app-host-instance.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'index', pathMatch: 'full'},
+  {path: '', redirectTo: ':appId/index', pathMatch: 'full'},
   // {path: 'index/:id', component: ApplicationComponent},
-  {path: 'index', component: ApplicationComponent},
+  {path: ':appId/index', component: ApplicationComponent},
   {
-    path: 'members',
+    path: ':appId/members',
     component: AppMembersComponent,
   },
-  {path: 'set-information', component: AppSetInformationComponent},
-  {path: 'set-cluster', component: AppSetClusterComponent},
+  {path: ':appId/set-information', component: AppSetInformationComponent},
+  {path: ':appId/set-cluster', component: AppSetClusterComponent},
   {path: 'set-cluster/edit/:clusterId', component: AppSetClusterEditComponent},
   // {path: 'cluster-instance', component: AppClusterInstanceComponent},
-  {path: 'set-cluster/instance/:clusterId', component: AppClusterInstanceComponent},
-  {path: 'host-details', component: AppHostDetailsComponent},
-  {path: 'host-details/instance/:hostId', component: AppHostInstanceComponent},
+  {path: ':appId/set-cluster/instance/:clusterId', component: AppClusterInstanceComponent},
+  {path: ':appId/host-details', component: AppHostDetailsComponent},
+  {path: ':appId/host-details/instance/:hostId', component: AppHostInstanceComponent},
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import {App, AppMember} from '../../../share/mode/app';
 import {BaseRepository} from '../../../share/services/base.repository';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {BaseCommonEditComponent} from '../../../share/base-common-edit/base-common-edit.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-app-set-information',
@@ -19,6 +20,7 @@ export class AppSetInformationComponent extends BaseCommonEditComponent<any> imp
     private appService: AppService,
     protected baseRepository: BaseRepository<any>,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
     super(fb, baseRepository, messageService);
   }
@@ -54,7 +56,7 @@ export class AppSetInformationComponent extends BaseCommonEditComponent<any> imp
   // });
   // 从业务成员里面选择
   // OwnerID = new FormControl(null);
-  id: number = this.appService.appId;
+  id: number = parseInt(this.activatedRoute.snapshot.params.appId, 10);
   userList: AppMember[] = [];
   // isAdvancedSettingShow = false;
 

@@ -32,10 +32,10 @@
         <td>{{ data.Level }}</td>
         <td nzRight>
           <div style="display: flex">
-            <a nz-button nzType="text" [routerLink]="['/app/members']" [queryParams]="{appId: data.ID}">
+            <a nz-button nzType="text" [routerLink]="['/app/' + data.ID + '/members']" >
               <i nz-icon nzType="team" nzTheme="outline"></i>
             </a>
-            <a nz-button nzType="text" [routerLink]="['/app/index']" [queryParams]="{appId: data.ID}">
+            <a nz-button nzType="text" [routerLink]="['/app/' + data.ID + '/index']" >
               <i nz-icon nzType="edit" nzTheme="outline"></i>
             </a>
           </div>

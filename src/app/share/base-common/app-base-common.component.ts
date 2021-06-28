@@ -6,6 +6,7 @@ import {merge, Subscription} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {BaseCommonComponent} from './base-common.component';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-app-base-common',
@@ -17,12 +18,13 @@ export abstract class AppBaseCommonComponent<MODEL extends {ID?: number}> extend
     protected appService: AppService,
     protected baseRepository: BaseRepository<MODEL>,
     protected messageService: NzMessageService,
+    protected activatedRoute: ActivatedRoute,
   ) {
     super(baseRepository, messageService);
   }
 
   isResultLoading = false;
-  appId: number = this.appService.appId;
+  appId: number = parseInt(this.activatedRoute.snapshot.params.appId, 10);
   onSubscribe!: Subscription;
 
   protected abstract urlString: string;

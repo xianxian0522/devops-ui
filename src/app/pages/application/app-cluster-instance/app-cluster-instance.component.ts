@@ -42,6 +42,7 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
   protected urlFragment = 'rs';
   rsId!: number;
   isResultLoading = false;
+  appId = parseInt(this.activatedRoute.snapshot.params.appId, 10);
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -105,7 +106,7 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
   showCreateDialog(): void {
     this.modalService.create({
       nzContent: AppRsInstanceEditComponent,
-      nzComponentParams: {data: {}, mode: 'created', rsId: this.rsId},
+      nzComponentParams: {data: {}, mode: 'created', rsId: this.rsId, appId: this.appId},
       nzWidth: '80vw',
       nzFooter: null,
       nzTitle: '新增实例',
@@ -118,7 +119,7 @@ export class AppClusterInstanceComponent extends BaseCommonComponent<any> implem
   showEditDialog(ele: AppInstance): void {
     this.modalService.create({
       nzTitle: '修改实例',
-      nzComponentParams: {data: ele, mode: 'edit', rsId: this.rsId},
+      nzComponentParams: {data: ele, mode: 'edit', rsId: this.rsId, appId: this.appId},
       nzWidth: '80vw',
       nzFooter: null,
       nzContent: AppRsInstanceEditComponent,
